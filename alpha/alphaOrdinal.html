@@ -85,6 +85,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#continuum-e-thresholds" id="toc-continuum-e-thresholds" class="nav-link active" data-scroll-target="#continuum-e-thresholds">Continuum e <em>thresholds</em></a></li>
   <li><a href="#possiamo-ignorare-la-natura-ordinale-degli-item" id="toc-possiamo-ignorare-la-natura-ordinale-degli-item" class="nav-link" data-scroll-target="#possiamo-ignorare-la-natura-ordinale-degli-item">Possiamo ignorare la natura ordinale degli item?</a></li>
   <li><a href="#e-le-correlazioni-policoriche" id="toc-e-le-correlazioni-policoriche" class="nav-link" data-scroll-target="#e-le-correlazioni-policoriche">E le correlazioni policoriche?</a></li>
+  <li><a href="#cè-un-altro-modo-di-calcolare-lalpha-ordinale" id="toc-cè-un-altro-modo-di-calcolare-lalpha-ordinale" class="nav-link" data-scroll-target="#cè-un-altro-modo-di-calcolare-lalpha-ordinale">C’è un altro modo di calcolare l’Alpha ordinale?</a></li>
   </ul>
 </nav>
 </div>
@@ -255,6 +256,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Però <strong>ATTENZIONE</strong>: questo <em>Alpha di Cronbach Policorico</em> è informativo <strong>SOLO</strong> se poi trattiamo gli item come realmente ordinali, ad esempio con un modello <strong>SEM</strong> specificando <code>ordered=TRUE</code>, altrimenti, se poi facciamo il semplice <em>Sum score dei dati ordinali</em>, allora l’attendibilità di quest’ultimo <strong>NON</strong> è quella suggerita dall’<em>Alpha di Cronbach Policorico</em>, ma più bassa.</p>
+</section>
+<section id="cè-un-altro-modo-di-calcolare-lalpha-ordinale" class="level2">
+<h2 class="anchored" data-anchor-id="cè-un-altro-modo-di-calcolare-lalpha-ordinale">C’è un altro modo di calcolare l’Alpha ordinale?</h2>
+<p>Possiamo utilizzare il pacchetto <code>semTools</code> sulle <strong>CFA</strong> per dati ordinali fittate col pacchetto <code>lavaan</code>. Fare le <strong>CFA</strong> è sempre raccomandato! Ecco un esempio.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulazione dati</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>N <span class="ot">=</span> <span class="dv">1500</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>X_true <span class="ot">=</span> <span class="fu">rnorm</span>(N,<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>X1 <span class="ot">=</span> <span class="fu">scale</span>(<span class="fl">0.8</span><span class="sc">*</span>X_true <span class="sc">+</span> <span class="fu">rnorm</span>(N,<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>X2 <span class="ot">=</span> <span class="fu">scale</span>(<span class="fl">0.8</span><span class="sc">*</span>X_true <span class="sc">+</span> <span class="fu">rnorm</span>(N,<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>X3 <span class="ot">=</span> <span class="fu">scale</span>(<span class="fl">0.8</span><span class="sc">*</span>X_true <span class="sc">+</span> <span class="fu">rnorm</span>(N,<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>X4 <span class="ot">=</span> <span class="fu">scale</span>(<span class="fl">0.8</span><span class="sc">*</span>X_true <span class="sc">+</span> <span class="fu">rnorm</span>(N,<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>X5 <span class="ot">=</span> <span class="fu">scale</span>(<span class="fl">0.8</span><span class="sc">*</span>X_true <span class="sc">+</span> <span class="fu">rnorm</span>(N,<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">x1 =</span> <span class="fu">as.numeric</span>(<span class="fu">cut</span>(X1,<span class="at">breaks=</span><span class="fu">c</span>(<span class="sc">-</span><span class="cn">Inf</span>,<span class="sc">-</span><span class="fl">0.2</span>,<span class="fl">0.2</span>,<span class="fl">1.2</span>,<span class="cn">Inf</span>),<span class="at">labels=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>))),</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">x2 =</span> <span class="fu">as.numeric</span>(<span class="fu">cut</span>(X2,<span class="at">breaks=</span><span class="fu">c</span>(<span class="sc">-</span><span class="cn">Inf</span>,<span class="sc">-</span><span class="fl">0.2</span>,<span class="fl">0.2</span>,<span class="fl">1.2</span>,<span class="cn">Inf</span>),<span class="at">labels=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>))),</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">x3 =</span> <span class="fu">as.numeric</span>(<span class="fu">cut</span>(X3,<span class="at">breaks=</span><span class="fu">c</span>(<span class="sc">-</span><span class="cn">Inf</span>,<span class="sc">-</span><span class="fl">0.2</span>,<span class="fl">0.2</span>,<span class="fl">1.2</span>,<span class="cn">Inf</span>),<span class="at">labels=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>))),</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">x4 =</span> <span class="fu">as.numeric</span>(<span class="fu">cut</span>(X4,<span class="at">breaks=</span><span class="fu">c</span>(<span class="sc">-</span><span class="cn">Inf</span>,<span class="sc">-</span><span class="fl">0.2</span>,<span class="fl">0.2</span>,<span class="fl">1.2</span>,<span class="cn">Inf</span>),<span class="at">labels=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>))),</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">x5 =</span> <span class="fu">as.numeric</span>(<span class="fu">cut</span>(X5,<span class="at">breaks=</span><span class="fu">c</span>(<span class="sc">-</span><span class="cn">Inf</span>,<span class="sc">-</span><span class="fl">0.2</span>,<span class="fl">0.2</span>,<span class="fl">1.2</span>,<span class="cn">Inf</span>),<span class="at">labels=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>)))</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">=</span> <span class="st">" </span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="st">  X_latent =~ x1+x2+x3+x4+x5</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="st">"</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">=</span> <span class="fu">cfa</span>(model, df, <span class="at">ordered=</span>T)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semTools)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">reliability</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           X_latent
+alpha     0.7119877
+alpha.ord 0.7670069
+omega     0.7115317
+omega2    0.7115317
+omega3    0.7116592
+avevar    0.3974567</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compRelSEM(fit) # in questo caso ci restituisce l'omega</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>per controprova vediamo se coincide con l’Alpha calcolato sulle correlazioni policoriche:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">alpha</span>(<span class="fu">polychoric</span>(df)<span class="sc">$</span>rho)<span class="sc">$</span>total</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> raw_alpha std.alpha   G6(smc) average_r      S/N  median_r
+ 0.7670009 0.7670009 0.7264698 0.3969991 3.291862 0.3888338</code></pre>
+</div>
+</div>
 <p><a href="alphaPowerSEM.html" target="_blank">(vai alla terza parte, su SEM e potenza)</a></p>
 </section>
 
