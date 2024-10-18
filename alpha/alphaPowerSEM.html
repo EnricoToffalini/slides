@@ -253,6 +253,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">cor</span>(df),<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stdout">
+<pre><code>     x1   x2   x3   x4   x5   x6   x7   x8
+x1 1.00 0.47 0.47 0.47 0.34 0.34 0.33 0.34
+x2 0.47 1.00 0.47 0.47 0.34 0.34 0.34 0.34
+x3 0.47 0.47 1.00 0.47 0.34 0.34 0.33 0.33
+x4 0.47 0.47 0.47 1.00 0.33 0.33 0.33 0.33
+x5 0.34 0.34 0.34 0.33 1.00 0.47 0.47 0.47
+x6 0.34 0.34 0.34 0.33 0.47 1.00 0.47 0.47
+x7 0.33 0.34 0.33 0.33 0.47 0.47 1.00 0.47
+x8 0.34 0.34 0.33 0.33 0.47 0.47 0.47 1.00</code></pre>
+</div>
 </div>
 <p>In base a questa matrice di correlazione, e ignorando la complessa struttura fattoriale, otterremo:</p>
 <ul>
@@ -265,37 +276,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulazione</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">10</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>N <span class="ot">=</span> <span class="dv">2000</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> <span class="fu">rnorm</span>(N,<span class="dv">0</span>,<span class="dv">1</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>Fact1 <span class="ot">=</span> <span class="fu">rnorm</span>(N,<span class="dv">0</span>,<span class="dv">1</span>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>Fact2 <span class="ot">=</span> <span class="fu">rnorm</span>(N,<span class="dv">0</span>,<span class="dv">1</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">x1 =</span> <span class="fl">0.25</span><span class="sc">*</span>Fact1 <span class="sc">+</span> <span class="fl">0.4</span><span class="sc">*</span>g <span class="sc">+</span> <span class="fu">rnorm</span>(N,<span class="dv">0</span>,<span class="fl">0.5</span>),</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">x2 =</span> <span class="fl">0.25</span><span class="sc">*</span>Fact1 <span class="sc">+</span> <span class="fl">0.4</span><span class="sc">*</span>g <span class="sc">+</span> <span class="fu">rnorm</span>(N,<span class="dv">0</span>,<span class="fl">0.5</span>),</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">x3 =</span> <span class="fl">0.25</span><span class="sc">*</span>Fact1 <span class="sc">+</span> <span class="fl">0.4</span><span class="sc">*</span>g <span class="sc">+</span> <span class="fu">rnorm</span>(N,<span class="dv">0</span>,<span class="fl">0.5</span>),</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">x4 =</span> <span class="fl">0.25</span><span class="sc">*</span>Fact1 <span class="sc">+</span> <span class="fl">0.4</span><span class="sc">*</span>g <span class="sc">+</span> <span class="fu">rnorm</span>(N,<span class="dv">0</span>,<span class="fl">0.5</span>),</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">x5 =</span> <span class="fl">0.25</span><span class="sc">*</span>Fact2 <span class="sc">+</span> <span class="fl">0.4</span><span class="sc">*</span>g <span class="sc">+</span> <span class="fu">rnorm</span>(N,<span class="dv">0</span>,<span class="fl">0.5</span>),</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">x6 =</span> <span class="fl">0.25</span><span class="sc">*</span>Fact2 <span class="sc">+</span> <span class="fl">0.4</span><span class="sc">*</span>g <span class="sc">+</span> <span class="fu">rnorm</span>(N,<span class="dv">0</span>,<span class="fl">0.5</span>),</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">x7 =</span> <span class="fl">0.25</span><span class="sc">*</span>Fact2 <span class="sc">+</span> <span class="fl">0.4</span><span class="sc">*</span>g <span class="sc">+</span> <span class="fu">rnorm</span>(N,<span class="dv">0</span>,<span class="fl">0.5</span>),</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">x8 =</span> <span class="fl">0.25</span><span class="sc">*</span>Fact2 <span class="sc">+</span> <span class="fl">0.4</span><span class="sc">*</span>g <span class="sc">+</span> <span class="fu">rnorm</span>(N,<span class="dv">0</span>,<span class="fl">0.5</span>)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulazione</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">10</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>N <span class="ot">=</span> <span class="dv">2000</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> <span class="fu">rnorm</span>(N,<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>Fact1 <span class="ot">=</span> <span class="fu">rnorm</span>(N,<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>Fact2 <span class="ot">=</span> <span class="fu">rnorm</span>(N,<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">x1 =</span> <span class="fl">0.25</span><span class="sc">*</span>Fact1 <span class="sc">+</span> <span class="fl">0.4</span><span class="sc">*</span>g <span class="sc">+</span> <span class="fu">rnorm</span>(N,<span class="dv">0</span>,<span class="fl">0.5</span>),</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">x2 =</span> <span class="fl">0.25</span><span class="sc">*</span>Fact1 <span class="sc">+</span> <span class="fl">0.4</span><span class="sc">*</span>g <span class="sc">+</span> <span class="fu">rnorm</span>(N,<span class="dv">0</span>,<span class="fl">0.5</span>),</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">x3 =</span> <span class="fl">0.25</span><span class="sc">*</span>Fact1 <span class="sc">+</span> <span class="fl">0.4</span><span class="sc">*</span>g <span class="sc">+</span> <span class="fu">rnorm</span>(N,<span class="dv">0</span>,<span class="fl">0.5</span>),</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">x4 =</span> <span class="fl">0.25</span><span class="sc">*</span>Fact1 <span class="sc">+</span> <span class="fl">0.4</span><span class="sc">*</span>g <span class="sc">+</span> <span class="fu">rnorm</span>(N,<span class="dv">0</span>,<span class="fl">0.5</span>),</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">x5 =</span> <span class="fl">0.25</span><span class="sc">*</span>Fact2 <span class="sc">+</span> <span class="fl">0.4</span><span class="sc">*</span>g <span class="sc">+</span> <span class="fu">rnorm</span>(N,<span class="dv">0</span>,<span class="fl">0.5</span>),</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">x6 =</span> <span class="fl">0.25</span><span class="sc">*</span>Fact2 <span class="sc">+</span> <span class="fl">0.4</span><span class="sc">*</span>g <span class="sc">+</span> <span class="fu">rnorm</span>(N,<span class="dv">0</span>,<span class="fl">0.5</span>),</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">x7 =</span> <span class="fl">0.25</span><span class="sc">*</span>Fact2 <span class="sc">+</span> <span class="fl">0.4</span><span class="sc">*</span>g <span class="sc">+</span> <span class="fu">rnorm</span>(N,<span class="dv">0</span>,<span class="fl">0.5</span>),</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">x8 =</span> <span class="fl">0.25</span><span class="sc">*</span>Fact2 <span class="sc">+</span> <span class="fl">0.4</span><span class="sc">*</span>g <span class="sc">+</span> <span class="fu">rnorm</span>(N,<span class="dv">0</span>,<span class="fl">0.5</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Fitting della CFA:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">=</span> <span class="st">"</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="st">  g =~ x1+x2+x3+x4+x5+x6+x7+x8</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="st">  Fact1 =~ x1+x2+x3+x4</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="st">  Fact2 =~ x5+x6+x7+x8</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="st">"</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">=</span> <span class="fu">cfa</span>(model, df, <span class="at">orthogonal=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">=</span> <span class="st">"</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="st">  g =~ x1+x2+x3+x4+x5+x6+x7+x8</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="st">  Fact1 =~ x1+x2+x3+x4</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="st">  Fact2 =~ x5+x6+x7+x8</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="st">"</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">=</span> <span class="fu">cfa</span>(model, df, <span class="at">orthogonal=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Controllo gli indici di fit:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fitMeasures</span>(fit, <span class="at">fit.measures=</span><span class="fu">c</span>(<span class="st">"rmsea"</span>,<span class="st">"tli"</span>,<span class="st">"cfi"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fitMeasures</span>(fit, <span class="at">fit.measures=</span><span class="fu">c</span>(<span class="st">"rmsea"</span>,<span class="st">"tli"</span>,<span class="st">"cfi"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>rmsea   tli   cfi 
 0.002 1.000 1.000 </code></pre>
@@ -303,13 +314,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Computo l’attendibilità usando il pacchetto <code>semTools</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semTools)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">compRelSEM</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semTools)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">compRelSEM</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    g Fact1 Fact2 
 0.719 0.223 0.237 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">reliability</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">reliability</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               g     Fact1     Fact2
 alpha  0.8442669 0.7987520 0.7804451
