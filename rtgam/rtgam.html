@@ -207,7 +207,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="fu">data.frame</span>(),<span class="fu">aes</span>(<span class="at">x=</span>Distance,<span class="at">y=</span><span class="fu">exp</span>(yLin)<span class="sc">*</span><span class="dv">20</span>,<span class="at">color=</span><span class="fu">as.factor</span>(id)))<span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="fu">data.frame</span>(),<span class="fu">aes</span>(<span class="at">x=</span>Distance,<span class="at">y=</span><span class="fu">exp</span>(yLin)<span class="sc">*</span><span class="dv">30</span>,<span class="at">color=</span><span class="fu">as.factor</span>(id)))<span class="sc">+</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size=</span><span class="fl">0.8</span>)<span class="sc">+</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="dv">1</span><span class="sc">:</span>ndistances)<span class="sc">+</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">18</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -225,22 +225,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="simulazione-dei-tempi-di-risposta-rt">Simulazione dei Tempi di Risposta (rt)</h4>
 <p>Genero finalmente i dati simulati usando la Gamma:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>rt <span class="ot">=</span> <span class="fu">rgamma</span>(N<span class="sc">*</span>k<span class="sc">*</span>ndistances, <span class="at">shape =</span> <span class="fu">exp</span>(yLin), <span class="at">scale =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>rt <span class="ot">=</span> <span class="fu">rgamma</span>(N<span class="sc">*</span>k<span class="sc">*</span>ndistances, <span class="at">shape =</span> <span class="fu">exp</span>(yLin), <span class="at">scale =</span> <span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Diamo un’occhiata alla distribuzione dei tempi:</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dx <span class="ot">=</span> <span class="fu">aggregate</span>(rt,<span class="at">by=</span><span class="fu">list</span>(<span class="at">id=</span>id,<span class="at">Distance=</span>Distance),<span class="at">FUN=</span>mean)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>dx,<span class="fu">aes</span>(<span class="at">x=</span>Distance,<span class="at">y=</span>x,<span class="at">color=</span><span class="fu">as.factor</span>(id)))<span class="sc">+</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size=</span><span class="fl">0.8</span>)<span class="sc">+</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="dv">1</span><span class="sc">:</span>ndistances)<span class="sc">+</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">18</span>))<span class="sc">+</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">"Observed Mean Response Time"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="fu">data.frame</span>())<span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x=</span>rt,<span class="at">y=</span><span class="fu">after_stat</span>(density)),<span class="at">fill=</span><span class="st">"black"</span>,<span class="at">alpha=</span>.<span class="dv">35</span>,<span class="at">color=</span><span class="cn">NA</span>)<span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">18</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
 <p><img src="rtgam_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Diamo un’occhiata ai tempi di risposta medi osservati per partecipante per condizione:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>dx <span class="ot">=</span> <span class="fu">aggregate</span>(rt,<span class="at">by=</span><span class="fu">list</span>(<span class="at">id=</span>id,<span class="at">Distance=</span>Distance),<span class="at">FUN=</span>median)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>dx,<span class="fu">aes</span>(<span class="at">x=</span>Distance,<span class="at">y=</span>x,<span class="at">color=</span><span class="fu">as.factor</span>(id)))<span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size=</span><span class="fl">0.8</span>)<span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="dv">1</span><span class="sc">:</span>ndistances)<span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">18</span>))<span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">"Median Response Time"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="rtgam_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -254,29 +271,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="preparo-il-dataframe">Preparo il dataframe</h4>
 <p>Anzitutto mettiamo i dati osservati in un dataframe:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">id=</span><span class="fu">as.factor</span>(id), Distance, rt)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">id=</span><span class="fu">as.factor</span>(id), Distance, rt)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id Distance       rt
-1  1        1 528.6976
-2  1        1 203.8976
-3  1        1 334.1565
-4  1        1 301.9465
-5  1        1 291.1067
-6  1        1 326.9458</code></pre>
+1  1        1 793.0464
+2  1        1 305.8464
+3  1        1 501.2347
+4  1        1 452.9198
+5  1        1 436.6601
+6  1        1 490.4187</code></pre>
 </div>
 </div>
 </section>
 <section id="fitting-dei-dati-coi-gam" class="level4">
 <h4 class="anchored" data-anchor-id="fitting-dei-dati-coi-gam">Fitting dei dati coi GAM</h4>
-<p>Fittiamo il modello <em>gam</em> con intercette e slope random, e la family <em>Gamma</em> con funzione legame logaritmo. Lo facciamo <em>per quanto possibile</em>, perché in realtà il mixed-model sarebbe idealmente implementato dalla funzione <code>gamm()</code>, che però al momento non supporta family diverse dalla <em>Gaussian</em>, quindi ci arrabattiamo in qualche modo con la <code>gam()</code>:</p>
+<p>Fittiamo il modello <em>gam</em> con intercette e slope random, e la family <em>Gamma</em> con funzione legame logaritmo. Lo facciamo <em>per quanto possibile</em>, perché in realtà il mixed-model sarebbe idealmente implementato dalla funzione <code>gamm()</code>, che però al momento non supporta family diverse dalla <em>Gaussian</em>, quindi ci arrabattiamo in qualche modo con <code>gam()</code>:</p>
 <div style="font-weight:bold;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">=</span> <span class="fu">gam</span>(rt <span class="sc">~</span> <span class="fu">s</span>(Distance, <span class="at">k =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>               <span class="fu">s</span>(id, <span class="at">bs =</span> <span class="st">"re"</span>) <span class="sc">+</span> </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>               <span class="fu">s</span>(Distance, id, <span class="at">bs =</span> <span class="st">"fs"</span>, <span class="at">m =</span> <span class="dv">1</span>), </span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">family =</span> <span class="fu">Gamma</span>(<span class="at">link =</span> <span class="st">"log"</span>) , </span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">=</span> <span class="fu">gam</span>(rt <span class="sc">~</span> <span class="fu">s</span>(Distance, <span class="at">k =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>               <span class="fu">s</span>(id, <span class="at">bs =</span> <span class="st">"re"</span>) <span class="sc">+</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>               <span class="fu">s</span>(Distance, id, <span class="at">bs =</span> <span class="st">"fs"</span>, <span class="at">m =</span> <span class="dv">1</span>), </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">family =</span> <span class="fu">Gamma</span>(<span class="at">link =</span> <span class="st">"log"</span>) , </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in gam.side(sm, X, tol = .Machine$double.eps^0.5): model has repeated
 1-d smooths of same variable.</code></pre>
@@ -287,18 +304,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ypred <span class="ot">=</span> <span class="fu">predict</span>(fit)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(),<span class="fu">aes</span>(<span class="at">x=</span>df<span class="sc">$</span>Distance,<span class="at">y=</span><span class="fu">exp</span>(ypred),<span class="at">group=</span><span class="fu">as.factor</span>(df<span class="sc">$</span>id),<span class="at">color=</span><span class="fu">as.factor</span>(df<span class="sc">$</span>id)))<span class="sc">+</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size=</span><span class="dv">1</span>)<span class="sc">+</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="dv">1</span><span class="sc">:</span>ndistances)<span class="sc">+</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">25</span>))<span class="sc">+</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Distance"</span>,<span class="at">y=</span><span class="st">"Expected RT"</span>,<span class="at">color=</span><span class="st">"id"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ypred <span class="ot">=</span> <span class="fu">predict</span>(fit)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(),<span class="fu">aes</span>(<span class="at">x=</span>df<span class="sc">$</span>Distance,<span class="at">y=</span><span class="fu">exp</span>(ypred),<span class="at">group=</span><span class="fu">as.factor</span>(df<span class="sc">$</span>id),<span class="at">color=</span><span class="fu">as.factor</span>(df<span class="sc">$</span>id)))<span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size=</span><span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="dv">1</span><span class="sc">:</span>ndistances)<span class="sc">+</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">25</span>))<span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Distance"</span>,<span class="at">y=</span><span class="st">"Expected RT"</span>,<span class="at">color=</span><span class="st">"id"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="rtgam_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="rtgam_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -308,7 +325,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="test-degli-effetti">Test degli effetti?</h4>
 <p>Vediamo il summary del modello:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Family: Gamma 
@@ -320,15 +337,15 @@ rt ~ s(Distance, k = 3) + s(id, bs = "re") + s(Distance, id,
 
 Parametric coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  5.40686    0.09855   54.87   &lt;2e-16 ***
+(Intercept)  5.81232    0.09855   58.98   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Approximate significance of smooth terms:
                   edf Ref.df        F p-value    
 s(Distance)     1.938   1.96  135.060  &lt;2e-16 ***
-s(id)           4.495   9.00    0.837  &lt;2e-16 ***
-s(Distance,id) 34.169  88.00 1485.754  0.0899 .  
+s(id)           4.488   9.00    0.835  &lt;2e-16 ***
+s(Distance,id) 34.176  88.00 1487.964  0.0893 .  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
@@ -338,21 +355,21 @@ GCV = 0.096802  Scale est. = 0.093801  n = 3600</code></pre>
 </div>
 <p>La seguente tabella estrapolata dal <code>summary</code>, in particolare, ci offre dei test: 1) per l’effetto fisso generale di Distance; 2) per la varianza delle intercette random; 3) per la varianza delle slope random.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)<span class="sc">$</span>s.table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)<span class="sc">$</span>s.table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                     edf    Ref.df            F    p-value
 s(Distance)     1.938099  1.960351  135.0596237 0.00000000
-s(id)           4.494801  9.000000    0.8370942 0.00000000
-s(Distance,id) 34.169238 88.000000 1485.7542491 0.08986681</code></pre>
+s(id)           4.488167  9.000000    0.8346308 0.00000000
+s(Distance,id) 34.175871 88.000000 1487.9642257 0.08926907</code></pre>
 </div>
 </div>
 <p>Contrariamente ai classici modelli lineari, con gli smoother non abbiamo un singolo trend lineare che è “significativamente positivo” o “significativamente negativo”. Un modo semplice per valutare se l’effetto principale di Distance (che è comunque “significativo”) è positivo, negativo, o un mix, è fare una visual inspection dell’effetto fisso principale:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit,<span class="at">pages=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit,<span class="at">pages=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="rtgam_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="rtgam_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>

@@ -102,7 +102,7 @@ Considerata una funzione legame logaritmica, i tempi attesi dovrebbero essere qu
 
 ```{r, message=F, warning=F}
 #| code-fold: true
-ggplot(data=data.frame(),aes(x=Distance,y=exp(yLin)*20,color=as.factor(id)))+
+ggplot(data=data.frame(),aes(x=Distance,y=exp(yLin)*30,color=as.factor(id)))+
   geom_line(size=0.8)+
   scale_x_continuous(breaks=1:ndistances)+
   theme(text=element_text(size=18))
@@ -113,17 +113,28 @@ ggplot(data=data.frame(),aes(x=Distance,y=exp(yLin)*20,color=as.factor(id)))+
 Genero finalmente i dati simulati usando la Gamma:
 
 ```{r}
-rt = rgamma(N*k*ndistances, shape = exp(yLin), scale = 20)
+rt = rgamma(N*k*ndistances, shape = exp(yLin), scale = 30)
 ```
+
+Diamo un'occhiata alla distribuzione dei tempi: 
 
 ```{r, message=F, warning=F}
 #| code-fold: true
-dx = aggregate(rt,by=list(id=id,Distance=Distance),FUN=mean)
+ggplot(data=data.frame())+
+  geom_density(aes(x=rt,y=after_stat(density)),fill="black",alpha=.35,color=NA)+
+  theme(text=element_text(size=18))
+```
+
+Diamo un'occhiata ai tempi di risposta medi osservati per partecipante per condizione:
+
+```{r, message=F, warning=F}
+#| code-fold: true
+dx = aggregate(rt,by=list(id=id,Distance=Distance),FUN=median)
 ggplot(data=dx,aes(x=Distance,y=x,color=as.factor(id)))+
   geom_line(size=0.8)+
   scale_x_continuous(breaks=1:ndistances)+
   theme(text=element_text(size=18))+
-  labs(y="Observed Mean Response Time")
+  labs(y="Median Response Time")
 ```
 
 ------------------------------------------------------------------------
@@ -141,7 +152,7 @@ head(df)
 
 #### Fitting dei dati coi GAM
 
-Fittiamo il modello *gam* con intercette e slope random, e la family *Gamma* con funzione legame logaritmo. Lo facciamo *per quanto possibile*, perché in realtà il mixed-model sarebbe idealmente implementato dalla funzione `gamm()`, che però al momento non supporta family diverse dalla *Gaussian*, quindi ci arrabattiamo in qualche modo con la `gam()`:
+Fittiamo il modello *gam* con intercette e slope random, e la family *Gamma* con funzione legame logaritmo. Lo facciamo *per quanto possibile*, perché in realtà il mixed-model sarebbe idealmente implementato dalla funzione `gamm()`, che però al momento non supporta family diverse dalla *Gaussian*, quindi ci arrabattiamo in qualche modo con `gam()`:
 
 ::: {style="font-weight:bold;"}
 ```{r, cache=T}
