@@ -122,7 +122,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmmTMB)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mgcv)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1006</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="definisco-alcuni-parametri-iniziali-del-disegno-di-ricerca" class="level3">
@@ -178,14 +178,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>tauSlo <span class="ot">=</span> <span class="fl">0.06</span> <span class="co"># SD della slope random</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>rInt <span class="ot">=</span> <span class="fu">rep</span>(<span class="fu">rnorm</span>(N,<span class="dv">0</span>,tauInt), <span class="at">each=</span>ndistances<span class="sc">*</span>k) <span class="co"># genero le intercette random</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>rSlo <span class="ot">=</span> <span class="fu">rep</span>(<span class="fu">rnorm</span>(N,<span class="dv">0</span>,tauSlo), <span class="at">each=</span>ndistances<span class="sc">*</span>k) <span class="co"># genero le slope random</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>rSlo <span class="ot">=</span> <span class="fu">rep</span>(<span class="fu">rnorm</span>(N,<span class="dv">0</span>,tauSlo), <span class="at">each=</span>ndistances<span class="sc">*</span>k) <span class="co"># genero le slope random</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>rStop <span class="ot">=</span> <span class="fu">rep</span>(<span class="fu">sample</span>(<span class="sc">-</span><span class="dv">1</span><span class="sc">:</span><span class="dv">1</span>,N,<span class="at">replace=</span>T),<span class="at">each=</span>ndistances<span class="sc">*</span>k)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="componente-lineare-complessiva-fissa-random" class="level4">
 <h4 class="anchored" data-anchor-id="componente-lineare-complessiva-fissa-random">Componente lineare complessiva (fissa + random)</h4>
 <p>Genero la componente lineare per tutte le osservazioni e partecipanti, sommando la parte fissa e quella random:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>yLin <span class="ot">=</span> beta0 <span class="sc">+</span> beta1 <span class="sc">*</span> <span class="fu">pmin</span>(Distance, stop) <span class="sc">+</span> rInt <span class="sc">+</span> rSlo <span class="sc">*</span> <span class="fu">pmin</span>(Distance, stop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>yLin <span class="ot">=</span> beta0 <span class="sc">+</span> beta1 <span class="sc">*</span> <span class="fu">pmin</span>(Distance, stop<span class="sc">+</span>rStop) <span class="sc">+</span> rInt <span class="sc">+</span> rSlo <span class="sc">*</span> <span class="fu">pmin</span>(Distance, stop<span class="sc">+</span>rStop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <details class="code-fold">
@@ -275,12 +277,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id Distance       rt
-1  1        1 793.0464
-2  1        1 305.8464
-3  1        1 501.2347
-4  1        1 452.9198
-5  1        1 436.6601
-6  1        1 490.4187</code></pre>
+1  1        1 387.6420
+2  1        1 412.9519
+3  1        1 280.9995
+4  1        1 386.3703
+5  1        1 433.6993
+6  1        1 455.0178</code></pre>
 </div>
 </div>
 </section>
@@ -337,30 +339,30 @@ rt ~ s(Distance, k = 3) + s(id, bs = "re") + s(Distance, id,
 
 Parametric coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  5.81232    0.09855   58.98   &lt;2e-16 ***
+(Intercept)   5.8723     0.1482   39.62   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Approximate significance of smooth terms:
                   edf Ref.df        F p-value    
-s(Distance)     1.938   1.96  135.060  &lt;2e-16 ***
-s(id)           4.488   9.00    0.835  &lt;2e-16 ***
-s(Distance,id) 34.176  88.00 1487.964  0.0893 .  
+s(Distance)     1.880  1.904   56.382  &lt;2e-16 ***
+s(id)           4.495 10.000    0.629  &lt;2e-16 ***
+s(Distance,id) 46.521 88.000 6783.745   0.182    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-R-sq.(adj) =  0.564   Deviance explained = 54.4%
-GCV = 0.096802  Scale est. = 0.093801  n = 3600</code></pre>
+R-sq.(adj) =  0.688   Deviance explained = 65.8%
+GCV = 0.096206  Scale est. = 0.090897  n = 3600</code></pre>
 </div>
 </div>
 <p>La seguente tabella estrapolata dal <code>summary</code>, in particolare, ci offre dei test: 1) per l’effetto fisso generale di Distance; 2) per la varianza delle intercette random; 3) per la varianza delle slope random.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)<span class="sc">$</span>s.table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                     edf    Ref.df            F    p-value
-s(Distance)     1.938099  1.960351  135.0596237 0.00000000
-s(id)           4.488167  9.000000    0.8346308 0.00000000
-s(Distance,id) 34.175871 88.000000 1487.9642257 0.08926907</code></pre>
+<pre><code>                     edf    Ref.df            F   p-value
+s(Distance)     1.879660  1.903602   56.3817616 0.0000000
+s(id)           4.494829 10.000000    0.6291842 0.0000000
+s(Distance,id) 46.520616 88.000000 6783.7446934 0.1815236</code></pre>
 </div>
 </div>
 <p>Contrariamente ai classici modelli lineari, con gli smoother non abbiamo un singolo trend lineare che è “significativamente positivo” o “significativamente negativo”. Un modo semplice per valutare se l’effetto principale di Distance (che è comunque “significativo”) è positivo, negativo, o un mix, è fare una visual inspection dell’effetto fisso principale:</p>

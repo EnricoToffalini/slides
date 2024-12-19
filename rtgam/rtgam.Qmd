@@ -26,7 +26,7 @@ rm(list=ls())
 library(ggplot2)
 library(glmmTMB)
 library(mgcv)
-set.seed(1000)
+set.seed(1006)
 ```
 
 ### Definisco alcuni parametri iniziali del disegno di ricerca
@@ -80,6 +80,8 @@ tauSlo = 0.06 # SD della slope random
 
 rInt = rep(rnorm(N,0,tauInt), each=ndistances*k) # genero le intercette random
 rSlo = rep(rnorm(N,0,tauSlo), each=ndistances*k) # genero le slope random
+
+rStop = rep(sample(-1:1,N,replace=T),each=ndistances*k)
 ```
 
 #### Componente lineare complessiva (fissa + random)
@@ -87,7 +89,7 @@ rSlo = rep(rnorm(N,0,tauSlo), each=ndistances*k) # genero le slope random
 Genero la componente lineare per tutte le osservazioni e partecipanti, sommando la parte fissa e quella random:
 
 ```{r}
-yLin = beta0 + beta1 * pmin(Distance, stop) + rInt + rSlo * pmin(Distance, stop)
+yLin = beta0 + beta1 * pmin(Distance, stop+rStop) + rInt + rSlo * pmin(Distance, stop+rStop)
 ```
 
 ```{r, message=F, warning=F}
@@ -116,7 +118,7 @@ Genero finalmente i dati simulati usando la Gamma:
 rt = rgamma(N*k*ndistances, shape = exp(yLin), scale = 30)
 ```
 
-Diamo un'occhiata alla distribuzione dei tempi: 
+Diamo un'occhiata alla distribuzione dei tempi:
 
 ```{r, message=F, warning=F}
 #| code-fold: true
