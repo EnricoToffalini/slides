@@ -118,15 +118,6 @@ Genero finalmente i dati simulati usando la Gamma:
 rt = rgamma(N*k*ndistances, shape = exp(yLin), scale = 30)
 ```
 
-Diamo un'occhiata alla distribuzione dei tempi:
-
-```{r, message=F, warning=F}
-#| code-fold: true
-ggplot(data=data.frame())+
-  geom_density(aes(x=rt,y=after_stat(density)),fill="black",alpha=.35,color=NA)+
-  theme(text=element_text(size=18))
-```
-
 Diamo un'occhiata ai tempi di risposta medi osservati per partecipante per condizione:
 
 ```{r, message=F, warning=F}
@@ -137,6 +128,15 @@ ggplot(data=dx,aes(x=Distance,y=x,color=as.factor(id)))+
   scale_x_continuous(breaks=1:ndistances)+
   theme(text=element_text(size=18))+
   labs(y="Median Response Time")
+```
+
+Diamo anche un'occhiata alla distribuzione complessiva dei tempi per verificare se assomiglia a quella dei tempi:
+
+```{r, message=F, warning=F}
+#| code-fold: true
+ggplot(data=data.frame())+
+  geom_density(aes(x=rt,y=after_stat(density)),fill="black",alpha=.35,color=NA)+
+  theme(text=element_text(size=18))
 ```
 
 ------------------------------------------------------------------------
