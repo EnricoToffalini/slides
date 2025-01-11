@@ -1,0 +1,221 @@
+---
+title: "Emotions and Temporal Representations"
+author: "Enrico Toffalini"
+date: "2025-01-10"
+include-in-header: assets/header.html
+format: 
+  html:
+    toc: true     
+    toc-depth: 2   
+    code-summary: "Show the code"
+    message: false
+    css: custom.css
+editor: visual
+---
+
+## General Considerations
+
+For simplicity, we will consider only the **behavioral responses**. The primary aim of this study was to investigate whether the Emotion conveyed by a video (Positive, Neutral, Negative) influenced some psychomotor abilities and time processing skills: 
+
+- **Finger tapping**: ability to 1) achieve a lower inter-tap interval (ITI); 2) consistency in ITI (less variation in ITI across the task).
+- **Retrospective time estimation**: Accurately estimating the duration of the video just viewed. 
+- **Prospective time estimation**: Accurately estimating a one-minute interval during the video, starting when a red dot appears.
+
+Luckily, the authors appreciate open science and transparency, and they have shared their data 🙂 Along with the dataset, they have provided a detailed document explaining its contents. In this case, the file is available here: <a href="Data/README.txt" download>README.txt</a>.
+
+The raw data is divided into two files: 
+
+- <a href="Data/FingerTapping.csv" download>FingerTapping.csv</a>, which contains the data related to the finger-tapping task.
+- <a href="Data/TimePerception.csv" download>TimePerception.csv</a>, which includes the data for the two time perception tasks.
+
+## Data Analysis with R
+
+Beginners in R may find helpful resources, including an open-access book and a short course, here: [*Basics of R for Data Science*](https://enricotoffalini.github.io/Basics-R/){target="_blank"}. To get started quickly, check out the [*"Getting Started"*](https://enricotoffalini.github.io/Basics-R/#getting-started){target="_blank"} section, which provides a straightforward guide for installing R and RStudio. Learning R can be a valuable skill for your future, not just for research: it may also give you an advantage in methodological courses and make conducting an empirical thesis easier.
+
+#### Initial Setup: Empty Workspace and Load Packages
+
+```{r, message=F, warning=F}
+# empty workspace
+rm(list=ls())
+# before loading, make sure that a package is installed, otherwise install it with command 
+# > install.packages("<package_name>")
+library(lme4)
+library(lmerTest)
+library(glmmTMB)
+library(effects)
+library(ggplot2)
+```
+
+#### Import Data
+
+```{r, message=F, warning=F}
+# I placed .csv files into a folder named "Data"
+ft = read.csv("Data/FingerTapping.csv")
+tp = read.csv("Data/TimePerception.csv")
+```
+
+#### Inspect Datasets
+
+Let's see the first few rows of each dataset for figuring out their structures.
+
+```{r, message=F, warning=F}
+head(ft)
+head(tp)
+```
+
+## Finger Tapping
+
+As recommended, let's remove the first trial for each subject. Then, let's inspect the distribution of ITI.
+
+```{r, message=F, warning=F}
+ft = ft[ft$Trial != 1, ]
+hist(ft$ITI, breaks=100)
+```
+
+OUCH! There are a few outliers! Let's remove ITI observations that are too far away from the average:
+
+```{r, message=F, warning=F}
+ft = ft[abs((ft$ITI - mean(ft$ITI))/sd(ft$ITI)) < 3, ]
+hist(ft$ITI, breaks=100)
+```
+
+### Fit Statistical Model on *Finger Tapping*
+
+```{r, message=F, warning=F, cache=T}
+# prepare factorial variables
+ft$ID = factor(ft$ID)
+ft$Emotion = factor(ft$Emotion, levels=c("Neutral","Negative","Positive"))
+
+# actually fit the model
+fit_ft = glmmTMB(
+  ITI ~ Emotion + (Emotion|ID),
+  dispformula = ~ Emotion,
+  data = ft,
+  family = Gamma(link="log")
+)
+
+# see summary of model coefficients
+summary(fit_ft)
+
+# plot predicted effects
+plot(allEffects(fit_ft))
+```
+
+## Time Perception: Retrospective
+
+```{r, message=F, warning=F}
+# inspect distribution of Retrospective estimates
+hist(tp$Retro_Estimate)
+```
+
+Compute (in)accuracy as a ratio:
+
+$$ RetrospectiveError = \frac{\text{Estimate} - \text{ObjectiveTime}}{\text{ObjectiveTime}} $$
+
+```{r, message=F, warning=F}
+# compute both absolute and relative precision of estimate
+tp$Retro_abs_error = abs((tp$Retro_Estimate - 5) / 5)
+tp$Retro_rel_error = (tp$Retro_Estimate - 5) / 5
+```
+
+### Fit Statistical Model on *Retrospective estimates*
+
+#### Absolute error
+
+```{r, message=F, warning=F}
+# prepare factorial variables
+tp$ID = factor(tp$ID)
+tp$Emotion = factor(tp$Emotion, levels=c("Neutral","Negative","Positive"))
+
+# actually fit the model - absolute error
+fit_re_abs = lmer(
+  Retro_abs_error ~ Emotion + (1|ID),
+  data = tp
+)
+
+anova(fit_re_abs)
+
+# see summary of model coefficients
+summary(fit_re_abs)$coefficients
+
+# plot predicted effects
+plot(allEffects(fit_re_abs))
+```
+
+#### Relative error
+
+```{r, message=F, warning=F}
+# actually fit the model - relative error
+fit_re_rel = lmer(
+  Retro_rel_error ~ Emotion + (1|ID),
+  data = tp
+)
+
+anova(fit_re_rel)
+
+# see summary of model coefficients
+summary(fit_re_rel)$coefficients
+
+# plot predicted effects
+plot(allEffects(fit_re_rel))
+```
+
+## Time Perception: Prospective
+
+```{r, message=F, warning=F}
+# inspect distribution of Retrospective estimates
+hist(tp$Prosp_Estimate)
+```
+
+OUCH! There is a negative value! Remove it:
+
+```{r, message=F, warning=F}
+tp_pro = tp[tp$Prosp_Estimate > 0, ]
+hist(tp_pro$Prosp_Estimate)
+```
+
+Compute error as a ratio:
+
+$$ ProspectiveError = \frac{\text{Estimate} - \text{ObjectiveTime}}{\text{ObjectiveTime}} $$
+
+```{r, message=F, warning=F}
+# compute both absolute and relative error of estimate
+tp_pro$Prosp_abs_error = abs((tp_pro$Prosp_Estimate - 60000) / 60000)
+tp_pro$Prosp_rel_error = (tp_pro$Prosp_Estimate - 60000) / 60000
+```
+
+### Fit Statistical Model on *Prospective estimates*
+
+#### Absolute error
+
+```{r, message=F, warning=F}
+fit_pro_abs = lmer(
+  Prosp_abs_error ~ Emotion + (1|ID),
+  data = tp_pro
+)
+
+anova(fit_pro_abs)
+
+# see summary of model coefficients
+summary(fit_pro_abs)$coefficients
+
+# plot predicted effects
+plot(allEffects(fit_pro_abs))
+```
+
+#### Relative error
+
+```{r, message=F, warning=F}
+fit_pro_rel = lmer(
+  Prosp_rel_error ~ Emotion + (1|ID),
+  data = tp_pro
+)
+
+anova(fit_pro_rel)
+
+# see summary of model coefficients
+summary(fit_pro_rel)$coefficients
+
+# plot predicted effects
+plot(allEffects(fit_pro_rel))
+```
