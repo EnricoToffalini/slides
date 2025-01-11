@@ -145,7 +145,7 @@ plot(allEffects(fit_re))
 ## Time Perception: Prospective
 
 ```{r, message=F, warning=F}
-# inspect distribution of Retrospective estimates
+# inspect distribution of Prospective estimates
 hist(tp$Prosp_Estimate)
 ```
 
