@@ -9,24 +9,24 @@ format:
     toc-depth: 2   
     code-summary: "Show the code"
     message: false
-    css: custom.css
+    css: "assets/custom.css"
 editor: visual
 ---
 
 ## General Considerations
 
-For simplicity, we will consider only the **behavioral responses**. The primary aim of this study was to investigate whether the Emotion conveyed by a video (Positive, Neutral, Negative) influenced some psychomotor abilities and time processing skills: 
+For simplicity, we will consider only the **behavioral responses**. The primary aim of this study was to investigate whether the Emotion conveyed by a video (Positive, Neutral, Negative) influenced some psychomotor abilities and time processing skills:
 
-- **Finger tapping**: ability to 1) achieve a lower inter-tap interval (ITI); 2) consistency in ITI (less variation in ITI across the task).
-- **Retrospective time estimation**: Accurately estimating the duration of the video just viewed. 
-- **Prospective time estimation**: Accurately estimating a one-minute interval during the video, starting when a red dot appears.
+-   **Finger tapping**: ability to 1) achieve a lower inter-tap interval (ITI); 2) consistency in ITI (less variation in ITI across the task).
+-   **Retrospective time estimation**: Accurately estimating the duration of the video just viewed.
+-   **Prospective time estimation**: Accurately estimating a one-minute interval during the video, starting when a red dot appears.
 
 Luckily, the authors appreciate open science and transparency, and they have shared their data 🙂 Along with the dataset, they have provided a detailed document explaining its contents. In this case, the file is available here: <a href="Data/README.txt" download>README.txt</a>.
 
-The raw data is divided into two files: 
+The raw data is divided into two files:
 
-- <a href="Data/FingerTapping.csv" download>FingerTapping.csv</a>, which contains the data related to the finger-tapping task.
-- <a href="Data/TimePerception.csv" download>TimePerception.csv</a>, which includes the data for the two time perception tasks.
+-   <a href="Data/FingerTapping.csv" download>FingerTapping.csv</a>, which contains the data related to the finger-tapping task.
+-   <a href="Data/TimePerception.csv" download>TimePerception.csv</a>, which includes the data for the two time perception tasks.
 
 ## Data Analysis with R
 
@@ -79,7 +79,9 @@ ft = ft[abs((ft$ITI - mean(ft$ITI))/sd(ft$ITI)) < 3, ]
 hist(ft$ITI, breaks=100)
 ```
 
-### Fit Statistical Model on *Finger Tapping*
+#### Fit Statistical Model on *Finger Tapping*
+
+Because each participant provides multiple responses, we can test not only if Emotion affects average ITI, but also if it affects its dispersion. Let's run a special model for this:
 
 ```{r, message=F, warning=F, cache=T}
 # prepare factorial variables
@@ -113,51 +115,31 @@ Compute (in)accuracy as a ratio:
 $$ RetrospectiveError = \frac{\text{Estimate} - \text{ObjectiveTime}}{\text{ObjectiveTime}} $$
 
 ```{r, message=F, warning=F}
-# compute both absolute and relative precision of estimate
-tp$Retro_abs_error = abs((tp$Retro_Estimate - 5) / 5)
-tp$Retro_rel_error = (tp$Retro_Estimate - 5) / 5
+# compute precision (error) of retrospective estimate
+tp$Retro_Error = (tp$Retro_Estimate - 5) / 5
 ```
 
-### Fit Statistical Model on *Retrospective estimates*
+In fact, this does not reflect the amount of "error" in the estimation: positive values indicate *overestimation*, while negative values indicate *underestimation*. If a particular video is largely overestimated by some and largely underestimated by others, its mean estimate will be "zero", but this does NOT indicate accuracy. However, accuracy vs inaccuracy might be reflected by a smaller vs larger dispersion of estimate scores.
 
-#### Absolute error
+#### Fit Statistical Model on *Retrospective estimates*
 
 ```{r, message=F, warning=F}
 # prepare factorial variables
 tp$ID = factor(tp$ID)
 tp$Emotion = factor(tp$Emotion, levels=c("Neutral","Negative","Positive"))
 
-# actually fit the model - absolute error
-fit_re_abs = lmer(
-  Retro_abs_error ~ Emotion + (1|ID),
+# actually fit the model
+fit_re = glmmTMB(
+  Retro_Error ~ Emotion + (1|ID),
+  dispformula = ~ Emotion,
   data = tp
 )
 
-anova(fit_re_abs)
-
 # see summary of model coefficients
-summary(fit_re_abs)$coefficients
+summary(fit_re)
 
 # plot predicted effects
-plot(allEffects(fit_re_abs))
-```
-
-#### Relative error
-
-```{r, message=F, warning=F}
-# actually fit the model - relative error
-fit_re_rel = lmer(
-  Retro_rel_error ~ Emotion + (1|ID),
-  data = tp
-)
-
-anova(fit_re_rel)
-
-# see summary of model coefficients
-summary(fit_re_rel)$coefficients
-
-# plot predicted effects
-plot(allEffects(fit_re_rel))
+plot(allEffects(fit_re))
 ```
 
 ## Time Perception: Prospective
@@ -170,8 +152,8 @@ hist(tp$Prosp_Estimate)
 OUCH! There is a negative value! Remove it:
 
 ```{r, message=F, warning=F}
-tp_pro = tp[tp$Prosp_Estimate > 0, ]
-hist(tp_pro$Prosp_Estimate)
+tp$Prosp_Estimate[tp$Prosp_Estimate < 0] = NA
+hist(tp$Prosp_Estimate)
 ```
 
 Compute error as a ratio:
@@ -179,43 +161,31 @@ Compute error as a ratio:
 $$ ProspectiveError = \frac{\text{Estimate} - \text{ObjectiveTime}}{\text{ObjectiveTime}} $$
 
 ```{r, message=F, warning=F}
-# compute both absolute and relative error of estimate
-tp_pro$Prosp_abs_error = abs((tp_pro$Prosp_Estimate - 60000) / 60000)
-tp_pro$Prosp_rel_error = (tp_pro$Prosp_Estimate - 60000) / 60000
+# compute precision (error) of prospective estimate
+tp$Prosp_Error = (tp$Prosp_Estimate - 60000) / 60000
 ```
 
-### Fit Statistical Model on *Prospective estimates*
-
-#### Absolute error
+#### Fit Statistical Model on *Prospective estimates*
 
 ```{r, message=F, warning=F}
-fit_pro_abs = lmer(
-  Prosp_abs_error ~ Emotion + (1|ID),
-  data = tp_pro
+
+fit_pro = glmmTMB(
+  Prosp_Error ~ Emotion + (1|ID),
+  dispformula = ~ Emotion,
+  data = tp
 )
 
-anova(fit_pro_abs)
-
 # see summary of model coefficients
-summary(fit_pro_abs)$coefficients
+summary(fit_pro)
 
 # plot predicted effects
-plot(allEffects(fit_pro_abs))
+plot(allEffects(fit_pro))
 ```
 
-#### Relative error
+## Comments and Conclusions:
 
-```{r, message=F, warning=F}
-fit_pro_rel = lmer(
-  Prosp_rel_error ~ Emotion + (1|ID),
-  data = tp_pro
-)
+-   For **Finger tapping**, it seems that *Negative* Emotion increases both average ITI and its dispersion within participants.
+-   For the **Retrospective task**, it seems that Emotion has not particular effect on either estimation or its dispersion.
+-   For the **Prospective task**, it seems that Emotion affects accuracy, causing both an average overestimation of duration in the *Negative* condition and some increase in its dispersion (absolute error).
 
-anova(fit_pro_rel)
-
-# see summary of model coefficients
-summary(fit_pro_rel)$coefficients
-
-# plot predicted effects
-plot(allEffects(fit_pro_rel))
-```
+[An important point, when computing statistical analyses and finding relevant/significant effects, is to estimate how large they are. Since we used variables on interpretable metrics (ratio of error, milliseconds of ITI) the interpretation might be straightforward. However, standardized effect sizes (e.g., [*Cohen's d*](https://en.wikiversity.org/wiki/Cohen%27s_d){target="_blank"}) are also recommended.]{style="font-size:14px"}
