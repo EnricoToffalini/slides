@@ -39,11 +39,8 @@ Beginners in R may find helpful resources, including an open-access book and a s
 rm(list=ls())
 # before loading, make sure that a package is installed, otherwise install it with command 
 # > install.packages("<package_name>")
-library(lme4)
-library(lmerTest)
 library(glmmTMB)
 library(effects)
-library(ggplot2)
 ```
 
 #### Import Data
