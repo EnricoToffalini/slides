@@ -12,13 +12,14 @@ format:
     css: "assets/custom.css"
 editor: visual
 ---
+
 <a href="qrcode.png" target="_blank">see QR code</a>
 
 ## Aim of the Study
 
-The primary aim of this study was to investigate **whether the Emotion conveyed by a video (Positive, Neutral, Negative) influenced psychomotor abilities and time processing skills**. For simplicity, we will consider only the **behavioral responses**:
+The primary aim of this study was to investigate **whether the Emotion conveyed by a video (Positive, Neutral, Negative) influenced psychomotor behavior and time processing ability**. For simplicity, we will consider only the **behavioral responses**:
 
--   **Finger tapping**: ability to 1) achieve a lower inter-tap interval (ITI); 2) consistency in ITI (less variation in ITI across the task).
+-   **Finger tapping**: psychomotor behavior reflecting 1) average internal "tempo" via inter-tap interval (ITI); 2) consistency in ITI (ability to achieve little variation in ITI across the task).
 -   **Retrospective time estimation**: ability to accurately estimate a duration of *5 minutes* of a previously seen video.
 -   **Prospective time estimation**: ability to accurately estimate a duration of *1 minute* time interval while watching the video, starting when a red dot appears.
 
