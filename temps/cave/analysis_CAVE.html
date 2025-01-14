@@ -113,12 +113,13 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-  <li><a href="#general-considerations" id="toc-general-considerations" class="nav-link active" data-scroll-target="#general-considerations">General Considerations</a></li>
+  <li><a href="#aim-of-the-study" id="toc-aim-of-the-study" class="nav-link active" data-scroll-target="#aim-of-the-study">Aim of the Study</a></li>
+  <li><a href="#open-science" id="toc-open-science" class="nav-link" data-scroll-target="#open-science">Open Science ❤️</a></li>
   <li><a href="#data-analysis-with-r" id="toc-data-analysis-with-r" class="nav-link" data-scroll-target="#data-analysis-with-r">Data Analysis with R</a></li>
   <li><a href="#finger-tapping" id="toc-finger-tapping" class="nav-link" data-scroll-target="#finger-tapping">Finger Tapping</a></li>
-  <li><a href="#time-perception-retrospective" id="toc-time-perception-retrospective" class="nav-link" data-scroll-target="#time-perception-retrospective">Time Perception: Retrospective</a></li>
-  <li><a href="#time-perception-prospective" id="toc-time-perception-prospective" class="nav-link" data-scroll-target="#time-perception-prospective">Time Perception: Prospective</a></li>
-  <li><a href="#comments-and-conclusions" id="toc-comments-and-conclusions" class="nav-link" data-scroll-target="#comments-and-conclusions">Comments and Conclusions:</a></li>
+  <li><a href="#retrospective-time" id="toc-retrospective-time" class="nav-link" data-scroll-target="#retrospective-time">Retrospective Time</a></li>
+  <li><a href="#prospective-time" id="toc-prospective-time" class="nav-link" data-scroll-target="#prospective-time">Prospective Time</a></li>
+  <li><a href="#comments-and-conclusions" id="toc-comments-and-conclusions" class="nav-link" data-scroll-target="#comments-and-conclusions">Comments and Conclusions</a></li>
   </ul>
 </nav>
 </div>
@@ -155,14 +156,17 @@ window.Quarto = {
 </header>
 
 
-<section id="general-considerations" class="level2">
-<h2 class="anchored" data-anchor-id="general-considerations">General Considerations</h2>
-<p>For simplicity, we will consider only the <strong>behavioral responses</strong>. The primary aim of this study was to investigate whether the Emotion conveyed by a video (Positive, Neutral, Negative) influenced some psychomotor abilities and time processing skills:</p>
+<section id="aim-of-the-study" class="level2">
+<h2 class="anchored" data-anchor-id="aim-of-the-study">Aim of the Study</h2>
+<p>The primary aim of this study was to investigate <strong>whether the Emotion conveyed by a video (Positive, Neutral, Negative) influenced psychomotor abilities and time processing skills</strong>. For simplicity, we will consider only the <strong>behavioral responses</strong>:</p>
 <ul>
 <li><strong>Finger tapping</strong>: ability to 1) achieve a lower inter-tap interval (ITI); 2) consistency in ITI (less variation in ITI across the task).</li>
-<li><strong>Retrospective time estimation</strong>: Accurately estimating the duration of the video just viewed.</li>
-<li><strong>Prospective time estimation</strong>: Accurately estimating a one-minute interval during the video, starting when a red dot appears.</li>
+<li><strong>Retrospective time estimation</strong>: ability to accurately estimate a duration of <em>5 minutes</em> of a previously seen video.</li>
+<li><strong>Prospective time estimation</strong>: ability to accurately estimate a duration of <em>1 minute</em> time interval while watching the video, starting when a red dot appears.</li>
 </ul>
+</section>
+<section id="open-science" class="level2">
+<h2 class="anchored" data-anchor-id="open-science">Open Science ❤️</h2>
 <p>Luckily, the authors appreciate open science and transparency, and they have shared their data 🙂 Along with the dataset, they have provided a detailed document explaining its contents. In this case, the file is available here: <a href="Data/README.txt" download="">README.txt</a>.</p>
 <p>The raw data is divided into two files:</p>
 <ul>
@@ -172,7 +176,7 @@ window.Quarto = {
 </section>
 <section id="data-analysis-with-r" class="level2">
 <h2 class="anchored" data-anchor-id="data-analysis-with-r">Data Analysis with R</h2>
-<p>Beginners in R may find helpful resources, including an open-access book and a short course, here: <a href="https://enricotoffalini.github.io/Basics-R/" target="_blank"><em>Basics of R for Data Science</em></a>. To get started quickly, check out the <a href="https://enricotoffalini.github.io/Basics-R/#getting-started" target="_blank"><em>“Getting Started”</em></a> section, which provides a straightforward guide for installing R and RStudio. Learning R can be a valuable skill for your future, not just for research: it may also give you an advantage in methodological courses and make conducting an empirical thesis easier.</p>
+<p>Beginners in R may find helpful resources here: <a href="https://enricotoffalini.github.io/Basics-R/" target="_blank"><em>Basics of R for Data Science</em></a>. This includes an open-access book and a short course. To get started quickly, check out the <a href="https://enricotoffalini.github.io/Basics-R/#getting-started" target="_blank"><em>“Getting Started”</em></a> section, which provides a straightforward guide for installing R and RStudio. Learning R can be a valuable skill for your future, not just for research: it may also give you an advantage in methodological courses and make conducting an empirical thesis easier.</p>
 <section id="initial-setup-empty-workspace-and-load-packages" class="level4">
 <h4 class="anchored" data-anchor-id="initial-setup-empty-workspace-and-load-packages">Initial Setup: Empty Workspace and Load Packages</h4>
 <div class="cell">
@@ -194,7 +198,7 @@ window.Quarto = {
 </section>
 <section id="inspect-datasets" class="level4">
 <h4 class="anchored" data-anchor-id="inspect-datasets">Inspect Datasets</h4>
-<p>Let’s see the first few rows of each dataset for figuring out their structures.</p>
+<p>Let’s see the first few rows of each dataset for figuring out their structures. Note that <b><em>Emotion</em> varies <em>within-subject</em></b>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ft)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -251,18 +255,20 @@ window.Quarto = {
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># prepare factorial variables</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>ft<span class="sc">$</span>ID <span class="ot">=</span> <span class="fu">factor</span>(ft<span class="sc">$</span>ID)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>ft<span class="sc">$</span>Emotion <span class="ot">=</span> <span class="fu">factor</span>(ft<span class="sc">$</span>Emotion, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"Neutral"</span>,<span class="st">"Negative"</span>,<span class="st">"Positive"</span>))</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># actually fit the model</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>fit_ft <span class="ot">=</span> <span class="fu">glmmTMB</span>(</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  ITI <span class="sc">~</span> Emotion <span class="sc">+</span> (Emotion<span class="sc">|</span>ID),</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">dispformula =</span> <span class="sc">~</span> Emotion,</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> ft,</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">Gamma</span>(<span class="at">link=</span><span class="st">"log"</span>)</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># see summary of model coefficients</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_ft)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>ft<span class="sc">$</span>Emotion <span class="ot">=</span> <span class="fu">factor</span>(ft<span class="sc">$</span>Emotion, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"Neutral"</span>,<span class="st">"Negative"</span>,<span class="st">"Positive"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># actually fit the model</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>fit_ft <span class="ot">=</span> <span class="fu">glmmTMB</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  ITI <span class="sc">~</span> Emotion <span class="sc">+</span> (Emotion<span class="sc">|</span>ID),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">dispformula =</span> <span class="sc">~</span> Emotion,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> ft,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">Gamma</span>(<span class="at">link=</span><span class="st">"log"</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># see summary of model coefficients</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_ft)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> Family: Gamma  ( log )
 Formula:          ITI ~ Emotion + (Emotion | ID)
@@ -297,27 +303,27 @@ EmotionPositive 0.004218   0.034960    0.12    0.904
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot predicted effects</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(fit_ft))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot predicted effects</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(fit_ft))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="analysis_CAVE_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="analysis_CAVE_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
 </section>
-<section id="time-perception-retrospective" class="level2">
-<h2 class="anchored" data-anchor-id="time-perception-retrospective">Time Perception: Retrospective</h2>
+<section id="retrospective-time" class="level2">
+<h2 class="anchored" data-anchor-id="retrospective-time">Retrospective Time</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect distribution of Retrospective estimates</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(tp<span class="sc">$</span>Retro_Estimate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect distribution of Retrospective estimates</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(tp<span class="sc">$</span>Retro_Estimate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="analysis_CAVE_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="analysis_CAVE_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -325,26 +331,28 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p>Compute (in)accuracy as a ratio:</p>
 <p><span class="math display">\[ RetrospectiveError = \frac{\text{Estimate} - \text{ObjectiveTime}}{\text{ObjectiveTime}} \]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute precision (error) of retrospective estimate</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>tp<span class="sc">$</span>Retro_Error <span class="ot">=</span> (tp<span class="sc">$</span>Retro_Estimate <span class="sc">-</span> <span class="dv">5</span>) <span class="sc">/</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute precision (error) of retrospective estimate</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>tp<span class="sc">$</span>Retro_Error <span class="ot">=</span> (tp<span class="sc">$</span>Retro_Estimate <span class="sc">-</span> <span class="dv">5</span>) <span class="sc">/</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In fact, this does not reflect the amount of “error” in the estimation: positive values indicate <em>overestimation</em>, while negative values indicate <em>underestimation</em>. If a particular video is largely overestimated by some and largely underestimated by others, its mean estimate will be “zero”, but this does NOT indicate accuracy. However, accuracy vs inaccuracy might be reflected by a smaller vs larger dispersion of estimate scores.</p>
 <section id="fit-statistical-model-on-retrospective-estimates" class="level4">
 <h4 class="anchored" data-anchor-id="fit-statistical-model-on-retrospective-estimates">Fit Statistical Model on <em>Retrospective estimates</em></h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># prepare factorial variables</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>tp<span class="sc">$</span>ID <span class="ot">=</span> <span class="fu">factor</span>(tp<span class="sc">$</span>ID)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>tp<span class="sc">$</span>Emotion <span class="ot">=</span> <span class="fu">factor</span>(tp<span class="sc">$</span>Emotion, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"Neutral"</span>,<span class="st">"Negative"</span>,<span class="st">"Positive"</span>))</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># actually fit the model</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>fit_re <span class="ot">=</span> <span class="fu">glmmTMB</span>(</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  Retro_Error <span class="sc">~</span> Emotion <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>ID),</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">dispformula =</span> <span class="sc">~</span> Emotion,</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> tp</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co"># see summary of model coefficients</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_re)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># prepare factorial variables</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>tp<span class="sc">$</span>ID <span class="ot">=</span> <span class="fu">factor</span>(tp<span class="sc">$</span>ID)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>tp<span class="sc">$</span>Emotion <span class="ot">=</span> <span class="fu">factor</span>(tp<span class="sc">$</span>Emotion, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"Neutral"</span>,<span class="st">"Negative"</span>,<span class="st">"Positive"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># actually fit the model</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>fit_re <span class="ot">=</span> <span class="fu">glmmTMB</span>(</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  Retro_Error <span class="sc">~</span> Emotion <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>ID),</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">dispformula =</span> <span class="sc">~</span> Emotion,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> tp</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># see summary of model coefficients</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_re)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> Family: gaussian  ( identity )
 Formula:          Retro_Error ~ Emotion + (1 | ID)
@@ -378,39 +386,39 @@ EmotionPositive   0.3938     0.3573   1.102     0.27
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot predicted effects</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(fit_re))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot predicted effects</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(fit_re))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="analysis_CAVE_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="analysis_CAVE_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
 </section>
-<section id="time-perception-prospective" class="level2">
-<h2 class="anchored" data-anchor-id="time-perception-prospective">Time Perception: Prospective</h2>
+<section id="prospective-time" class="level2">
+<h2 class="anchored" data-anchor-id="prospective-time">Prospective Time</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect distribution of Prospective estimates</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(tp<span class="sc">$</span>Prosp_Estimate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect distribution of Prospective estimates</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(tp<span class="sc">$</span>Prosp_Estimate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="analysis_CAVE_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="analysis_CAVE_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>OUCH! There is a negative value! Remove it:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>tp<span class="sc">$</span>Prosp_Estimate[tp<span class="sc">$</span>Prosp_Estimate <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">=</span> <span class="cn">NA</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(tp<span class="sc">$</span>Prosp_Estimate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>tp<span class="sc">$</span>Prosp_Estimate[tp<span class="sc">$</span>Prosp_Estimate <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">=</span> <span class="cn">NA</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(tp<span class="sc">$</span>Prosp_Estimate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="analysis_CAVE_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="analysis_CAVE_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -418,20 +426,21 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p>Compute error as a ratio:</p>
 <p><span class="math display">\[ ProspectiveError = \frac{\text{Estimate} - \text{ObjectiveTime}}{\text{ObjectiveTime}} \]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute precision (error) of prospective estimate</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>tp<span class="sc">$</span>Prosp_Error <span class="ot">=</span> (tp<span class="sc">$</span>Prosp_Estimate <span class="sc">-</span> <span class="dv">60000</span>) <span class="sc">/</span> <span class="dv">60000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute precision (error) of prospective estimate</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>tp<span class="sc">$</span>Prosp_Error <span class="ot">=</span> (tp<span class="sc">$</span>Prosp_Estimate <span class="sc">-</span> <span class="dv">60000</span>) <span class="sc">/</span> <span class="dv">60000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="fit-statistical-model-on-prospective-estimates" class="level4">
 <h4 class="anchored" data-anchor-id="fit-statistical-model-on-prospective-estimates">Fit Statistical Model on <em>Prospective estimates</em></h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>fit_pro <span class="ot">=</span> <span class="fu">glmmTMB</span>(</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  Prosp_Error <span class="sc">~</span> Emotion <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>ID),</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dispformula =</span> <span class="sc">~</span> Emotion,</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> tp</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># see summary of model coefficients</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_pro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>fit_pro <span class="ot">=</span> <span class="fu">glmmTMB</span>(</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  Prosp_Error <span class="sc">~</span> Emotion <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>ID),</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dispformula =</span> <span class="sc">~</span> Emotion,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> tp</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># see summary of model coefficients</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_pro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> Family: gaussian  ( identity )
 Formula:          Prosp_Error ~ Emotion + (1 | ID)
@@ -465,12 +474,12 @@ EmotionPositive   1.1552     0.7290   1.585   0.1131
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot predicted effects</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(fit_pro))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot predicted effects</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(fit_pro))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="analysis_CAVE_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="analysis_CAVE_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -478,7 +487,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </section>
 </section>
 <section id="comments-and-conclusions" class="level2">
-<h2 class="anchored" data-anchor-id="comments-and-conclusions">Comments and Conclusions:</h2>
+<h2 class="anchored" data-anchor-id="comments-and-conclusions">Comments and Conclusions</h2>
 <ul>
 <li>For <strong>Finger tapping</strong>, it seems that <em>Negative</em> Emotion increases both average ITI and its dispersion within participants.</li>
 <li>For the <strong>Retrospective task</strong>, it seems that Emotion has not particular effect on either estimation or its dispersion.</li>
