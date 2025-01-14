@@ -12,14 +12,17 @@ format:
     css: "assets/custom.css"
 editor: visual
 ---
+<a href="qrcode.png" target="_blank">see QR code</a>
 
-## General Considerations
+## Aim of the Study
 
-For simplicity, we will consider only the **behavioral responses**. The primary aim of this study was to investigate whether the Emotion conveyed by a video (Positive, Neutral, Negative) influenced some psychomotor abilities and time processing skills:
+The primary aim of this study was to investigate **whether the Emotion conveyed by a video (Positive, Neutral, Negative) influenced psychomotor abilities and time processing skills**. For simplicity, we will consider only the **behavioral responses**:
 
 -   **Finger tapping**: ability to 1) achieve a lower inter-tap interval (ITI); 2) consistency in ITI (less variation in ITI across the task).
--   **Retrospective time estimation**: Accurately estimating the duration of the video just viewed.
--   **Prospective time estimation**: Accurately estimating a one-minute interval during the video, starting when a red dot appears.
+-   **Retrospective time estimation**: ability to accurately estimate a duration of *5 minutes* of a previously seen video.
+-   **Prospective time estimation**: ability to accurately estimate a duration of *1 minute* time interval while watching the video, starting when a red dot appears.
+
+## Open Science ❤️
 
 Luckily, the authors appreciate open science and transparency, and they have shared their data 🙂 Along with the dataset, they have provided a detailed document explaining its contents. In this case, the file is available here: <a href="Data/README.txt" download>README.txt</a>.
 
@@ -30,7 +33,7 @@ The raw data is divided into two files:
 
 ## Data Analysis with R
 
-Beginners in R may find helpful resources, including an open-access book and a short course, here: [*Basics of R for Data Science*](https://enricotoffalini.github.io/Basics-R/){target="_blank"}. To get started quickly, check out the [*"Getting Started"*](https://enricotoffalini.github.io/Basics-R/#getting-started){target="_blank"} section, which provides a straightforward guide for installing R and RStudio. Learning R can be a valuable skill for your future, not just for research: it may also give you an advantage in methodological courses and make conducting an empirical thesis easier.
+Beginners in R may find helpful resources here: [*Basics of R for Data Science*](https://enricotoffalini.github.io/Basics-R/){target="_blank"}. This includes an open-access book and a short course. To get started quickly, check out the [*"Getting Started"*](https://enricotoffalini.github.io/Basics-R/#getting-started){target="_blank"} section, which provides a straightforward guide for installing R and RStudio. Learning R can be a valuable skill for your future, not just for research: it may also give you an advantage in methodological courses and make conducting an empirical thesis easier.
 
 #### Initial Setup: Empty Workspace and Load Packages
 
@@ -53,7 +56,7 @@ tp = read.csv("Data/TimePerception.csv")
 
 #### Inspect Datasets
 
-Let's see the first few rows of each dataset for figuring out their structures.
+Let's see the first few rows of each dataset for figuring out their structures. Note that <b>*Emotion* varies *within-subject*</b>.
 
 ```{r, message=F, warning=F}
 head(ft)
@@ -80,11 +83,13 @@ hist(ft$ITI, breaks=100)
 
 Because each participant provides multiple responses, we can test not only if Emotion affects average ITI, but also if it affects its dispersion. Let's run a special model for this:
 
-```{r, message=F, warning=F, cache=T}
+```{r, message=F, warning=F}
 # prepare factorial variables
 ft$ID = factor(ft$ID)
 ft$Emotion = factor(ft$Emotion, levels=c("Neutral","Negative","Positive"))
+```
 
+```{r, message=F, warning=F, cache=T}
 # actually fit the model
 fit_ft = glmmTMB(
   ITI ~ Emotion + (Emotion|ID),
@@ -92,7 +97,9 @@ fit_ft = glmmTMB(
   data = ft,
   family = Gamma(link="log")
 )
+```
 
+```{r, message=F, warning=F}
 # see summary of model coefficients
 summary(fit_ft)
 
@@ -100,7 +107,7 @@ summary(fit_ft)
 plot(allEffects(fit_ft))
 ```
 
-## Time Perception: Retrospective
+## Retrospective Time
 
 ```{r, message=F, warning=F}
 # inspect distribution of Retrospective estimates
@@ -124,14 +131,18 @@ In fact, this does not reflect the amount of "error" in the estimation: positive
 # prepare factorial variables
 tp$ID = factor(tp$ID)
 tp$Emotion = factor(tp$Emotion, levels=c("Neutral","Negative","Positive"))
+```
 
+```{r, message=F, warning=F, cache=T}
 # actually fit the model
 fit_re = glmmTMB(
   Retro_Error ~ Emotion + (1|ID),
   dispformula = ~ Emotion,
   data = tp
 )
+```
 
+```{r, message=F, warning=F}
 # see summary of model coefficients
 summary(fit_re)
 
@@ -139,7 +150,7 @@ summary(fit_re)
 plot(allEffects(fit_re))
 ```
 
-## Time Perception: Prospective
+## Prospective Time
 
 ```{r, message=F, warning=F}
 # inspect distribution of Prospective estimates
@@ -164,14 +175,15 @@ tp$Prosp_Error = (tp$Prosp_Estimate - 60000) / 60000
 
 #### Fit Statistical Model on *Prospective estimates*
 
-```{r, message=F, warning=F}
-
+```{r, message=F, warning=F, cache=T}
 fit_pro = glmmTMB(
   Prosp_Error ~ Emotion + (1|ID),
   dispformula = ~ Emotion,
   data = tp
 )
+```
 
+```{r, message=F, warning=F}
 # see summary of model coefficients
 summary(fit_pro)
 
@@ -179,7 +191,7 @@ summary(fit_pro)
 plot(allEffects(fit_pro))
 ```
 
-## Comments and Conclusions:
+## Comments and Conclusions
 
 -   For **Finger tapping**, it seems that *Negative* Emotion increases both average ITI and its dispersion within participants.
 -   For the **Retrospective task**, it seems that Emotion has not particular effect on either estimation or its dispersion.
