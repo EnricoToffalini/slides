@@ -139,13 +139,16 @@ ggplot(df, aes(x = x, y = y, fill = x)) +
 :::
 ::: {.column width="50%"}
 ```{r, echo=F,message=F,warning=F}
-k = 50
-dfBin = data.frame(x=0:k,y=NA)
-dfBin$y = dlogis(as.numeric(scale(dfBin$x)),1,.5)
+k = 25
+dfBin = data.frame(x=seq(-5,5,length.out=5000),y=NA)
+dfBin$y = dnorm(dfBin$x,1,.65)
+dfBin$x = pnorm(dfBin$x)
+dfBin$k = cut(dfBin$x,breaks=seq(0,1,length.out=k))
+dfBin = aggregate(dfBin,by=list(dfBin$k),FUN=mean)
 ggplot(dfBin, aes(x = x, y = y, fill = x)) +
-  geom_col(width = .7, color = NA) +
-  scale_fill_viridis_c(option="magma",limits=c(15,50),oob=scales::squish) +
-  geom_vline(xintercept=c(-1,k+1),linewidth=3.5,linetype=2,color="blue")+
+ geom_vline(xintercept=c(0,1),linewidth=3.5,linetype=2,color="blue")+
+  geom_col(width = 1/(k+10), color = "black") +
+  scale_fill_viridis_c(option="magma",limits=c(.3,1),oob=scales::squish) +
   theme(text=element_blank(),legend.position = "none")
 ```
 :::
@@ -153,25 +156,31 @@ ggplot(dfBin, aes(x = x, y = y, fill = x)) +
 ::: {.columns}
 ::: {.column width="50%"}
 ```{r, echo=F,message=F,warning=F}
-k = 50
-dfBin = data.frame(x=0:k,y=NA)
-dfBin$y = dlogis(as.numeric(scale(dfBin$x)),-1,.5)
+k = 25
+dfBin = data.frame(x=seq(-5,5,length.out=5000),y=NA)
+dfBin$y = dnorm(dfBin$x,-1,.65)
+dfBin$x = pnorm(dfBin$x)
+dfBin$k = cut(dfBin$x,breaks=seq(0,1,length.out=k))
+dfBin = aggregate(dfBin,by=list(dfBin$k),FUN=mean)
 ggplot(dfBin, aes(x = x, y = y, fill = x)) +
-  geom_col(width = .7, color = NA) +
-  scale_fill_viridis_c(option="magma",limits=c(0,35),oob=scales::squish) +
-  geom_vline(xintercept=c(-1,k+1),linewidth=3.5,linetype=2,color="blue")+
+ geom_vline(xintercept=c(0,1),linewidth=3.5,linetype=2,color="blue")+
+  geom_col(width = 1/(k+10), color = "black") +
+  scale_fill_viridis_c(option="magma",limits=c(0,.7),oob=scales::squish) +
   theme(text=element_blank(),legend.position = "none")
 ```
 :::
 ::: {.column width="50%"}
 ```{r, echo=F,message=F,warning=F}
-k = 50
-dfBin = data.frame(x=0:k,y=NA)
-dfBin$y = dnorm(as.numeric(scale(dfBin$x)),0,1)
+k = 25
+dfBin = data.frame(x=seq(-5,5,length.out=5000),y=NA)
+dfBin$y = dnorm(dfBin$x,-.3,.7)
+dfBin$x = pnorm(dfBin$x)
+dfBin$k = cut(dfBin$x,breaks=seq(0,1,length.out=k))
+dfBin = aggregate(dfBin,by=list(dfBin$k),FUN=mean)
 ggplot(dfBin, aes(x = x, y = y, fill = x)) +
-  geom_col(width = .7, color = NA) +
-  scale_fill_viridis_c(option="magma",limits=c(5,45),oob=scales::squish) +
-  geom_vline(xintercept=c(-1,k+1),linewidth=3.5,linetype=2,color="blue")+
+ geom_vline(xintercept=c(0,1),linewidth=3.5,linetype=2,color="blue")+
+  geom_col(width = 1/(k+10), color = "black") +
+  scale_fill_viridis_c(option="magma",limits=c(0,.9),oob=scales::squish) +
   theme(text=element_blank(),legend.position = "none")
 ```
 :::
