@@ -1,6 +1,6 @@
 ---
 title: "The Link Function Problem"
-subtitle: "why All Interactions Are Wrong (no, I'm joking... but probably a great deal of them are actually wrong)"
+subtitle: "aka why All Interactions Are Wrong (no, we're joking... but probably a great deal of them are actually wrong)"
 author: "toffa feat pippo & the curly one x psicostat"
 include-in-header: figures/header.html
 format: 
@@ -14,8 +14,6 @@ format:
 editor: visual
 ---
 
-<a href="0.SlideNonGaussian.html" target=_blank>(Non)Normal distributions</a>
+<a href="handzone/0.SlideNonGaussian.html" target=_blank>(Non)Normal distributions</a>
 
-<a href="" target=_blank>Are all interactions wrong?</a>
-
-
+<a href="handzone/1.LinkFunctions.html" target=_blank>Examples of <em>link functions</em></a>
