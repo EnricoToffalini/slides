@@ -1,0 +1,205 @@
+---
+title: "All Interactions Are Wrong (?)"
+subtitle: "part 3: extent of the problem"
+author: "toffa et al. x psicostat"
+include-in-header: figures/slidesheader.html
+format:
+  revealjs:
+    code-line-numbers: false
+    css: custom.css
+    theme: default
+    slide-number: c/t
+    self-contained: true
+    code-fold: false
+    code-summary: "Show code"
+    code-overflow: wrap
+    title-slide-attributes: 
+     data-background-image: "figures/psicostatLogo.png"
+     data-background-size: "contain"
+     data-background-opacity: "0.15"
+execute:
+  echo: true
+  output: true
+---
+## Power for false positives
+
+Fitting a model with two main (non-interacting) effects but an incorrect *link function* increases the risk of detecting a false interaction between them.
+
+Is it a relevant problem?
+
+The issue is fundamentally about **power**: the probability of detecting a false interaction is about equal to the power for that interaction if the *link function* were correctly specified.
+
+## Example 1: log vs identity
+
+Let's consider this scenario ($\Delta \approx 88 ms$)
+
+```{r, cache=T}
+#| code-fold: true
+set.seed(10)
+library(ggplot2)
+library(emmeans)
+library(glmmTMB)
+
+N = 5000
+k = 20
+id = rep(1:N,each=k*2)
+rInt = rep(rnorm(N,0,.5),each=k*2)
+group = rep(0:1,each=(N/2)*k*2)
+cond = rep(0:1,each=k,times=N)
+
+b0 = 1
+b1 = 0.2
+b2 = 0.4
+
+X = b0 + b1*group + b2*cond + rInt
+rt = rgamma(N*k*2, shape = 10, scale = 20*exp(X))
+
+# DELTA = 10*20*(exp(b0+b1+b2)-exp(b0+b1)) - 10*20*(exp(b0+b1)-exp(b0))
+
+df = data.frame(id,group,cond,rt)
+combin = paste(paste0("group",group),paste0("cond",cond))
+df$combin = factor(combin)
+df$group = as.factor(df$group)
+df$cond = as.factor(df$cond)
+
+fitGLog = glmmTMB(rt ~ group + cond + (1|id), family=Gamma(link="log"), data=df)
+
+eff = data.frame(emmeans(fitGLog, specs="group", by="cond", type="response"))
+
+ggplot(eff,aes(x=cond,y=response,group=group,color=group,shape=group,linetype=group))+
+  geom_point(size=8)+
+  geom_line(linewidth=1.5)+
+  #geom_errorbar(aes(ymin=asymp.LCL,ymax=asymp.UCL),width=0)+
+  theme(text=element_text(size=24))+
+  ylab("rt")
+
+```
+
+## Example 1: log vs identity
+
+Let's consider this scenario ($\Delta \approx 88ms$)
+
+```{r}
+#| code-fold: true
+library(ggplot2)
+ggplot(df)+
+  geom_density(aes(x=rt,group=combin,color=combin),linewidth=2)+
+  theme(text=element_text(size=24))+
+  scale_color_manual(values=c("darkorange","coral3","darkturquoise","deepskyblue4"))+
+  coord_cartesian(xlim=c(min(df$rt),quantile(df$rt,.9925)))
+```
+
+## Example 1: log vs identity
+
+the fitted models are
+
+1) *(correct)* `glmmTMB(rt ~ group * cond + (1|id), family=Gamma(link="log"), data=df)`,
+2) *(wrong)* `glmmTMB(rt ~ group * cond + (1|id), family=Gamma(link="identity"), data=df)`
+
+the interaction is NOT in the data generating process which is only `group + cond + (1|id)`; the difference between differences of $\Delta \approx 88 ms$ is entirely due to the exponential transformation of $X$
+
+## Example 1: `Gamma(link="log")`
+
+```{r, cache=T}
+#| code-fold: true
+set.seed(10)
+library(glmmTMB)
+
+N = 100
+k = 20
+id = rep(1:N,each=k*2)
+b0 = 1
+b1 = 0.2
+b2 = 0.4
+
+niter = 1000
+pvals = rep(NA,niter)
+
+for(i in 1:niter){
+  rInt = rep(rnorm(N,0,.5),each=k*2)
+  group = rep(0:1,each=(N/2)*k*2)
+  cond = rep(0:1,each=k,times=N)
+
+  X = b0 + b1*group + b2*cond + rInt
+  rt = rgamma(N*k*2, shape = 5, scale = 20*exp(X))
+
+  df = data.frame(id,group,cond,rt)
+  df$group = as.factor(df$group)
+  df$cond = as.factor(df$cond)
+
+  fitGLog = glmmTMB(rt ~ group * cond + (1|id), family=Gamma(link="log"), data=df)
+  pvals[i] = summary(fitGLog)$coefficients$cond["group1:cond1","Pr(>|z|)"]
+}
+
+```
+
+`N = 100` participants divided into 2 groups (between), all participants undergo 2 conditions (within) each with `k = 20` trials (total `k = 40` trials per participant), `ICC = 0.57`
+
+::: columns
+::: {.column width="30%"}
+correct `link="log"` <br> → <span style="color:darkgreen;">false positive interactions are <b>`r round(mean(pvals<0.05),3)*100`%</b> (about ok)</span>
+:::
+::: {.column width="70%"}
+```{r, echo=F}
+ggplot()+
+  geom_histogram(aes(x=pvals),bins=20,fill="blue",alpha=.7)+
+  theme(text=element_text(size=24))+
+  scale_x_continuous(limits=c(-0.05,1.05),breaks=seq(0,1,.1))+
+  xlab("p-value")
+```
+:::
+:::
+
+## Example 1: `Gamma(link="identity")`
+
+```{r, cache=T}
+#| code-fold: true
+set.seed(10)
+library(glmmTMB)
+
+N = 100
+k = 20
+id = rep(1:N,each=k*2)
+b0 = 1
+b1 = 0.2
+b2 = 0.4
+
+niter = 1000
+pvals = rep(NA,niter)
+
+for(i in 1:niter){
+  rInt = rep(rnorm(N,0,.5),each=k*2)
+  group = rep(0:1,each=(N/2)*k*2)
+  cond = rep(0:1,each=k,times=N)
+
+  X = b0 + b1*group + b2*cond + rInt
+  rt = rgamma(N*k*2, shape = 5, scale = 20*exp(X))
+
+  df = data.frame(id,group,cond,rt)
+  df$group = as.factor(df$group)
+  df$cond = as.factor(df$cond)
+
+  fitGId = glmmTMB(rt ~ group * cond + (1|id), family=Gamma(link="identity"), data=df)
+  pvals[i] = summary(fitGId)$coefficients$cond["group1:cond1","Pr(>|z|)"]
+}
+
+```
+
+`N = 100` participants divided into 2 groups (between), all participants undergo 2 conditions (within) each with `k = 20` trials (total `k = 40` trials per participant), `ICC = 0.57`
+
+::: columns
+::: {.column width="30%"}
+incorrect `link="identity"` <br> → <span style="color:darkred;">false positive interactions are <b>`r round(mean(pvals<0.05),3)*100`%</b> (bad!)</span>
+:::
+::: {.column width="70%"}
+```{r, echo=F}
+ggplot()+
+  geom_histogram(aes(x=pvals),bins=20,fill="blue",alpha=.7)+
+  theme(text=element_text(size=24))+
+  scale_x_continuous(limits=c(-0.05,1.05),breaks=seq(0,1,.1))+
+  xlab("p-value")
+```
+:::
+:::
+
+

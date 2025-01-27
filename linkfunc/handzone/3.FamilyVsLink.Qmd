@@ -226,3 +226,48 @@ BIC(fitNLog) # just horrible
 ```
 </div>
 
+## Paradox - Interaction or not?
+
+```{r, cache=T}
+#| code-fold: true
+set.seed(11)
+N = 2e4
+b0 = 0
+b1 = 1.00
+b2 = 0.70
+b1b2 = -0.347
+A = rbinom(N,1,.5)
+B = rbinom(N,1,.5)
+X = b0 + b1*A + b2*B + b1b2*A*B
+rt = rgamma(N,shape=5,scale=100*exp(X))
+df = data.frame(rt,A,B)
+df$A = as.factor(df$A)
+df$B = as.factor(df$B)
+
+fitGLog = glm(rt ~ A * B, family=Gamma(link="log"), data=df)
+eff = data.frame(allEffects(fitGLog)$"A:B")
+
+ggplot(eff,aes(x=A,y=fit,group=B,color=B,shape=B,linetype=B))+
+  geom_point(size=6)+
+  geom_line(linewidth=1.5)+
+  geom_errorbar(aes(ymin=lower,ymax=upper),width=0)+
+  theme(text=element_text(size=24))+
+  ylab("rt")
+```
+
+##
+### `Gamma(link="identity")` → positive interaction
+
+```{r}
+fitGId = glm(rt ~ A * B, family=Gamma(link="identity"), data=df)
+summary(fitGId)
+```
+
+##
+### `Gamma(link="identity")` → negative interaction
+
+```{r}
+fitGLog = glm(rt ~ A * B, family=Gamma(link="log"), data=df)
+summary(fitGLog)
+```
+
