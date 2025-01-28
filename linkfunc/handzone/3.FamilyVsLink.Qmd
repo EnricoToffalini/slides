@@ -222,7 +222,7 @@ BIC(fitGId) # yes, but you must keep a non-existent interaction term
 Model with `gaussian(link="log")`
 
 ```{r}
-BIC(fitNLog) # just horrible
+BIC(fitNLog) # NOT comparable
 ```
 </div>
 
@@ -256,7 +256,7 @@ ggplot(eff,aes(x=A,y=fit,group=B,color=B,shape=B,linetype=B))+
 ```
 
 ##
-### `Gamma(link="identity")` → positive interaction
+### `Gamma(link="identity")` → *positive* interaction
 
 ```{r}
 fitGId = glm(rt ~ A * B, family=Gamma(link="identity"), data=df)
@@ -264,7 +264,7 @@ summary(fitGId)
 ```
 
 ##
-### `Gamma(link="identity")` → negative interaction
+### `Gamma(link="log")` → *negative* interaction
 
 ```{r}
 fitGLog = glm(rt ~ A * B, family=Gamma(link="log"), data=df)
