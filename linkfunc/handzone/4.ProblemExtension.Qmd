@@ -353,7 +353,7 @@ ggplot()+
 :::
 :::
 
-## Paradox - Probit vs Logit
+## Paradox - Probit vs Logit ?
 
 ```{r, echo=F}
 library(gridExtra)
@@ -394,7 +394,7 @@ gg3 = gg +
 grid.arrange(gg1,gg2,gg3,ncol=3)
 ```
 
-## Paradox - FORCED CHOICE
+## Paradox - FORCED CHOICE !
 ```{r, echo=F}
 fs=28
 gg4 = gg + 
