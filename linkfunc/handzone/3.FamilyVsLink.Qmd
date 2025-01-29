@@ -151,6 +151,22 @@ ggplot(df)+
   coord_cartesian(xlim=c(min(df$rt),quantile(df$rt,.9975)))
 ```
 
+## `BIC` doesn't tell you
+
+Model with `Gamma(link="log")`
+
+<div class="large-code">
+```{r}
+BIC(fitGLog) # ok, but could be further improved removing interaction
+```
+
+Model with `Gamma(link="identity")`
+
+```{r}
+BIC(fitGId) # ok, but you must keep a non-existent interaction term
+```
+</div>
+
 ## comments, `Gamma(link="identity")`
 
 - ... so, **setting the wrong link function leads to discovering a false interaction** (because different differences on the response are taken as reflecting different differences on the linear predictor $X$, needing an interaction term to accomodate them)
@@ -163,7 +179,7 @@ ggplot(df)+
 
 IMPORTANT!
 
-As shown <a href="5.Diagnostics.html" target=_blank>here</a>, wrong link function can still be detected because it cause poor fit of the data and a larger BIC if:
+As shown <a href="5.Diagnostics.html" target=_blank>here</a>, wrong link function can still be detected because it causes poor fit with the data and a larger BIC if:
 
 1) <b>random effects</b> are there (and they are fitted)
 
@@ -215,28 +231,7 @@ ggplot(df)+
 
 - problems are 1) **poor fit with the data**; 2) residuals will be **skewed and heteroscedastic**
 
-## `BIC` tells you how well you fit the data
-
-<div class="large-code">
-
-Model with `Gamma(link="log")`
-
-```{r}
-BIC(fitGLog) # yes, but interaction could be removed to improve BIC
-```
-
-Model with `Gamma(link="identity")`
-
-```{r}
-BIC(fitGId) # yes, but you must keep a non-existent interaction term
-```
-
-Model with `gaussian(link="log")`
-
-```{r}
-BIC(fitNLog) # NOT comparable
-```
-</div>
+- `BIC` cannot be compared across families
 
 ## Paradox - Interaction or not?
 
