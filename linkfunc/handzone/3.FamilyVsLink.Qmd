@@ -157,7 +157,19 @@ ggplot(df)+
 
 - however, using the **correct distribution** (`Gamma`) leads to **perfectly fitting the data** anyways! 
 
-- problems are 1) yes, you fit the data, but **you need an interaction term that was NOT in the data-generating process**; 2) residuals will be **skewed and heteroscedastic**
+- problem is: yes, you fit the data, but **you need an interaction term that was NOT in the data-generating process**
+
+## comments, `Gamma(link="identity")`
+
+IMPORTANT!
+
+As shown <a href="5.Diagnostics.html" target=_blank>here</a>, wrong link function can still be detected because it cause poor fit of the data and a larger BIC if:
+
+1) <b>random effects</b> are there (and they are fitted)
+
+2) some predictors are <b>continuous</b> instead of categorical
+
+<em>but even in these cases... how many observations do we need to confidently tell the link function? Worst scenario is if N that leads to discovering false interaction is lower than N needed to tell the correct link function. Not tested this yet.</em>
 
 ## the model, `gaussian(link="log")`
 
