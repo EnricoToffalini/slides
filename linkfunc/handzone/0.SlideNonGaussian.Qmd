@@ -22,13 +22,13 @@ execute:
 ---
 ## a typical (mixed-effects) linear model
 
-<b>`fit = lmer(y ~ group + covar + (1|id), data=df)`</b>
+<b>`fit = lmer(y ~ group + cond + (1|id), data=df)`</b>
 
-Generally, both random effects (above, intercepts) and residuals are taken as normally-distributed:
+Generally, random effects and residuals are taken as normally-distributed:
 
-*random intercepts* ~ $N(0,\tau^2)$
+*random intercepts* ~ $N(0,\tau)$
 
-*residuals* ~ $N(0,\sigma^2)$
+*residuals* ~ $N(0,\sigma)$
 
 \
 
@@ -54,15 +54,19 @@ this is a **generalization of the Central Limit Theorem (CLT)** to the sum of (m
 :::
 :::
 
+## 
+<a href="https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=2903180261ee0d99a27cfe85cde9cf4af74923c6" target=_blank><img src="figures/micceriunicorn.png"/></a>
+
 ## but then, why are so many variables skewed?
 
-in many (most) cases, observed scores are reflective of the underlying dimension of interest; **we do not *directly* observe the dimension of interest**, but scores that generally have:
+in many (most) cases, observed scores are reflective of the underlying dimension of interest; but **we do not *directly* observe the dimension of interest**, we only observe scores that generally:
 
-- a lower bound (e.g., zero for times, errors)
+- are aggregate of non-normally distributed responses that may only approximate normality (e.g., sum scores from binomial/ordinal responses of a limited number of items)
 
-- both a lower and an upper bound (e.g., accuracies, sum scores)
+- have a lower bound (e.g., zero for times, errors), <em>or</em>
 
-close to bound(s) variability reduces and the distributions become skewed
+- have both a lower and an upper bound (e.g., accuracies, sum scores)
+
 
 ## TIME
 ::: {.columns}
@@ -94,6 +98,36 @@ while the underlying ability of interest might be normally distributed, observed
 
 *IMPORTANT: equal intervals on the right panel do NOT reflect equal interval on the left panel*
 
+## TIME: mean vs variance
+::: {.columns}
+::: {.column width="50%"}
+```{r, echo=F,message=F,warning=F}
+# viridis_pal(option = "magma")(10)
+ggplot() +
+  scale_x_continuous(limits=c(-3,5))+
+  stat_function(fun=dnorm,args=list(0,1),linewidth=5,col="#451077FF")+
+  stat_function(fun=dnorm,args=list(1,1),linewidth=5,col="#F1605DFF")+
+  stat_function(fun=dnorm,args=list(2,1),linewidth=5,col="#FEC98DFF")+
+  theme(text=element_blank())
+```
+:::
+::: {.column width="50%"}
+```{r, echo=F,message=F,warning=F}
+ggplot() +
+  scale_x_continuous(limits=c(0,10))+
+  geom_vline(xintercept=0,linewidth=3.5,linetype=2,color="blue")+
+  stat_function(fun=dgamma,args=list(4,1),linewidth=5,col="#451077FF")+
+  stat_function(fun=dgamma,args=list(4,2),linewidth=5,col="#F1605DFF")+
+  stat_function(fun=dgamma,args=list(4,3),linewidth=5,col="#FEC98DFF")+
+  theme(text=element_blank())
+```
+:::
+:::
+
+- <b>*true underlying (maybe normally-distributed) scores*</b>: experimental condition (or group) <em><b><span style="color:#451077FF;">purple</span></b></em> is more difficult (less able) than experimental condition (group) <em><b><span style="color:#F8765CFF;">orange</span></b></em> there is only a shift in mean value;
+- <b>*observed scores*</b>: as *mean* increases, *variance* also increases
+- the <b>LINK FUNCTION</b> links the *observed scores* to the *true underlying scores*; in the case above it is *logarithm* (`link="log"`; typical for times)
+
 ## ERRORS
 ::: {.columns}
 ::: {.column width="50%"}
@@ -114,7 +148,7 @@ dfPois$y = dpois(dfPois$x,2.5)
 ggplot(dfPois, aes(x = x, y = y, fill = x)) +
   geom_col(width = 0.5, color = "black",size=.8) +
   scale_fill_viridis_c(option="magma",direction=-1,limits=c(0.5,6),oob=scales::squish) +
-  geom_vline(xintercept=-.3,linewidth=3.5,linetype=2,color="blue")+
+  geom_vline(xintercept=-.22,linewidth=3.5,linetype=2,color="blue")+
   theme(text=element_blank(),legend.position = "none")
 ```
 :::
@@ -186,34 +220,6 @@ ggplot(dfBin, aes(x = x, y = y, fill = x)) +
 :::
 :::
 
-## TIME: mean vs variance
-::: {.columns}
-::: {.column width="50%"}
-```{r, echo=F,message=F,warning=F}
-# viridis_pal(option = "magma")(10)
-ggplot() +
-  scale_x_continuous(limits=c(-3,4))+
-  stat_function(fun=dnorm,args=list(0,1),linewidth=5,col="#451077FF")+
-  stat_function(fun=dnorm,args=list(1,1),linewidth=5,col="#F8765CFF")+
-  theme(text=element_blank())
-```
-:::
-::: {.column width="50%"}
-```{r, echo=F,message=F,warning=F}
-ggplot() +
-  scale_x_continuous(limits=c(0,10))+
-  geom_vline(xintercept=0,linewidth=3.5,linetype=2,color="blue")+
-  stat_function(fun=dgamma,args=list(4,1),linewidth=5,col="#451077FF")+
-  stat_function(fun=dgamma,args=list(4,2),linewidth=5,col="#F8765CFF")+
-  theme(text=element_blank())
-```
-:::
-:::
-
-- <b>*true underlying (maybe normally-distributed) scores*</b>: experimental condition (or group) <em><b><span style="color:#451077FF;">purple</span></b></em> is more difficult (less able) than experimental condition (group) <em><b><span style="color:#F8765CFF;">orange</span></b></em> there is only a shift in mean value;
-- <b>*observed scores*</b>: as *mean* increases, *variance* also increases
-- the <b>LINK FUNCTION</b> links the *observed scores* to the *true underlying scores*; in the case above it is *logarithm* (`link="log"`; typical for times)
-
 ## `link = "probit"`
 ::: {.columns}
 ::: {.column width="50%"}
@@ -255,13 +261,13 @@ this is very typical of distributions arising from binomial processes (e.g., acc
 
 *IMPORTANT: once again, note that equal intervals on the right panel do NOT reflect equal interval on the left panel*
 
-## `link = "probit"`
+## `binomial(link = "probit")`
 
-In binomial and ordinal distributions, individual differences (random intercepts) may be normally distributed, but the residuals are not!
+In binomial and ordinal processes, even if underlying individual differences (random intercepts) are normally-distributed, observed sum scores may not be "normal". 
 
-Accuracies or sum scores computed on 5, 10, 50 items must consider that the underlying data-generating process is binomial. <b>Only with *infinite* items/trials the error term (residuals) is normally distributed</b>.
+Accuracies or sum scores computed on 5, 10, 20 items must consider that the underlying data-generating process is binomial. 
 
-This is the main reason why we (should) use `family=binomial` instead of `family=gaussian` when dealing with accuracies...
+<b>Only with *very many* items/trials the error term (residuals) is normally distributed</b> (`family = gaussian(link = "probit")`). This is the main reason why we (should) use `family = binomial` instead of `family = gaussian` when dealing with accuracies...
 
 
 ## Differences between differences
@@ -270,9 +276,7 @@ In all previous cases, we noted that ***equal differences on the observed scores
 
 ➜ This **may have devastating consequences when testing interactions**, because interactions can be seen as tests of whether there are *differences between differences* (i.e., whether a difference is equal to another difference)
 
-Luckily, using the correct link function solves any problem. *(But what is the correct link function?)*
-
-
+<u>Note that ***the link function transforms equal intervals into unequal intervals***</u>
 
 <!-- --------------------------------------------------------------------- -->
 
