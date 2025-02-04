@@ -1,0 +1,87 @@
+---
+title: "Memory & Learning feat Open Science"
+author: "Toffalini, Feraco, Calderan"
+include-in-header: figures/slidesheader.html
+format:
+  revealjs:
+    code-line-numbers: false
+    css: figures/custom.css
+    theme: default
+    slide-number: c/t
+    self-contained: true
+    code-fold: false
+    code-summary: "Show code"
+    code-overflow: wrap
+    title-slide-attributes:
+     data-background-size: "contain"
+     data-background-opacity: "0.15"
+execute:
+  echo: true
+  output: true
+---
+## 20 anni di sventura?
+
+<a href="https://en.wikipedia.org/wiki/Why_Most_Published_Research_Findings_Are_False" target=_blank><img src="figures/ioannidis2005.png" style="max-width:100%"/></a>
+
+## 20 anni di sventura?
+
+- Bassa potenza statistica + bassa probabilità di baseline = difficile distinguere veri positivi da falsi positivi
+
+Combinato con (da <a href="https://en.wikipedia.org/wiki/Why_Most_Published_Research_Findings_Are_False" target=_blank>Wikipedia</a>): <em>
+
+- Solo, siloed investigator limited to small sample sizes
+- **No preregistration** of hypotheses being tested
+- **Post-hoc cherry picking** of hypotheses with best P values
+- Only requiring P < .05
+- No replication
+- **No data sharing**
+</em>
+
+## Science - OSC 2015
+
+<div style="text-align: center;">
+<a href="https://www.science.org/doi/pdf/10.1126/science.aac4716" target=_blank><img src="figures/osc2015.png" style="max-width:100%"/></a>
+</div>
+
+## Szucs and Ioannidis (2017)
+
+<div style="text-align: center;">
+<a href="https://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.2000797&type=printable" target=_blank><img src="figures/ioannidisszucs.png" style="max-width:70%"/></a>
+</div>
+
+## Gelman, la piuma e il canguro
+
+::: columns
+::: {.column width="55%"}
+<a href="https://statmodeling.stat.columbia.edu/2015/04/21/feather-bathroom-scale-kangaroo/" target=_blank><img src="figures/kangaroo.jpg"/></a>
+:::
+::: {.column width="45%"}
+<em>"(...) My best analogy is that they are trying to use a bathroom scale to weigh a feather—and the feather is resting loosely in the pouch of a kangaroo that is vigorously jumping up and down"</em>
+:::
+:::
+
+## Che fare?
+
+- (Valore a studi di replica, review & meta-analisi, ecc.)
+- Large-scale collaborations: International **multi-lab** studies <a href="https://psycnet.apa.org/buy/2020-39576-001" target=_blank>¹</a>·<a href="https://journals.sagepub.com/doi/10.1177/2515245918810225" target=_blank>²</a>·<a href="https://royalsocietypublishing.org/doi/full/10.1098/rsos.230235" target=_blank>³</a>
+- Appropriata ***power analysis*** a priori, giustificando il *sample size* alla luce delle ipotesi (quali?) <a href="https://online.ucpress.edu/collabra/article/8/1/33267/120491/Sample-Size-Justification" target=_blank>¹</a>
+- **Pre-registration** e *registered reports*: trasparenza nel distinguere tra ipotesi e metodi pensati prima vs pensati dopo <a href="https://www.tandfonline.com/doi/pdf/10.1080/2833373X.2024.2376046" target=_blank>¹</a>
+- ***Data availability***: reperimento **facile** dei dati grezzi quantitativi anonimizzati per 1) rianalisi secondarie (*multiverse*?); 2) meta-analisi
+- ***Code availability*** per 1) totale chiarezza sui metodi; 2) immenso valore educativo, diffusione conoscenza; 3) test *error checking* 😬, garanzia riproducibilità risultati
+
+## Policy reforms?
+
+- Temi "Open Science" ampiamente presenti al <a href="https://www.ethics.cnr.it/27-e-28-gennaio-2025-1-congresso-nazionale-integrita-nella-ricerca/" target=_blank>1° Congresso CNR su Integrità Ricerca</a> (OS suggerita anche tra i metodi necessari per futura valutazione di ricerca e ricercatori in un mondo accademico globalizzato; cf. E. Bucci su AI-fraud)
+- Ripetute indicazioni che pratiche Open Science e trasparenza dovrebbero essere valorizzate nel reclutamento, perfino da parte della <a href="https://euraxess.ec.europa.eu/sites/default/files/policy_library/os-rewards-wgreport-final_integrated_0.pdf" target=_blank>Commissione Europea ¹</a>·<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6195839/" target=_blank>²</a>·<a href="https://www.nicebread.de/open-science-hiring-practices/?utm_source=chatgpt.com" target=_blank>³</a>
+- VQR in IRIS prevedeva campi "*Open Access*" (almeno AAM obbligata per ricerca finanziata) + "*Open Science* (dati FAIR<a href="https://openscience.unimib.it/open-research-data/condividi/cosa-sono-i-dati-fair/" target=_blank>¹</a>·<a href="https://sba.unibo.it/it/almadl/open-access-e-open-science/dati-della-ricerca-aperti" target=_blank>²</a>)"
+
+## *The Times They Are A-Changin'*
+
+<a href="https://journals.sagepub.com/doi/10.1177/25152459241283477" target=_blank><img src="figures/hardwicke2024.png" style="max-width:100%"/></a>
+
+## Hardwicke et al. (2024) results
+
+<img src="figures/hardwicke2024results.png" style="max-width:100%"/>
+
+## ... to be continue
+
