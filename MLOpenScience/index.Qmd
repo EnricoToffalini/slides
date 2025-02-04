@@ -81,7 +81,9 @@ Combinato con (da <a href="https://en.wikipedia.org/wiki/Why_Most_Published_Rese
 
 ## Hardwicke et al. (2024) results
 
-<img src="figures/hardwicke2024results.png" style="max-width:100%"/>
+<div style="text-align: center;">
+<a href="https://journals.sagepub.com/doi/10.1177/25152459241283477" target=_blank><img src="figures/hardwicke2024results.png" style="max-width:80%"/></a>
+</div>
 
-## ... to be continue
+## ... to be continued
 
