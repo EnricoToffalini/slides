@@ -87,7 +87,7 @@ Simmons, J., Nelson, L. and Simonsohn, U. (2011) **False-positive psychology: Un
 ## Policy reforms?
 
 - Ripetute indicazioni che pratiche Open Science e trasparenza dovrebbero essere valorizzate nel reclutamento, perfino su espressione della <a href="https://euraxess.ec.europa.eu/sites/default/files/policy_library/os-rewards-wgreport-final_integrated_0.pdf" target=_blank>Commissione Europea ¹</a>·<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6195839/" target=_blank>²</a>·<a href="https://www.nicebread.de/open-science-hiring-practices/?utm_source=chatgpt.com" target=_blank>³</a>
-- Temi "Open Science" ampiamente presenti al <a href="https://www.ethics.cnr.it/27-e-28-gennaio-2025-1-congresso-nazionale-integrita-nella-ricerca/" target=_blank>1° Congresso CNR su Integrità Ricerca</a> (OS suggerita anche tra i metodi necessari per futura valutazione di ricerca e ricercatori in un mondo accademico globalizzato; cf. E. Bucci su AI-fraud)
+- Temi "Open Science" ampiamente presenti al <a href="https://www.ethics.cnr.it/27-e-28-gennaio-2025-1-congresso-nazionale-integrita-nella-ricerca/" target=_blank>1° Congresso CNR su Integrità Ricerca</a> (es. *data transparency* suggerita tra metodi necessari per valutazione di ricerca e ricercatori in un mondo accademico globalizzato e caotico; cf. E. Bucci su AI-fraud)
 - VQR in IRIS prevedeva campi "*Open Access*" (almeno AAM obbligata per ricerca finanziata da bandi pubblici) + "*Open Science* (dati FAIR<a href="https://openscience.unimib.it/open-research-data/condividi/cosa-sono-i-dati-fair/" target=_blank>¹</a>·<a href="https://sba.unibo.it/it/almadl/open-access-e-open-science/dati-della-ricerca-aperti" target=_blank>²</a>)"
 
 ## *The Times They Are A-Changin'*
