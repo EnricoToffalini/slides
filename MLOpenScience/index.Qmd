@@ -60,20 +60,35 @@ Combinato con (da <a href="https://en.wikipedia.org/wiki/Why_Most_Published_Rese
 :::
 :::
 
+## Gelman, la piuma e il canguro
+<div style="font-size:25px;">
+*"Top journals in psychology routinely publish ridiculous, scientifically implausible claims, justified based on 'p < 0.05'. Recent examples of such silliness include claimed evidence of extra-sensory perception (published in the Journal of Personality and Social Psychology), claims that women at certain stages of their menstrual cycle were three times more likely to wear red or pink clothing and 20 percentage points more likely to vote for the Democratic or Republican candidate for president (published in Psychological Science), and a claim that people react differently to hurricanes with male and female names (published in the Proceedings of the National Academy of Sciences)."*
+</div>
+<div style="font-size:20px;">
+
+> Gelman, A. (2015). Working through some issues. *Royal Statistical Society, 12*(3), 33-35. <a href="https://doi.org/10.1111/j.1740-9713.2015.00828.x" target=_blank>https://doi.org/10.1111/j.1740-9713.2015.00828.x</a>
+
+<div style="text-align: center;">*See also:*</div>
+
+Button, K. S., Ioannidis, J. P. A., Mokrysz, C., Nosek, B., Flint, J., Robinson, E. S. J. and Munafo, M. R. (2013). **Power failure: Why small sample size undermines the reliability of neuroscience**. *Nature Reviews Neuroscience, 14*(5), 365-376. <a href="https://doi.org/10.1038/nrn3475" target=_blank>https://doi.org/10.1038/nrn3475</a>
+
+Simmons, J., Nelson, L. and Simonsohn, U. (2011) **False-positive psychology: Undisclosed flexibility in data collection and analysis allows presenting anything as significant**. *Psychological Science, 22*(11), 1359–1366. <a href="https://doi.org/10.1177/0956797611417632" target=_blank>https://doi.org/10.1177/0956797611417632</a>
+</div>
+
 ## Che fare?
 
-- (Valore a studi di replica, review & meta-analisi, ecc.)
+- (Valore *null results*, studi di replica, review & meta-analisi, ecc.)
 - Large-scale collaborations: International **multi-lab** studies <a href="https://psycnet.apa.org/buy/2020-39576-001" target=_blank>¹</a>·<a href="https://journals.sagepub.com/doi/10.1177/2515245918810225" target=_blank>²</a>·<a href="https://royalsocietypublishing.org/doi/full/10.1098/rsos.230235" target=_blank>³</a>
-- Appropriata ***power analysis*** a priori, giustificando il *sample size* alla luce delle ipotesi (quali?) <a href="https://online.ucpress.edu/collabra/article/8/1/33267/120491/Sample-Size-Justification" target=_blank>¹</a>
+- Appropriata ***power analysis*** a priori, giustificare *sample size* per le ipotesi (quali?) <a href="https://online.ucpress.edu/collabra/article/8/1/33267/120491/Sample-Size-Justification" target=_blank>¹</a>
 - **Pre-registration** e *registered reports*: trasparenza nel distinguere tra ipotesi e metodi pensati prima vs pensati dopo <a href="https://www.tandfonline.com/doi/pdf/10.1080/2833373X.2024.2376046" target=_blank>¹</a>
 - ***Data availability***: reperimento **facile** dei dati grezzi quantitativi anonimizzati per 1) rianalisi secondarie (*multiverse*?); 2) meta-analisi
 - ***Code availability*** per 1) totale chiarezza sui metodi; 2) immenso valore educativo, diffusione conoscenza; 3) test *error checking* 😬, garanzia riproducibilità risultati
 
 ## Policy reforms?
 
+- Ripetute indicazioni che pratiche Open Science e trasparenza dovrebbero essere valorizzate nel reclutamento, perfino su espressione della <a href="https://euraxess.ec.europa.eu/sites/default/files/policy_library/os-rewards-wgreport-final_integrated_0.pdf" target=_blank>Commissione Europea ¹</a>·<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6195839/" target=_blank>²</a>·<a href="https://www.nicebread.de/open-science-hiring-practices/?utm_source=chatgpt.com" target=_blank>³</a>
 - Temi "Open Science" ampiamente presenti al <a href="https://www.ethics.cnr.it/27-e-28-gennaio-2025-1-congresso-nazionale-integrita-nella-ricerca/" target=_blank>1° Congresso CNR su Integrità Ricerca</a> (OS suggerita anche tra i metodi necessari per futura valutazione di ricerca e ricercatori in un mondo accademico globalizzato; cf. E. Bucci su AI-fraud)
-- Ripetute indicazioni che pratiche Open Science e trasparenza dovrebbero essere valorizzate nel reclutamento, perfino da parte della <a href="https://euraxess.ec.europa.eu/sites/default/files/policy_library/os-rewards-wgreport-final_integrated_0.pdf" target=_blank>Commissione Europea ¹</a>·<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6195839/" target=_blank>²</a>·<a href="https://www.nicebread.de/open-science-hiring-practices/?utm_source=chatgpt.com" target=_blank>³</a>
-- VQR in IRIS prevedeva campi "*Open Access*" (almeno AAM obbligata per ricerca finanziata) + "*Open Science* (dati FAIR<a href="https://openscience.unimib.it/open-research-data/condividi/cosa-sono-i-dati-fair/" target=_blank>¹</a>·<a href="https://sba.unibo.it/it/almadl/open-access-e-open-science/dati-della-ricerca-aperti" target=_blank>²</a>)"
+- VQR in IRIS prevedeva campi "*Open Access*" (almeno AAM obbligata per ricerca finanziata da bandi pubblici) + "*Open Science* (dati FAIR<a href="https://openscience.unimib.it/open-research-data/condividi/cosa-sono-i-dati-fair/" target=_blank>¹</a>·<a href="https://sba.unibo.it/it/almadl/open-access-e-open-science/dati-della-ricerca-aperti" target=_blank>²</a>)"
 
 ## *The Times They Are A-Changin'*
 
