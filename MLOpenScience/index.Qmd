@@ -1,5 +1,6 @@
 ---
 title: "Memory & Learning feat Open Science"
+date: "12 febbraio 2025"
 author: "Toffalini, Feraco, Calderan"
 include-in-header: figures/slidesheader.html
 format:
@@ -187,5 +188,24 @@ ggOpenCode
 ggOpenCodeProp
 ```
 
+## (Buoni) esempi
+
+::: columns
+::: {.column width="34%"}
+**Pre-registration**
+
+- ...
+:::
+::: {.column width="33%"}
+**Open data**
+
+- ...
+:::
+::: {.column width="33%"}
+**Open code**
+
+- ...
+:::
+:::
 
 
