@@ -30,7 +30,7 @@ execute:
 
 - Bassa potenza statistica + bassa probabilità di baseline = difficile distinguere veri positivi da falsi positivi
 
-Combinato con (da <a href="https://en.wikipedia.org/wiki/Why_Most_Published_Research_Findings_Are_False" target=_blank>Wikipedia</a>): <em>
+Combinato con (da <a href="https://en.wikipedia.org/wiki/Why_Most_Published_Research_Findings_Are_False#Causes_of_high_false_positive_rate" target=_blank>Wikipedia</a>): <em>
 
 - Solo, siloed investigator limited to small sample sizes
 - **No preregistration** of hypotheses being tested
@@ -81,9 +81,9 @@ Simmons, J., Nelson, L. and Simonsohn, U. (2011) **False-positive psychology: Un
 ## Che fare?
 
 - (Valore *null results*, studi di replica, review & meta-analisi, ecc.)
-- Large-scale collaborations: International **multi-lab** studies <a href="https://psycnet.apa.org/buy/2020-39576-001" target=_blank>¹</a>·<a href="https://journals.sagepub.com/doi/10.1177/2515245918810225" target=_blank>²</a>·<a href="https://royalsocietypublishing.org/doi/full/10.1098/rsos.230235" target=_blank>³</a>
-- Appropriata ***power analysis*** a priori, giustificare *sample size* per le ipotesi (quali?) <a href="https://online.ucpress.edu/collabra/article/8/1/33267/120491/Sample-Size-Justification" target=_blank>¹</a>
-- **Pre-registration** e *registered reports*: trasparenza nel distinguere tra ipotesi e metodi pensati prima vs pensati dopo <a href="https://www.tandfonline.com/doi/pdf/10.1080/2833373X.2024.2376046" target=_blank>¹</a>
+- Large-scale collaborations: International **multi-lab** studies <sup>[<a href="https://doi.org/10.1037/cap0000216" target=_blank>1</a>, <a href="https://journals.sagepub.com/doi/10.1177/2515245918810225" target=_blank>2</a>, <a href="https://royalsocietypublishing.org/doi/full/10.1098/rsos.230235" target=_blank>3</a>]</sup>
+- Appropriata ***power analysis*** a priori, giustificare *sample size* per le ipotesi (quali?) <sup>[<a href="https://online.ucpress.edu/collabra/article/8/1/33267/120491/Sample-Size-Justification" target=_blank>4</a>]</sup>
+- **Pre-registration** e *registered reports*: trasparenza nel distinguere tra ipotesi e metodi pensati prima vs pensati dopo <sup>[<a href="https://www.tandfonline.com/doi/pdf/10.1080/2833373X.2024.2376046" target=_blank>5</a>]</sup>
 - ***Data availability***: reperimento **facile** dei dati grezzi quantitativi anonimizzati per 1) rianalisi secondarie (*multiverse*?); 2) meta-analisi
 - ***Code availability*** per 1) totale chiarezza sui metodi; 2) immenso valore educativo, diffusione conoscenza; 3) test *error checking* 😬, garanzia riproducibilità risultati
 
@@ -101,9 +101,9 @@ Simmons, J., Nelson, L. and Simonsohn, U. (2011) **False-positive psychology: Un
 
 ## Policy reforms?
 
-- Ripetute indicazioni che pratiche Open Science e trasparenza dovrebbero essere valorizzate nel reclutamento, perfino su espressione della <a href="https://euraxess.ec.europa.eu/sites/default/files/policy_library/os-rewards-wgreport-final_integrated_0.pdf" target=_blank>Commissione Europea ¹</a>·<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6195839/" target=_blank>²</a>·<a href="https://www.nicebread.de/open-science-hiring-practices/?utm_source=chatgpt.com" target=_blank>³</a>
+- Ripetute indicazioni che pratiche Open Science e trasparenza dovrebbero essere valorizzate nel reclutamento, perfino su espressione della <a href="https://euraxess.ec.europa.eu/sites/default/files/policy_library/os-rewards-wgreport-final_integrated_0.pdf" target=_blank>Commissione Europea</a><sup>[<a href="https://euraxess.ec.europa.eu/sites/default/files/policy_library/os-rewards-wgreport-final_integrated_0.pdf" target=_blank>1</a>, <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6195839/" target=_blank>2</a>, <a href="https://www.nicebread.de/open-science-hiring-practices/?utm_source=chatgpt.com" target=_blank>3</a>, <a href="https://www.euroscientist.com/jean-claude-burgelman-the-new-open-science-paradigm-requires-fine-tuning/" target=_blank>4</a>]</sup>
 - Temi "Open Science" ampiamente presenti al <a href="https://www.ethics.cnr.it/27-e-28-gennaio-2025-1-congresso-nazionale-integrita-nella-ricerca/" target=_blank>1° Congresso CNR su Integrità Ricerca</a> (es. *data transparency* suggerita tra metodi necessari per valutazione di ricerca e ricercatori in un mondo accademico globalizzato e caotico; cf. E. Bucci su AI-fraud)
-- VQR in IRIS prevedeva campi "*Open Access*" (almeno AAM obbligata per ricerca finanziata da bandi pubblici) + "*Open Science* (dati FAIR<a href="https://openscience.unimib.it/open-research-data/condividi/cosa-sono-i-dati-fair/" target=_blank>¹</a>·<a href="https://sba.unibo.it/it/almadl/open-access-e-open-science/dati-della-ricerca-aperti" target=_blank>²</a>)"
+- VQR in IRIS prevedeva campi "*Open Access*" (almeno AAM obbligata per ricerca finanziata da bandi pubblici) + "*Open Science* (dati FAIR<sup>[<a href="https://openscience.unimib.it/open-research-data/condividi/cosa-sono-i-dati-fair/" target=_blank>5</a>, <a href="https://sba.unibo.it/it/almadl/open-access-e-open-science/dati-della-ricerca-aperti" target=_blank>6</a>]</sup>)"
 
 ## *The Times They Are A-Changin'*
 
@@ -207,5 +207,4 @@ ggOpenCodeProp
 - ...
 :::
 :::
-
 
