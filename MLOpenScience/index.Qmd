@@ -21,7 +21,9 @@ execute:
 ---
 ## 20 anni di sventura?
 
+<div style="text-align: center;">
 <a href="https://en.wikipedia.org/wiki/Why_Most_Published_Research_Findings_Are_False" target=_blank><img src="figures/ioannidis2005.png" style="max-width:100%"/></a>
+</div>
 
 ## 20 anni di sventura?
 
@@ -99,6 +101,40 @@ Simmons, J., Nelson, L. and Simonsohn, U. (2011) **False-positive psychology: Un
 <div style="text-align: center;">
 <a href="https://journals.sagepub.com/doi/10.1177/25152459241283477" target=_blank><img src="figures/hardwicke2024results.png" style="max-width:80%"/></a>
 </div>
+
+## Opinions on Open Science?
+
+<div style="text-align: center;">
+<a href="https://www.cos.io/initiatives/open-scholarship-survey" target=_blank><img src="figures/oss.png" style="max-width:100%"/></a>
+</div>
+
+## Opinions on Open Science?
+
+<div style="text-align: center;">
+<a href="https://www.nature.com/articles/s41467-023-41111-1" target=_blank><img src="figures/naturesurvey2023.png" style="max-width:80%"/></a>
+</div>
+
+<div style="font-size:18px;">
+> ABSTRACT: Open science practices such as posting data or code and pre-registering analyses are increasingly prescribed and debated in the applied sciences, but the actual popularity and lifetime usage of these practices remain unknown. This study provides an assessment of attitudes toward, use of, and perceived norms regarding open science practices from a sample of authors published in top-10 (most-cited) journals and PhD students in top-20 ranked North American departments from four major social science disciplines: economics, political science, psychology, and sociology. We observe largely favorable private attitudes toward widespread lifetime usage (meaning that a researcher has used a particular practice at least once) of open science practices. As of 2020, nearly 90% of scholars had ever used at least one such practice. Support for posting data or code online is higher (88% overall support and nearly at the ceiling in some fields) than support for pre-registration (58% overall). With respect to norms, there is evidence that the scholars in our sample appear to underestimate the use of open science practices in their field. We also document that the reported lifetime prevalence of open science practices increased from 49% in 2010 to 87% a decade later.
+
+</div>
+
+<div style="font-size:24px;">
+— see also: <a href="https://www.bitss.org/projects/the-state-of-social-science-3s-survey/" target=_blank>Berkeley Initiative for Transparency in the Social Sciences</a>
+</div>
+
+## Pro e Contro?
+
+<div style="font-size:55px;">
+• Preregistrazione (e *registered reports*)  
+
+• Open data  
+
+• Open code  
+</div>
+
+*Pro* e *contro* (veri e soprattutto presunti) possono essere sia sul piano scientifico che su quello personale (e spesso sono in contrasto tra i due piani). Abbiamo provato a elencarli <b><a href="https://docs.google.com/document/d/1sEDNJO9Ko1lT0LISj2bUxzybRQC9lLV0iY8MwKNc5TU/edit?tab=t.0" target=_blank>a questo link</a></b>
+
 
 ## ... to be continued
 
