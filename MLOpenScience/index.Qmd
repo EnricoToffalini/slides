@@ -188,23 +188,16 @@ ggOpenCode
 ggOpenCodeProp
 ```
 
-## (Buoni) esempi
+## Esempi (nel bene e nel male)
 
-::: columns
-::: {.column width="34%"}
-**Pre-registration**
+- Working Memory Under Stress • <a href="https://osf.io/d43vs/?view_only=2c3325b5feef44149e9d5067cb0c8f16" target=_blank>OSF proj</a> <img src="figures/opendata.png" style="max-width:50px"/><img src="figures/opencode.png" style="max-width:50px"/>
 
-- ...
-:::
-::: {.column width="33%"}
-**Open data**
+- Cognitive Stress Reappraisal • <a href="https://osf.io/q47e9/?view_only=d50449bb1ea64245b6c71541ac6d7379" target=_blank>OSF proj</a> • <a href="https://osf.io/p6e5j/?view_only=be40480e044d4929b1aac10a2df6ec6c" target=_blank>OSF reg</a> <img src="figures/preregistered.png" style="max-width:50px"/><img src="figures/opencode.png" style="max-width:50px"/><img src="figures/opendata.png" style="max-width:50px; opacity:0.35"/><img src="figures/openmaterials.png" style="max-width:50px; opacity:0.35"/><img src="figures/openaccess.png" style="max-width:50px; max-height:50px; opacity:0.35"/>
 
-- ...
-:::
-::: {.column width="33%"}
-**Open code**
+- Attentional Blink Replication • <a href="https://osf.io/hp9nk/" target=_blank>OSF proj</a> <img src="figures/preregistered.png" style="max-width:50px"/><img src="figures/opencode.png" style="max-width:50px"/><img src="figures/openmaterials.png" style="max-width:50px"/><img src="figures/openaccess.png" style="max-width:50px; max-height:50px;"/>
 
-- ...
-:::
-:::
+- SEMbeddings preprint • <a href="https://osf.io/preprints/psyarxiv/kwrsg_v1" target=_blank>PsyArXiv</a><img src="figures/openaccess.png" style="max-width:50px; max-height:50px;"/>
+
+- Critical Value preprint • <a href="https://osf.io/preprints/psyarxiv/7qe92_v1" target=_blank>PsyArXiv</a> • <a href="https://github.com/psicostat/criticalESvalue" target=_blank>GitHub</a><img src="figures/openaccess.png" style="max-width:50px; max-height:50px;"/><img src="figures/opencode.png" style="max-width:50px"/>
+
 
