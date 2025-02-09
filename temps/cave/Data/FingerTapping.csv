@@ -1,4 +1,4 @@
-ID,Order,Emotion,Time,Trial,ITI
+ID,Order,Emotion,PrePost,Trial,ITI
 004,NNP,Positive,Pre,1,993
 004,NNP,Positive,Pre,2,206
 004,NNP,Positive,Pre,3,171

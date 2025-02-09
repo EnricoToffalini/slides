@@ -1,7 +1,7 @@
 ---
-title: "Emotions and Temporal Representations"
+title: "Behavioral Data Analysis"
 author: "Enrico Toffalini"
-date: "2025-01-10"
+date: "2025-02-11"
 include-in-header: assets/header.html
 format: 
   html:
@@ -13,44 +13,10 @@ format:
 editor: visual
 ---
 
-<a href="qrcode.png" target="_blank">see QR code</a>
-
-## Aim of the Study
-
-The primary aim of this study was to investigate **whether the Emotion conveyed by a video (Positive, Neutral, Negative) influenced psychomotor behavior and time processing ability**. For simplicity, we will consider only the **behavioral responses**:
-
--   **Finger tapping**: psychomotor behavior reflecting 1) average internal "tempo" via inter-tap interval (ITI); 2) consistency in ITI (ability to achieve little variation in ITI across the task).
--   **Retrospective time estimation**: ability to accurately estimate a duration of *5 minutes* of a previously seen video.
--   **Prospective time estimation**: ability to accurately estimate a duration of *1 minute* time interval while watching the video, starting when a red dot appears.
-
-## Open Science ❤️
-
-Luckily, the authors appreciate open science and transparency, and they have shared their data 🙂 Along with the dataset, they have provided a detailed document explaining its contents. In this case, the file is available here: <a href="Data/README.txt" download>README.txt</a>.
-
-The raw data is divided into two files:
-
--   <a href="Data/FingerTapping.csv" download>FingerTapping.csv</a>, which contains the data related to the finger-tapping task.
--   <a href="Data/TimePerception.csv" download>TimePerception.csv</a>, which includes the data for the two time perception tasks.
-
-## Data Analysis with R
-
-Beginners in R may find helpful resources here: [*Basics of R for Data Science*](https://enricotoffalini.github.io/Basics-R/){target="_blank"}. This includes an open-access book and a short course. To get started quickly, check out the [*"Getting Started"*](https://enricotoffalini.github.io/Basics-R/#getting-started){target="_blank"} section, which provides a straightforward guide for installing R and RStudio. Learning R can be a valuable skill for your future, not just for research: it may also give you an advantage in methodological courses and make conducting an empirical thesis easier.
-
-#### Initial Setup: Empty Workspace and Load Packages
-
-```{r, message=F, warning=F}
-# empty workspace
+```{r, message=F, warning=F, echo=F}
 rm(list=ls())
-# before loading, make sure that a package is installed, otherwise install it with command 
-# > install.packages("<package_name>")
 library(glmmTMB)
 library(effects)
-```
-
-#### Import Data
-
-```{r, message=F, warning=F}
-# I placed .csv files into a folder named "Data"
 ft = read.csv("Data/FingerTapping.csv")
 tp = read.csv("Data/TimePerception.csv")
 ```
@@ -70,13 +36,15 @@ As recommended, let's remove the first trial for each subject. Then, let's inspe
 
 ```{r, message=F, warning=F}
 ft = ft[ft$Trial != 1, ]
+ft = ft[ft$PrePost == "Post", ]
 hist(ft$ITI, breaks=100)
 ```
 
 OUCH! There are a few outliers! Let's remove ITI observations that are too far away from the average:
 
 ```{r, message=F, warning=F}
-ft = ft[abs((ft$ITI - mean(ft$ITI))/sd(ft$ITI)) < 3, ]
+ITI_zScore = (ft$ITI - mean(ft$ITI))/sd(ft$ITI)
+ft = ft[!abs(ITI_zScore) > 3, ]
 hist(ft$ITI, breaks=100)
 ```
 
@@ -93,8 +61,8 @@ ft$Emotion = factor(ft$Emotion, levels=c("Neutral","Negative","Positive"))
 ```{r, message=F, warning=F, cache=T}
 # actually fit the model
 fit_ft = glmmTMB(
-  ITI ~ Emotion + (Emotion|ID),
-  dispformula = ~ Emotion,
+  ITI ~ Emotion + (Emotion||ID),
+  dispformula = ~ Emotion ,
   data = ft,
   family = Gamma(link="log")
 )
@@ -124,7 +92,9 @@ $$ RetrospectiveError = \frac{\text{Estimate} - \text{ObjectiveTime}}{\text{Obje
 tp$Retro_Error = (tp$Retro_Estimate - 5) / 5
 ```
 
-In fact, this does not reflect the amount of "error" in the estimation: positive values indicate *overestimation*, while negative values indicate *underestimation*. If a particular video is largely overestimated by some and largely underestimated by others, its mean estimate will be "zero", but this does NOT indicate accuracy. However, accuracy vs inaccuracy might be reflected by a smaller vs larger dispersion of estimate scores.
+⮩ Positive values indicate *overestimation*. Negative values indicate *underestimation*.
+
+But... if a video is largely overestimated by some and largely underestimated by others, the average error is zero... does it mean perfect accuracy? No! Global accuracy vs inaccuracy is reflected by the total amount of ***dispersion***, while the ***average*** error indicates the tendency towards *over-* or *under-estimation*.
 
 #### Fit Statistical Model on *Retrospective estimates*
 
