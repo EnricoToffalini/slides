@@ -73,6 +73,8 @@ phy_raw_sample = read.csv("Data/PhysiologicalRawData_sample.csv")
 
 ## Move on to
 
-→ Behavioral data analysis
+<div style="font-size:20px">
+→ <a href="BehavioralData.html" target=_blank>Behavioral data analysis</a>
 
-→ Physiological data analysis
+→ <a href="PhysiologicalData.html" target=_blank>Physiological data analysis</a>
+</div>

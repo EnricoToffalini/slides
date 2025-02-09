@@ -82,7 +82,7 @@ ggplot(phy,aes(x=Minute,y=HR,color=Condition,fill=Condition))+
   theme(text=element_text(size=18))
 ```
 
-### Statistical models on HR
+#### Statistical models on HR
 
 Due to serious convergence issues, I cannot enter a full random effects formula, so results must be taken with caution.
 
@@ -108,7 +108,6 @@ summary(fit_hr_Additive)
 # plot predicted effects
 plot(allEffects(fit_hr_Additive))
 ```
-
 
 ### Skin Conductance Response (SCR)
 
@@ -137,7 +136,7 @@ ggplot(phy,aes(x=Minute,y=SCR,color=Condition,fill=Condition))+
   theme(text=element_text(size=18))
 ```
 
-### Statistical models on SCR
+#### Statistical models on SCR
 
 ```{r, message=F, warning=F, cache=T}
 fit_scr_Multiplicative = glmmTMB(
@@ -166,3 +165,6 @@ plot(allEffects(fit_scr_Additive))
 
 ## Comments and Conclusions
 
+- For **Heart Rate**, we observed highest mean values (and highest dispersion of scores) during the *Resting* state, while there were no relevant changes across the *Neutral*, *Positive*, or *Negative* video conditions, somehow unexpectedly. There was a slight tendency for HR to increase across time, independently from Condition. 
+
+- For **Skin Conductance Response**, we observed highest mean values during the *Positive* video condition, followed by *Negative* and *Neutral* conditions, with *Resting* state presenting the lowest values. Dispersion of scores also followed this patter. SCR also tended to reduce across time within each Condition, and quite independently from Condition.

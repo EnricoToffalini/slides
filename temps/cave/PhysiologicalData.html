@@ -88,9 +88,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#processed-data" id="toc-processed-data" class="nav-link" data-scroll-target="#processed-data">Processed Data</a>
   <ul class="collapse">
   <li><a href="#heart-rate-hr" id="toc-heart-rate-hr" class="nav-link" data-scroll-target="#heart-rate-hr">Heart Rate (HR)</a></li>
-  <li><a href="#statistical-models-on-hr" id="toc-statistical-models-on-hr" class="nav-link" data-scroll-target="#statistical-models-on-hr">Statistical models on HR</a></li>
   <li><a href="#skin-conductance-response-scr" id="toc-skin-conductance-response-scr" class="nav-link" data-scroll-target="#skin-conductance-response-scr">Skin Conductance Response (SCR)</a></li>
-  <li><a href="#statistical-models-on-scr" id="toc-statistical-models-on-scr" class="nav-link" data-scroll-target="#statistical-models-on-scr">Statistical models on SCR</a></li>
   </ul></li>
   <li><a href="#comments-and-conclusions" id="toc-comments-and-conclusions" class="nav-link" data-scroll-target="#comments-and-conclusions">Comments and Conclusions</a></li>
   </ul>
@@ -242,9 +240,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-</section>
-<section id="statistical-models-on-hr" class="level3">
-<h3 class="anchored" data-anchor-id="statistical-models-on-hr">Statistical models on HR</h3>
+<section id="statistical-models-on-hr" class="level4">
+<h4 class="anchored" data-anchor-id="statistical-models-on-hr">Statistical models on HR</h4>
 <p>Due to serious convergence issues, I cannot enter a full random effects formula, so results must be taken with caution.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fit_hr_Multiplicative <span class="ot">=</span> <span class="fu">glmmTMB</span>(</span>
@@ -322,6 +319,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 </section>
+</section>
 <section id="skin-conductance-response-scr" class="level3">
 <h3 class="anchored" data-anchor-id="skin-conductance-response-scr">Skin Conductance Response (SCR)</h3>
 <section id="scr-visualization---by-subject" class="level4">
@@ -368,9 +366,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 </section>
-</section>
-<section id="statistical-models-on-scr" class="level3">
-<h3 class="anchored" data-anchor-id="statistical-models-on-scr">Statistical models on SCR</h3>
+<section id="statistical-models-on-scr" class="level4">
+<h4 class="anchored" data-anchor-id="statistical-models-on-scr">Statistical models on SCR</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>fit_scr_Multiplicative <span class="ot">=</span> <span class="fu">glmmTMB</span>(</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  SCR <span class="sc">~</span> Minute <span class="sc">*</span> Condition <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>ID),</span>
@@ -452,8 +449,13 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </section>
 </section>
+</section>
 <section id="comments-and-conclusions" class="level2">
 <h2 class="anchored" data-anchor-id="comments-and-conclusions">Comments and Conclusions</h2>
+<ul>
+<li><p>For <strong>Heart Rate</strong>, we observed highest mean values (and highest dispersion of scores) during the <em>Resting</em> state, while there were no relevant changes across the <em>Neutral</em>, <em>Positive</em>, or <em>Negative</em> video conditions, somehow unexpectedly. There was a slight tendency for HR to increase across time, independently from Condition.</p></li>
+<li><p>For <strong>Skin Conductance Response</strong>, we observed highest mean values during the <em>Positive</em> video condition, followed by <em>Negative</em> and <em>Neutral</em> conditions, with <em>Resting</em> state presenting the lowest values. Dispersion of scores also followed this patter. SCR also tended to reduce across time within each Condition, and quite independently from Condition.</p></li>
+</ul>
 </section>
 
 </main>
