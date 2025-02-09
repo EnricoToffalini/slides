@@ -44,7 +44,7 @@ The raw data is divided into two files:
 -   <a href="Data/TimePerception.csv" download>TimePerception.csv</a>, which includes the data for the two time perception tasks (retrospective and prospective).
 -   <a href="Data/PhysiologicalDataProcessed.csv" download>PhysiologicalDataProcessed.csv</a>, which includes physiological data for HR and SCR, already preprocessed and aggregated in epochs of minutes for ease of data analysis.
 -   <a href="Data/PhysiologicalRawData_sample.csv" target=_blank>PhysiologicalRawData_sample.csv</a>, which includes some sample raw data for a few seconds of recording for a single participant during resting state.
--   <a href="https://drive.google.com/file/d/1k2YdD1gYCIxSqS6V8R0PkmrOJ4L3h0An/view?usp=sharing" download>Physiological_data_raw.csv</a>, which includes the full data for of physiological recording for a single participant, as an example (beware, it's over 30MB and can be cumbersome to process with statistical software!).
+-   <a href="https://drive.google.com/file/d/1k2YdD1gYCIxSqS6V8R0PkmrOJ4L3h0An/view?usp=sharing" download target=_blank>Physiological_data_raw.csv</a>, which includes the full data for of physiological recording for a single participant, as an example (beware, it's over 30MB and can be cumbersome to process with statistical software!).
 
 ## Data Analysis with R
 
@@ -73,8 +73,8 @@ phy_raw_sample = read.csv("Data/PhysiologicalRawData_sample.csv")
 
 ## Move on to
 
-<div style="font-size:20px">
+::: {style="font-size:20px"}
 → <a href="BehavioralData.html" target=_blank>Behavioral data analysis</a>
 
 → <a href="PhysiologicalData.html" target=_blank>Physiological data analysis</a>
-</div>
+:::
