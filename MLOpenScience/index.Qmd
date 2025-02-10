@@ -188,9 +188,9 @@ ggOpenCodeProp
 
 - Working Memory Under Stress • <a href="https://osf.io/d43vs/?view_only=2c3325b5feef44149e9d5067cb0c8f16" target=_blank>OSF proj</a> <img src="figures/opendata.png" style="max-width:50px"/><img src="figures/opencode.png" style="max-width:50px"/><img src="figures/openmaterials.png" style="max-width:50px"/>
 
-- SEMbeddings preprint • <a href="https://osf.io/preprints/psyarxiv/kwrsg_v1" target=_blank>PsyArXiv</a><img src="figures/openaccess.png" style="max-width:50px; max-height:50px;"/><img src="figures/opencode.png" style="max-width:50px"/>
+- SEMbeddings • <a href="https://osf.io/preprints/psyarxiv/kwrsg_v1" target=_blank>PsyArXiv</a><img src="figures/openaccess.png" style="max-width:50px; max-height:50px;"/><img src="figures/opencode.png" style="max-width:50px"/>
 
-- Critical Value preprint • <a href="https://osf.io/preprints/psyarxiv/7qe92_v1" target=_blank>PsyArXiv</a> • <a href="https://github.com/psicostat/criticalESvalue" target=_blank>GitHub</a><img src="figures/openaccess.png" style="max-width:50px; max-height:50px;"/><img src="figures/opencode.png" style="max-width:50px"/>
+- Critical Value • <a href="https://osf.io/preprints/psyarxiv/7qe92_v1" target=_blank>PsyArXiv</a> • <a href="https://github.com/psicostat/criticalESvalue" target=_blank>GitHub</a><img src="figures/openaccess.png" style="max-width:50px; max-height:50px;"/><img src="figures/opencode.png" style="max-width:50px"/>
 
 - Attentional Blink Replication • <a href="https://osf.io/hp9nk/" target=_blank>OSF proj</a> <img src="figures/preregistered.png" style="max-width:50px"/><img src="figures/opencode.png" style="max-width:50px"/><img src="figures/openmaterials.png" style="max-width:50px"/><img src="figures/openaccess.png" style="max-width:50px; max-height:50px;"/>
 
@@ -199,6 +199,10 @@ ggOpenCodeProp
 ## Esempi (nel bene e nel male) 2/2
 
 - Error Correction Behaviour • <a href="https://osf.io/wn4vx/" target=_blank>OSF proj</a> • <a href="https://osf.io/preprints/psyarxiv/wegc5_v1" target=_blank>PsyArXiv</a> <img src="figures/openaccess.png" style="max-width:50px; max-height:50px;"/><img src="figures/preregistered.png" style="max-width:50px"/><img src="figures/opencode.png" style="max-width:50px"/><img src="figures/opendata.png" style="max-width:50px; opacity:0.35"/><img src="figures/openmaterials.png" style="max-width:50px; opacity:0.35"/>
+
+- Italian Validation of BESSI • <a href="https://doi.org/10.17605/OSF.IO/VYZPN" target=_blank>OSF proj</a> • <a href="https://doi.org/10.17605/OSF.IO/ZXBD3" target=_blank>OSF reg</a> <img src="figures/preregistered.png" style="max-width:50px"/><img src="figures/opencode.png" style="max-width:50px"/><img src="figures/opendata.png" style="max-width:50px"/><img src="figures/openmaterials.png" style="max-width:50px"/>
+
+- 20 Years of Character Strengths • <a href="https://doi.org/10.17605/OSF.IO/F4P7B" target=_blank>OSF proj</a> • <a href="https://doi.org/10.17605/OSF.IO/Z3XEC" target=_blank>OSF reg</a> <img src="figures/preregistered.png" style="max-width:50px"/><img src="figures/opencode.png" style="max-width:50px"/><img src="figures/opendata.png" style="max-width:50px"/>
 
 ## Buone prassi 1/2
 
