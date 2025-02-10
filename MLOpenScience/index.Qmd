@@ -224,6 +224,7 @@ ggOpenCodeProp
 
 - Commentare e indentare tutto il codice (nel dubbio, chiedere a GPT)
 
+- <span style="color:goldenrod">Best practice ideale:</span> creare e condividere virtual environment (es. <a href="https://rstudio.github.io/renv/articles/renv.html" target=_blank>R</a>, <a href="https://docs.python.org/3/library/venv.html" target=_blank>Python</a>)
 
 
 
