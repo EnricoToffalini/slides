@@ -14,8 +14,9 @@ format:
     code-summary: "Show code"
     code-overflow: wrap
     title-slide-attributes:
-     data-background-size: "contain"
-     data-background-opacity: "0.15"
+     data-background-position: "top center"
+     data-background-image: "figures/qrcode.png"
+     data-background-size: "16%"
 execute:
   echo: true
   output: true
@@ -127,11 +128,6 @@ Simmons, J., Nelson, L. and Simonsohn, U. (2011) **False-positive psychology: Un
 <a href="https://www.nature.com/articles/s41467-023-41111-1" target=_blank><img src="figures/naturesurvey2023.png" style="max-width:80%"/></a>
 </div>
 
-<div style="font-size:18px;">
-> ABSTRACT: Open science practices such as posting data or code and pre-registering analyses are increasingly prescribed and debated in the applied sciences, but the actual popularity and lifetime usage of these practices remain unknown. This study provides an assessment of attitudes toward, use of, and perceived norms regarding open science practices from a sample of authors published in top-10 (most-cited) journals and PhD students in top-20 ranked North American departments from four major social science disciplines: economics, political science, psychology, and sociology. We observe largely favorable private attitudes toward widespread lifetime usage (meaning that a researcher has used a particular practice at least once) of open science practices. As of 2020, nearly 90% of scholars had ever used at least one such practice. Support for posting data or code online is higher (88% overall support and nearly at the ceiling in some fields) than support for pre-registration (58% overall). With respect to norms, there is evidence that the scholars in our sample appear to underestimate the use of open science practices in their field. We also document that the reported lifetime prevalence of open science practices increased from 49% in 2010 to 87% a decade later.
-
-</div>
-
 <div style="font-size:24px;">
 — see also: <a href="https://www.bitss.org/projects/the-state-of-social-science-3s-survey/" target=_blank>Berkeley Initiative for Transparency in the Social Sciences</a>
 </div>
@@ -188,16 +184,42 @@ ggOpenCode
 ggOpenCodeProp
 ```
 
-## Esempi (nel bene e nel male)
+## Esempi (nel bene e nel male) 1/2
 
-- Working Memory Under Stress • <a href="https://osf.io/d43vs/?view_only=2c3325b5feef44149e9d5067cb0c8f16" target=_blank>OSF proj</a> <img src="figures/opendata.png" style="max-width:50px"/><img src="figures/opencode.png" style="max-width:50px"/>
+- Working Memory Under Stress • <a href="https://osf.io/d43vs/?view_only=2c3325b5feef44149e9d5067cb0c8f16" target=_blank>OSF proj</a> <img src="figures/opendata.png" style="max-width:50px"/><img src="figures/opencode.png" style="max-width:50px"/><img src="figures/openmaterials.png" style="max-width:50px"/>
 
-- Cognitive Stress Reappraisal • <a href="https://osf.io/q47e9/?view_only=d50449bb1ea64245b6c71541ac6d7379" target=_blank>OSF proj</a> • <a href="https://osf.io/p6e5j/?view_only=be40480e044d4929b1aac10a2df6ec6c" target=_blank>OSF reg</a> <img src="figures/preregistered.png" style="max-width:50px"/><img src="figures/opencode.png" style="max-width:50px"/><img src="figures/opendata.png" style="max-width:50px; opacity:0.35"/><img src="figures/openmaterials.png" style="max-width:50px; opacity:0.35"/><img src="figures/openaccess.png" style="max-width:50px; max-height:50px; opacity:0.35"/>
+- SEMbeddings preprint • <a href="https://osf.io/preprints/psyarxiv/kwrsg_v1" target=_blank>PsyArXiv</a><img src="figures/openaccess.png" style="max-width:50px; max-height:50px;"/><img src="figures/opencode.png" style="max-width:50px"/>
+
+- Critical Value preprint • <a href="https://osf.io/preprints/psyarxiv/7qe92_v1" target=_blank>PsyArXiv</a> • <a href="https://github.com/psicostat/criticalESvalue" target=_blank>GitHub</a><img src="figures/openaccess.png" style="max-width:50px; max-height:50px;"/><img src="figures/opencode.png" style="max-width:50px"/>
 
 - Attentional Blink Replication • <a href="https://osf.io/hp9nk/" target=_blank>OSF proj</a> <img src="figures/preregistered.png" style="max-width:50px"/><img src="figures/opencode.png" style="max-width:50px"/><img src="figures/openmaterials.png" style="max-width:50px"/><img src="figures/openaccess.png" style="max-width:50px; max-height:50px;"/>
 
-- SEMbeddings preprint • <a href="https://osf.io/preprints/psyarxiv/kwrsg_v1" target=_blank>PsyArXiv</a><img src="figures/openaccess.png" style="max-width:50px; max-height:50px;"/>
+- Cognitive Stress Reappraisal • <a href="https://osf.io/q47e9/?view_only=d50449bb1ea64245b6c71541ac6d7379" target=_blank>OSF proj</a> • <a href="https://osf.io/p6e5j/?view_only=be40480e044d4929b1aac10a2df6ec6c" target=_blank>OSF reg</a> <img src="figures/preregistered.png" style="max-width:50px"/><img src="figures/opencode.png" style="max-width:50px"/><img src="figures/opendata.png" style="max-width:50px; opacity:0.35"/><img src="figures/openmaterials.png" style="max-width:50px; opacity:0.35"/><img src="figures/openaccess.png" style="max-width:50px; max-height:50px; opacity:0.35"/>
 
-- Critical Value preprint • <a href="https://osf.io/preprints/psyarxiv/7qe92_v1" target=_blank>PsyArXiv</a> • <a href="https://github.com/psicostat/criticalESvalue" target=_blank>GitHub</a><img src="figures/openaccess.png" style="max-width:50px; max-height:50px;"/><img src="figures/opencode.png" style="max-width:50px"/>
+## Esempi (nel bene e nel male) 2/2
+
+- Error Correction Behaviour • <a href="https://osf.io/wn4vx/" target=_blank>OSF proj</a> • <a href="https://osf.io/preprints/psyarxiv/wegc5_v1" target=_blank>PsyArXiv</a> <img src="figures/openaccess.png" style="max-width:50px; max-height:50px;"/><img src="figures/preregistered.png" style="max-width:50px"/><img src="figures/opencode.png" style="max-width:50px"/><img src="figures/opendata.png" style="max-width:50px; opacity:0.35"/><img src="figures/openmaterials.png" style="max-width:50px; opacity:0.35"/>
+
+## Buone prassi 1/2
+
+- Usare repository adeguata allo scopo (es. *PsyArXiv* per preprint, *OSF registries* per preregistrazioni, *GitHub* se prevale scrittura codice; nota che *GitHub* può essere connesso e sincronizzato con progetto *OSF*)
+
+- In OSF, creare da subito un link anonimizzato per la condivisione e usarlo! Appena diventa possibile, rendere pubblico il progetto!
+
+- Preparare un ✅ README comprensibile che illustri l'intero contenuto
+
+- Condividere file in formato accessibile, non proprietario, anche se a volte non "bellissimi" (es. ✅ .txt,  ❌ .docx, ✅ .csv, ❌ .xlsx)
+
+- Favorire software *free* e *open source* per consentire riproducibilità (es. ✅ R, ✅ Python)
+
+## Buone prassi 2/2
+
+- In README e paper specificare versioni software e pacchetti (es. *"R 4.3.3"*, *"lme4 1.1.35.1"* `> packageVersion("lme4")`)
+
+- Nel codice usare path relativi (es. *"Data/pisa.csv"*) NO assoluti (es. *"C:/Users/enrico/documents/.../pisa.csv"*)
+
+- Commentare e indentare tutto il codice (nel dubbio, chiedere a GPT)
+
+
 
 
