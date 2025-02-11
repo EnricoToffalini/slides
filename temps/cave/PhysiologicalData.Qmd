@@ -42,7 +42,8 @@ library(ggplot2)
 ggplot(phy_raw_sample[1:2500,],aes(x=second,y=ECG))+
   geom_line()+
   scale_x_continuous(breaks=seq(0,100,.5))+
-  theme(text=element_text(size=18))
+  theme(text=element_text(size=18))+
+  ylab("ECG (microvolt)")
 ```
 
 #### Plot EDA sample (first 5 seconds), with a *gam* smoother
@@ -53,7 +54,8 @@ ggplot(phy_raw_sample[1:2500,],aes(x=second,y=EDA))+
   geom_line()+
   scale_x_continuous(breaks=seq(0,100,.5))+
   geom_smooth(linewidth=3)+
-  theme(text=element_text(size=18))
+  theme(text=element_text(size=18))+
+  ylab("ECG (microvolt)")
 ```
 
 ## Processed Data
@@ -71,7 +73,8 @@ phy[1:10,]
 ```{r, message=F, warning=F}
 ggplot(phy,aes(x=Minute,y=HR,color=Condition))+
   geom_line(aes(x=Minute,y=HR,group=paste0(ID,Condition)),alpha=.6,linewidth=1)+
-  theme(text=element_text(size=18))
+  theme(text=element_text(size=18))+
+  ylab("HR (bpm)")
 ```
 
 #### HR visualization - aggregated and smoothed
@@ -79,7 +82,8 @@ ggplot(phy,aes(x=Minute,y=HR,color=Condition))+
 ```{r, message=F, warning=F}
 ggplot(phy,aes(x=Minute,y=HR,color=Condition,fill=Condition))+
   geom_smooth(alpha=.2,linewidth=2)+
-  theme(text=element_text(size=18))
+  theme(text=element_text(size=18))+
+  ylab("HR (bpm)")
 ```
 
 #### Statistical models on HR
@@ -116,7 +120,8 @@ plot(allEffects(fit_hr_Additive))
 ```{r, message=F, warning=F}
 ggplot(phy,aes(x=Minute,y=SCR,color=Condition))+
   geom_line(aes(x=Minute,y=SCR,group=paste0(ID,Condition)),alpha=.6,linewidth=1)+
-  theme(text=element_text(size=18))
+  theme(text=element_text(size=18))+
+  ylab("SCR (microsiemens)")
 ```
 
 There are extreme outlier observations! Let's remove them:
@@ -125,7 +130,8 @@ There are extreme outlier observations! Let's remove them:
 phy$SCR[phy$SCR>600] = NA
 ggplot(phy,aes(x=Minute,y=SCR,color=Condition))+
   geom_line(aes(x=Minute,y=SCR,group=paste0(ID,Condition)),alpha=.6,linewidth=1)+
-  theme(text=element_text(size=18))
+  theme(text=element_text(size=18))+
+  ylab("SCR (microsiemens)")
 ```
 
 #### SCR visualization - aggregated and smoothed
@@ -133,7 +139,8 @@ ggplot(phy,aes(x=Minute,y=SCR,color=Condition))+
 ```{r, message=F, warning=F}
 ggplot(phy,aes(x=Minute,y=SCR,color=Condition,fill=Condition))+
   geom_smooth(alpha=.2,linewidth=2)+
-  theme(text=element_text(size=18))
+  theme(text=element_text(size=18))+
+  ylab("SCR (microsiemens)")
 ```
 
 #### Statistical models on SCR
@@ -165,6 +172,6 @@ plot(allEffects(fit_scr_Additive))
 
 ## Comments and Conclusions
 
-- For **Heart Rate**, we observed highest mean values (and highest dispersion of scores) during the *Resting* state, while there were no relevant changes across the *Neutral*, *Positive*, or *Negative* video conditions, somehow unexpectedly. There was a slight tendency for HR to increase across time, independently from Condition. 
+-   For **Heart Rate**, we observed highest mean values (and highest dispersion of scores) during the *Resting* state, while there were no relevant changes across the *Neutral*, *Positive*, or *Negative* video conditions, somehow unexpectedly. There was a slight tendency for HR to increase across time, independently from Condition.
 
-- For **Skin Conductance Response**, we observed highest mean values during the *Positive* video condition, followed by *Negative* and *Neutral* conditions, with *Resting* state presenting the lowest values. Dispersion of scores also followed this patter. SCR also tended to reduce across time within each Condition, and quite independently from Condition.
+-   For **Skin Conductance Response**, we observed highest mean values during the *Positive* video condition, followed by *Negative* and *Neutral* conditions, with *Resting* state presenting the lowest values. Dispersion of scores also followed this patter. SCR also tended to reduce across time within each Condition, and quite independently from Condition.

@@ -32,7 +32,7 @@ The primary aim of this study was to investigate whether the Emotion conveyed by
 
 ***Interplay between emotion, physiology, and behavior***
 
-Physiological responses may mediate the effect of emotion on behavior. For example, emotional content may not directly affect time perception, but changes in physiological arousal could explain the behavioral effects. For simplicity, we will NOT show this analysis now, but you have full data below if you want to test!
+<p style="margin-left:30px">Physiological responses may ***mediate*** the effect of emotional video on behavioral measures. For example, emotional content may not directly affect time perception, but changes in physiological arousal could explain the behavioral effects. For simplicity, we will NOT show this analysis now, but you have full data below if you want to test!</p>
 
 ## Open Science ❤️
 
