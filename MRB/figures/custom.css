@@ -1,0 +1,31 @@
+.reveal .slide ul li {
+  font-size: 34px !important;
+}
+
+
+.tooltip {
+    position: relative;
+    cursor: pointer;
+    text-decoration: underline dotted;
+}
+
+.tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: white;
+    color: black;
+    padding: 5px;
+    border: 1px solid black;
+    width: 200px;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover::after {
+    visibility: visible;
+    opacity: 1;
+}
