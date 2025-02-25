@@ -180,7 +180,7 @@ Leggi la <b><a href="https://docs.google.com/document/d/12zrtABruIhaM7fNuD93G6U8
 
 ##
 
-<div style="font-size:52px; display: flex; justify-content: center; align-items: center; height: 100vh; text-align: center;">
+<div style="font-size:68px;">
 *"**The only way you're starting is through offering a service. The main task of this new board would be to pre-register research that is coming out of the department. We should not be over ambitious**"*
 - Carlo Umiltà
 </div>
