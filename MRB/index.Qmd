@@ -78,6 +78,13 @@ Combinato con (da <a href="https://en.wikipedia.org/wiki/Why_Most_Published_Rese
 - Temi "Open Science" ampiamente presenti al <a href="https://www.ethics.cnr.it/27-e-28-gennaio-2025-1-congresso-nazionale-integrita-nella-ricerca/" target=_blank>1° Congresso CNR su Integrità Ricerca</a> (es. *data transparency* suggerita tra metodi necessari per valutazione di ricerca e ricercatori in un mondo accademico globalizzato e caotico; cf. E. Bucci su AI-fraud)
 - VQR in IRIS prevedeva campi "*Open Access*" (almeno AAM obbligata per ricerca finanziata da bandi pubblici) + "*Open Science* (dati FAIR<sup>[<a href="https://openscience.unimib.it/open-research-data/condividi/cosa-sono-i-dati-fair/" target=_blank>5</a>, <a href="https://sba.unibo.it/it/almadl/open-access-e-open-science/dati-della-ricerca-aperti" target=_blank>6</a>]</sup>)"
 
+##
+#### *"Se non cambiamo, qualcuno ci costringerà a cambiare in un modo che non ci piacerà"* (semicit.)
+::: {fig-align="center"}
+![from <a href="https://psicostat.github.io/4ms-winter-school/slides/Lakens_4M_17-2-2025_research_worth_doing.pdf" target=_blank>Daniel Lakens - Which research is valuable enough to do well?</a>](figures/heritage.png){width=75%}
+:::
+
+
 ## Opinions on Open Science?
 
 <div style="text-align: center;">
