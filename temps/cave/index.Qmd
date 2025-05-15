@@ -1,0 +1,80 @@
+---
+title: "Emotions and Temporal Representations"
+author: "Enrico Toffalini"
+date: "2025-02-11"
+include-in-header: assets/header.html
+format: 
+  html:
+    toc: true     
+    toc-depth: 2   
+    code-summary: "Show the code"
+    message: false
+    css: "assets/custom.css"
+editor: visual
+---
+
+<a href="qrcode.png" target="_blank">see QR code</a>
+
+## Aim of the Study
+
+The primary aim of this study was to investigate whether the Emotion conveyed by a video (Positive, Neutral, Negative) influenced:
+
+***Behavioral measures***
+
+-   **Finger tapping**: psychomotor behavior reflecting 1) average internal "tempo" via inter-tap interval (ITI); 2) consistency in ITI (ability to achieve little variation in ITI across the task).
+-   **Retrospective time estimation**: ability to accurately estimate a duration of *5 minutes* of a previously seen video.
+-   **Prospective time estimation**: ability to accurately estimate a duration of *1 minute* time interval while watching the video, starting when a red dot appears.
+
+***Physiological measures***
+
+-   **Heart Rate (HR)**: can be part of a psychophysiological response of emotional arousal.
+-   **Skin Conductance Response (SCR)**: electrodermal activity also indicates a physiological response of stress.
+
+***Interplay between emotion, physiology, and behavior***
+
+<p style="margin-left:30px">Physiological responses may ***mediate*** the effect of emotional video on behavioral measures. For example, emotional content may not directly affect time perception, but changes in physiological arousal could explain the behavioral effects. For simplicity, we will NOT show this analysis now, but you have full data below if you want to test!</p>
+
+## Open Science ❤️
+
+Luckily, the authors appreciate open science and transparency, and they have shared their data 🙂 Along with the dataset, they have provided a detailed document explaining its contents. In this case, the file is available here: <a href="Data/README.txt" download>README.txt</a>.
+
+The raw data is divided into two files:
+
+-   <a href="Data/FingerTapping.csv" download>FingerTapping.csv</a>, which contains the data related to the finger-tapping task.
+-   <a href="Data/TimePerception.csv" download>TimePerception.csv</a>, which includes the data for the two time perception tasks (retrospective and prospective).
+-   <a href="Data/PhysiologicalDataProcessed.csv" download>PhysiologicalDataProcessed.csv</a>, which includes physiological data for HR and SCR, already preprocessed and aggregated in epochs of minutes for ease of data analysis.
+-   <a href="Data/PhysiologicalRawData_sample.csv" target=_blank>PhysiologicalRawData_sample.csv</a>, which includes some sample raw data for a few seconds of recording for a single participant during resting state.
+-   <a href="https://drive.google.com/file/d/1k2YdD1gYCIxSqS6V8R0PkmrOJ4L3h0An/view?usp=sharing" download target=_blank>Physiological_data_raw.csv</a>, which includes the full data for of physiological recording for a single participant, as an example (beware, it's over 30MB and can be cumbersome to process with statistical software!).
+
+## Data Analysis with R
+
+Beginners in R may find helpful resources here: [*Basics of R for Data Science*](https://enricotoffalini.github.io/Basics-R/){target="_blank"}. This includes an open-access book and a short course. To get started quickly, check out the [*"Getting Started"*](https://enricotoffalini.github.io/Basics-R/#getting-started){target="_blank"} section, which provides a straightforward guide for installing R and RStudio. Learning R can be a valuable skill for your future, not just for research: it may also give you an advantage in methodological courses and make conducting an empirical thesis easier.
+
+#### Initial Setup: Empty Workspace and Load Packages
+
+```{r, eval=F}
+# empty workspace
+rm(list=ls())
+# before loading, make sure that a package is installed, otherwise install it with command 
+# > install.packages("<package_name>")
+library(glmmTMB)
+library(effects)
+```
+
+#### Import Data
+
+```{r, eval=F}
+# I placed .csv files into a folder named "Data"
+ft = read.csv("Data/FingerTapping.csv")
+tp = read.csv("Data/TimePerception.csv")
+phy = read.csv("Data/PhysiologicalDataProcessed.csv")
+phy_raw_sample = read.csv("Data/PhysiologicalRawData_sample.csv")
+```
+
+## Move on to
+
+::: {style="font-size:20px"}
+→ <a href="BehavioralData.html" target=_blank>Behavioral data analysis</a>
+
+→ <a href="PhysiologicalData.html" target=_blank>Physiological data analysis</a>
+:::

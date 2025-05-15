@@ -1,0 +1,230 @@
+---
+title: "Memory & Learning feat Open Science"
+date: "12 febbraio 2025"
+author: "Toffalini, Feraco, Calderan"
+include-in-header: figures/slidesheader.html
+format:
+  revealjs:
+    code-line-numbers: false
+    css: figures/custom.css
+    theme: default
+    slide-number: c/t
+    self-contained: true
+    code-fold: false
+    code-summary: "Show code"
+    code-overflow: wrap
+    title-slide-attributes:
+     data-background-position: "top center"
+     data-background-image: "figures/qrcode.png"
+     data-background-size: "16%"
+execute:
+  echo: true
+  output: true
+---
+## 20 anni di sventura?
+
+<div style="text-align: center;">
+<a href="https://en.wikipedia.org/wiki/Why_Most_Published_Research_Findings_Are_False" target=_blank><img src="figures/ioannidis2005.png" style="max-width:100%"/></a>
+</div>
+
+## 20 anni di sventura?
+
+- Bassa potenza statistica + bassa probabilità di baseline = difficile distinguere veri positivi da falsi positivi
+
+Combinato con (da <a href="https://en.wikipedia.org/wiki/Why_Most_Published_Research_Findings_Are_False#Causes_of_high_false_positive_rate" target=_blank>Wikipedia</a>): <em>
+
+- Solo, siloed investigator limited to small sample sizes
+- **No preregistration** of hypotheses being tested
+- **Post-hoc cherry picking** of hypotheses with best P values
+- Only requiring P < .05
+- No replication
+- **No data sharing**
+</em>
+
+## Science - OSC 2015
+
+<div style="text-align: center;">
+<a href="https://www.science.org/doi/pdf/10.1126/science.aac4716" target=_blank><img src="figures/osc2015.png" style="max-width:100%"/></a>
+</div>
+
+## Szucs and Ioannidis (2017)
+
+<div style="text-align: center;">
+<a href="https://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.2000797&type=printable" target=_blank><img src="figures/ioannidisszucs.png" style="max-width:70%"/></a>
+</div>
+
+## Gelman, la piuma e il canguro
+
+::: columns
+::: {.column width="55%"}
+<a href="https://statmodeling.stat.columbia.edu/2015/04/21/feather-bathroom-scale-kangaroo/" target=_blank><img src="figures/kangaroo.jpg"/></a>
+:::
+::: {.column width="45%"}
+<em>"(...) My best analogy is that they are trying to use a bathroom scale to weigh a feather—and the feather is resting loosely in the pouch of a kangaroo that is vigorously jumping up and down"</em>
+:::
+:::
+
+## Gelman, la piuma e il canguro
+<div style="font-size:25px;">
+*"Top journals in psychology routinely publish ridiculous, scientifically implausible claims, justified based on 'p < 0.05'. Recent examples of such silliness include claimed evidence of extra-sensory perception (published in the Journal of Personality and Social Psychology), claims that women at certain stages of their menstrual cycle were three times more likely to wear red or pink clothing and 20 percentage points more likely to vote for the Democratic or Republican candidate for president (published in Psychological Science), and a claim that people react differently to hurricanes with male and female names (published in the Proceedings of the National Academy of Sciences)."*
+</div>
+<div style="font-size:20px;">
+
+> Gelman, A. (2015). Working through some issues. *Royal Statistical Society, 12*(3), 33-35. <a href="https://doi.org/10.1111/j.1740-9713.2015.00828.x" target=_blank>https://doi.org/10.1111/j.1740-9713.2015.00828.x</a>
+
+<div style="text-align: center;">*See also:*</div>
+
+Button, K. S., Ioannidis, J. P. A., Mokrysz, C., Nosek, B., Flint, J., Robinson, E. S. J. and Munafo, M. R. (2013). **Power failure: Why small sample size undermines the reliability of neuroscience**. *Nature Reviews Neuroscience, 14*(5), 365-376. <a href="https://doi.org/10.1038/nrn3475" target=_blank>https://doi.org/10.1038/nrn3475</a>
+
+Simmons, J., Nelson, L. and Simonsohn, U. (2011) **False-positive psychology: Undisclosed flexibility in data collection and analysis allows presenting anything as significant**. *Psychological Science, 22*(11), 1359–1366. <a href="https://doi.org/10.1177/0956797611417632" target=_blank>https://doi.org/10.1177/0956797611417632</a>
+</div>
+
+## Che fare?
+
+- (Valore *null results*, studi di replica, review & meta-analisi, ecc.)
+- Large-scale collaborations: International **multi-lab** studies <sup>[<a href="https://doi.org/10.1037/cap0000216" target=_blank>1</a>, <a href="https://journals.sagepub.com/doi/10.1177/2515245918810225" target=_blank>2</a>, <a href="https://royalsocietypublishing.org/doi/full/10.1098/rsos.230235" target=_blank>3</a>]</sup>
+- Appropriata ***power analysis*** a priori, giustificare *sample size* per le ipotesi (quali?) <sup>[<a href="https://online.ucpress.edu/collabra/article/8/1/33267/120491/Sample-Size-Justification" target=_blank>4</a>]</sup>
+- **Pre-registration** e *registered reports*: trasparenza nel distinguere tra ipotesi e metodi pensati prima vs pensati dopo <sup>[<a href="https://www.tandfonline.com/doi/pdf/10.1080/2833373X.2024.2376046" target=_blank>5</a>]</sup>
+- ***Data availability***: reperimento **facile** dei dati grezzi quantitativi anonimizzati per 1) rianalisi secondarie (*multiverse*?); 2) meta-analisi
+- ***Code availability*** per 1) totale chiarezza sui metodi; 2) immenso valore educativo, diffusione conoscenza; 3) test *error checking* 😬, garanzia riproducibilità risultati
+
+## Noticina sulla *code availability*
+
+<div style="text-align: center;">
+*"Data will be available from the corresponding author upon reasonable request"* 
+
+😂
+</div>
+
+<div style="text-align: center;">
+<a href="https://www.sciencedirect.com/science/article/pii/S0960982213014000" target=_blank><img src="figures/currentbiologydataavailability.png" style="max-width:100%"/></a>
+</div>
+
+## Policy reforms?
+
+- Ripetute indicazioni che pratiche Open Science e trasparenza dovrebbero essere valorizzate nel reclutamento, perfino su espressione della <a href="https://euraxess.ec.europa.eu/sites/default/files/policy_library/os-rewards-wgreport-final_integrated_0.pdf" target=_blank>Commissione Europea</a><sup>[<a href="https://euraxess.ec.europa.eu/sites/default/files/policy_library/os-rewards-wgreport-final_integrated_0.pdf" target=_blank>1</a>, <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6195839/" target=_blank>2</a>, <a href="https://www.nicebread.de/open-science-hiring-practices/?utm_source=chatgpt.com" target=_blank>3</a>, <a href="https://www.euroscientist.com/jean-claude-burgelman-the-new-open-science-paradigm-requires-fine-tuning/" target=_blank>4</a>]</sup>
+- Temi "Open Science" ampiamente presenti al <a href="https://www.ethics.cnr.it/27-e-28-gennaio-2025-1-congresso-nazionale-integrita-nella-ricerca/" target=_blank>1° Congresso CNR su Integrità Ricerca</a> (es. *data transparency* suggerita tra metodi necessari per valutazione di ricerca e ricercatori in un mondo accademico globalizzato e caotico; cf. E. Bucci su AI-fraud)
+- VQR in IRIS prevedeva campi "*Open Access*" (almeno AAM obbligata per ricerca finanziata da bandi pubblici) + "*Open Science* (dati FAIR<sup>[<a href="https://openscience.unimib.it/open-research-data/condividi/cosa-sono-i-dati-fair/" target=_blank>5</a>, <a href="https://sba.unibo.it/it/almadl/open-access-e-open-science/dati-della-ricerca-aperti" target=_blank>6</a>]</sup>)"
+
+## *The Times They Are A-Changin'*
+
+<a href="https://journals.sagepub.com/doi/10.1177/25152459241283477" target=_blank><img src="figures/hardwicke2024.png" style="max-width:100%"/></a>
+
+## Hardwicke et al. (2024) results
+
+<div style="text-align: center;">
+<a href="https://journals.sagepub.com/doi/10.1177/25152459241283477" target=_blank><img src="figures/hardwicke2024results.png" style="max-width:80%"/></a>
+</div>
+
+## Opinions on Open Science?
+
+<div style="text-align: center;">
+<a href="https://www.cos.io/initiatives/open-scholarship-survey" target=_blank><img src="figures/oss.png" style="max-width:100%"/></a>
+</div>
+
+## Opinions on Open Science?
+
+<div style="text-align: center;">
+<a href="https://www.nature.com/articles/s41467-023-41111-1" target=_blank><img src="figures/naturesurvey2023.png" style="max-width:80%"/></a>
+</div>
+
+<div style="font-size:24px;">
+— see also: <a href="https://www.bitss.org/projects/the-state-of-social-science-3s-survey/" target=_blank>Berkeley Initiative for Transparency in the Social Sciences</a>
+</div>
+
+## Pro e Contro?
+
+<div style="font-size:55px;">
+• Preregistrazione (e *registered reports*)  
+
+• Open data  
+
+• Open code  
+</div>
+
+*Pro* e *contro* (veri e soprattutto presunti) possono essere sia sul piano scientifico che su quello personale (e spesso sono in contrasto tra i due piani) → Abbiamo provato a elencarli <b><a href="https://docs.google.com/document/d/1sEDNJO9Ko1lT0LISj2bUxzybRQC9lLV0iY8MwKNc5TU/edit?tab=t.0" target=_blank>a questo link</a></b>
+
+
+## Quanta ne stiamo facendo?
+
+```{r, echo=F}
+rm(list=ls())
+library(ggplot2)
+load("plots.RData")
+ggPreregistered
+```
+
+## Quanta ne stiamo facendo?
+
+```{r, echo=F}
+ggPreregisteredProp
+```
+
+## Quanta ne stiamo facendo?
+
+```{r, echo=F}
+ggOpenData
+```
+
+## Quanta ne stiamo facendo?
+
+```{r, echo=F}
+ggOpenDataProp
+```
+
+## Quanta ne stiamo facendo?
+
+```{r, echo=F}
+ggOpenCode
+```
+
+## Quanta ne stiamo facendo?
+
+```{r, echo=F}
+ggOpenCodeProp
+```
+
+## Esempi (nel bene e nel male) 1/2
+
+- Working Memory Under Stress • <a href="https://osf.io/d43vs/?view_only=2c3325b5feef44149e9d5067cb0c8f16" target=_blank>OSF proj</a> <img src="figures/opendata.png" style="max-width:50px"/><img src="figures/opencode.png" style="max-width:50px"/><img src="figures/openmaterials.png" style="max-width:50px"/>
+
+- SEMbeddings • <a href="https://osf.io/preprints/psyarxiv/kwrsg_v1" target=_blank>PsyArXiv</a><img src="figures/openaccess.png" style="max-width:50px; max-height:50px;"/><img src="figures/opencode.png" style="max-width:50px"/>
+
+- Critical Value • <a href="https://osf.io/preprints/psyarxiv/7qe92_v1" target=_blank>PsyArXiv</a> • <a href="https://github.com/psicostat/criticalESvalue" target=_blank>GitHub</a><img src="figures/openaccess.png" style="max-width:50px; max-height:50px;"/><img src="figures/opencode.png" style="max-width:50px"/>
+
+- Attentional Blink Replication • <a href="https://osf.io/hp9nk/" target=_blank>OSF proj</a> <img src="figures/preregistered.png" style="max-width:50px"/><img src="figures/opencode.png" style="max-width:50px"/><img src="figures/openmaterials.png" style="max-width:50px"/><img src="figures/openaccess.png" style="max-width:50px; max-height:50px;"/>
+
+- Cognitive Stress Reappraisal • <a href="https://osf.io/q47e9/?view_only=d50449bb1ea64245b6c71541ac6d7379" target=_blank>OSF proj</a> • <a href="https://osf.io/p6e5j/?view_only=be40480e044d4929b1aac10a2df6ec6c" target=_blank>OSF reg</a> <img src="figures/preregistered.png" style="max-width:50px"/><img src="figures/opencode.png" style="max-width:50px"/><img src="figures/opendata.png" style="max-width:50px; opacity:0.35"/><img src="figures/openmaterials.png" style="max-width:50px; opacity:0.35"/><img src="figures/openaccess.png" style="max-width:50px; max-height:50px; opacity:0.35"/>
+
+## Esempi (nel bene e nel male) 2/2
+
+- Error Correction Behaviour • <a href="https://osf.io/wn4vx/" target=_blank>OSF proj</a> • <a href="https://osf.io/preprints/psyarxiv/wegc5_v1" target=_blank>PsyArXiv</a> <img src="figures/openaccess.png" style="max-width:50px; max-height:50px;"/><img src="figures/preregistered.png" style="max-width:50px"/><img src="figures/opencode.png" style="max-width:50px"/><img src="figures/opendata.png" style="max-width:50px; opacity:0.35"/><img src="figures/openmaterials.png" style="max-width:50px; opacity:0.35"/>
+
+- Italian Validation of BESSI • <a href="https://doi.org/10.17605/OSF.IO/VYZPN" target=_blank>OSF proj</a> • <a href="https://doi.org/10.17605/OSF.IO/ZXBD3" target=_blank>OSF reg</a> <img src="figures/preregistered.png" style="max-width:50px"/><img src="figures/opencode.png" style="max-width:50px"/><img src="figures/opendata.png" style="max-width:50px"/><img src="figures/openmaterials.png" style="max-width:50px"/>
+
+- 20 Years of Character Strengths • <a href="https://doi.org/10.17605/OSF.IO/F4P7B" target=_blank>OSF proj</a> • <a href="https://doi.org/10.17605/OSF.IO/Z3XEC" target=_blank>OSF reg</a> <img src="figures/preregistered.png" style="max-width:50px"/><img src="figures/opencode.png" style="max-width:50px"/><img src="figures/opendata.png" style="max-width:50px"/>
+
+## Buone prassi 1/2
+
+- Usare repository adeguata allo scopo (es. *PsyArXiv* per preprint, *OSF registries* per preregistrazioni, *GitHub* se prevale scrittura codice; nota che *GitHub* può essere connesso e sincronizzato con progetto *OSF*)
+
+- In OSF, creare da subito un link anonimizzato per la condivisione e usarlo! Appena diventa possibile, rendere pubblico il progetto!
+
+- Preparare un ✅ README comprensibile che illustri l'intero contenuto
+
+- Condividere file in formato accessibile, non proprietario, anche se a volte non "bellissimi" (es. ✅ .txt,  ❌ .docx, ✅ .csv, ❌ .xlsx)
+
+- Favorire software *free* e *open source* per consentire riproducibilità (es. ✅ R, ✅ Python)
+
+## Buone prassi 2/2
+
+- In README e paper specificare versioni software e pacchetti (es. *"R 4.3.3"*, *"lme4 1.1.35.1"* `> packageVersion("lme4")`)
+
+- Nel codice usare path relativi (es. *"Data/pisa.csv"*) NO assoluti (es. *"C:/Users/enrico/documents/.../pisa.csv"*)
+
+- Commentare e indentare tutto il codice (nel dubbio, chiedere a GPT)
+
+- <span style="color:goldenrod">Best practice ideale:</span> creare e condividere virtual environment (es. <a href="https://rstudio.github.io/renv/articles/renv.html" target=_blank>R</a>, <a href="https://docs.python.org/3/library/venv.html" target=_blank>Python</a>)
+
+
+

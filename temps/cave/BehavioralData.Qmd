@@ -1,0 +1,171 @@
+---
+title: "Behavioral Data Analysis"
+author: "Enrico Toffalini"
+date: "2025-02-11"
+include-in-header: assets/header.html
+format: 
+  html:
+    toc: true     
+    toc-depth: 2   
+    code-summary: "Show the code"
+    message: false
+    css: "assets/custom.css"
+editor: visual
+---
+
+```{r, message=F, warning=F, echo=F}
+rm(list=ls())
+library(glmmTMB)
+library(effects)
+ft = read.csv("Data/FingerTapping.csv")
+tp = read.csv("Data/TimePerception.csv")
+```
+
+#### Inspect Datasets
+
+Let's see the first few rows of each dataset for figuring out their structures. Note that <b>*Emotion* varies *within-subject*</b>.
+
+```{r, message=F, warning=F}
+head(ft)
+head(tp)
+```
+
+## Finger Tapping
+
+As recommended, let's remove the first trial for each subject. Then, let's inspect the distribution of ITI.
+
+```{r, message=F, warning=F}
+ft = ft[ft$Trial != 1, ]
+ft = ft[ft$PrePost == "Post", ]
+hist(ft$ITI, breaks=100)
+```
+
+OUCH! There are a few outliers! Let's remove ITI observations that are too far away from the average:
+
+```{r, message=F, warning=F}
+ITI_zScore = (ft$ITI - mean(ft$ITI))/sd(ft$ITI)
+ft = ft[!abs(ITI_zScore) > 3, ]
+hist(ft$ITI, breaks=100)
+```
+
+#### Fit Statistical Model on *Finger Tapping*
+
+Because each participant provides multiple responses, we can test not only if Emotion affects average ITI, but also if it affects its dispersion. Let's run a special model for this:
+
+```{r, message=F, warning=F}
+# prepare factorial variables
+ft$ID = factor(ft$ID)
+ft$Emotion = factor(ft$Emotion, levels=c("Neutral","Negative","Positive"))
+```
+
+```{r, message=F, warning=F, cache=T}
+# actually fit the model
+fit_ft = glmmTMB(
+  ITI ~ Emotion + (Emotion||ID),
+  dispformula = ~ Emotion ,
+  data = ft,
+  family = Gamma(link="log")
+)
+```
+
+```{r, message=F, warning=F}
+# see summary of model coefficients
+summary(fit_ft)
+
+# plot predicted effects
+plot(allEffects(fit_ft))
+```
+
+## Retrospective Time
+
+```{r, message=F, warning=F}
+# inspect distribution of Retrospective estimates
+hist(tp$Retro_Estimate)
+```
+
+Compute (in)accuracy as a ratio:
+
+$$ RetrospectiveError = \frac{\text{Estimate} - \text{ObjectiveTime}}{\text{ObjectiveTime}} $$
+
+```{r, message=F, warning=F}
+# compute precision (error) of retrospective estimate
+tp$Retro_Error = (tp$Retro_Estimate - 5) / 5
+```
+
+⮩ Positive values indicate *overestimation*. Negative values indicate *underestimation*.
+
+But... if a video is largely overestimated by some and largely underestimated by others, the average error is zero... does it mean perfect accuracy? No! Global accuracy vs inaccuracy is reflected by the total amount of ***dispersion***, while the ***average*** error indicates the tendency towards *over-* or *under-estimation*.
+
+#### Fit Statistical Model on *Retrospective estimates*
+
+```{r, message=F, warning=F}
+# prepare factorial variables
+tp$ID = factor(tp$ID)
+tp$Emotion = factor(tp$Emotion, levels=c("Neutral","Negative","Positive"))
+```
+
+```{r, message=F, warning=F, cache=T}
+# actually fit the model
+fit_re = glmmTMB(
+  Retro_Error ~ Emotion + (1|ID),
+  dispformula = ~ Emotion,
+  data = tp
+)
+```
+
+```{r, message=F, warning=F}
+# see summary of model coefficients
+summary(fit_re)
+
+# plot predicted effects
+plot(allEffects(fit_re))
+```
+
+## Prospective Time
+
+```{r, message=F, warning=F}
+# inspect distribution of Prospective estimates
+hist(tp$Prosp_Estimate)
+```
+
+OUCH! There is a negative value! Remove it:
+
+```{r, message=F, warning=F}
+tp$Prosp_Estimate[tp$Prosp_Estimate < 0] = NA
+hist(tp$Prosp_Estimate)
+```
+
+Compute error as a ratio:
+
+$$ ProspectiveError = \frac{\text{Estimate} - \text{ObjectiveTime}}{\text{ObjectiveTime}} $$
+
+```{r, message=F, warning=F}
+# compute precision (error) of prospective estimate
+tp$Prosp_Error = (tp$Prosp_Estimate - 60000) / 60000
+```
+
+#### Fit Statistical Model on *Prospective estimates*
+
+```{r, message=F, warning=F, cache=T}
+fit_pro = glmmTMB(
+  Prosp_Error ~ Emotion + (1|ID),
+  dispformula = ~ Emotion,
+  data = tp
+)
+```
+
+```{r, message=F, warning=F}
+# see summary of model coefficients
+summary(fit_pro)
+
+# plot predicted effects
+plot(allEffects(fit_pro))
+```
+
+## Comments and Conclusions
+
+-   For **Finger tapping**, it seems that *Negative* Emotion increases both average ITI and its dispersion within participants.
+-   For the **Retrospective task**, it seems that Emotion has not particular effect on either estimation or its dispersion.
+-   For the **Prospective task**, it seems that Emotion affects accuracy, causing both an average overestimation of duration in the *Negative* condition and some increase in its dispersion (absolute error).
+
+[An important point, when computing statistical analyses and finding relevant/significant effects, is to estimate how large they are. Since we used variables on interpretable metrics (ratio of error, milliseconds of ITI) the interpretation might be straightforward. However, standardized effect sizes (e.g., [*Cohen's d*](https://en.wikiversity.org/wiki/Cohen%27s_d){target="_blank"}) are also recommended.]{style="font-size:14px"}

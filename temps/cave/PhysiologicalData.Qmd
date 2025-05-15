@@ -1,0 +1,177 @@
+---
+title: "Physiological Data Analysis"
+author: "Enrico Toffalini"
+date: "2025-02-11"
+include-in-header: assets/header.html
+format: 
+  html:
+    toc: true     
+    toc-depth: 3   
+    code-summary: "Show the code"
+    message: false
+    css: "assets/custom.css"
+editor: visual
+---
+
+```{r, message=F, warning=F, echo=F}
+rm(list=ls())
+library(glmmTMB)
+library(effects)
+phy = read.csv("Data/PhysiologicalDataProcessed.csv")
+phy_raw_sample = read.csv("Data/PhysiologicalRawData_sample.csv")
+
+phy$Condition = factor(phy$Condition, levels=c("Resting","Neutral","Positive","Negative"))
+```
+
+## Raw Data
+
+#### Dataset inspect
+
+```{r, message=F, warning=F}
+head(phy_raw_sample)
+```
+
+#### Plot ECG sample (first 5 seconds)
+
+*Exercise:* Based on the plot below, could you provide an estimate of *beats per minute*?
+
+```{r, message=F, warning=F}
+#| code-fold: true
+library(ggplot2)
+
+ggplot(phy_raw_sample[1:2500,],aes(x=second,y=ECG))+
+  geom_line()+
+  scale_x_continuous(breaks=seq(0,100,.5))+
+  theme(text=element_text(size=18))+
+  ylab("ECG (microvolt)")
+```
+
+#### Plot EDA sample (first 5 seconds), with a *gam* smoother
+
+```{r, message=F, warning=F}
+#| code-fold: true
+ggplot(phy_raw_sample[1:2500,],aes(x=second,y=EDA))+
+  geom_line()+
+  scale_x_continuous(breaks=seq(0,100,.5))+
+  geom_smooth(linewidth=3)+
+  theme(text=element_text(size=18))+
+  ylab("ECG (microvolt)")
+```
+
+## Processed Data
+
+#### Dataset inspect
+
+```{r, message=F, warning=F}
+phy[1:10,]
+```
+
+### Heart Rate (HR)
+
+#### HR visualization - by subject
+
+```{r, message=F, warning=F}
+ggplot(phy,aes(x=Minute,y=HR,color=Condition))+
+  geom_line(aes(x=Minute,y=HR,group=paste0(ID,Condition)),alpha=.6,linewidth=1)+
+  theme(text=element_text(size=18))+
+  ylab("HR (bpm)")
+```
+
+#### HR visualization - aggregated and smoothed
+
+```{r, message=F, warning=F}
+ggplot(phy,aes(x=Minute,y=HR,color=Condition,fill=Condition))+
+  geom_smooth(alpha=.2,linewidth=2)+
+  theme(text=element_text(size=18))+
+  ylab("HR (bpm)")
+```
+
+#### Statistical models on HR
+
+Due to serious convergence issues, I cannot enter a full random effects formula, so results must be taken with caution.
+
+```{r, message=F, warning=F, cache=T}
+fit_hr_Multiplicative = glmmTMB(
+  HR ~ Minute * Condition + (1|ID),
+  dispformula = ~ Condition,
+  data = phy
+)
+fit_hr_Additive = glmmTMB(
+  HR ~ Minute + Condition + (1|ID),
+  dispformula = ~ Condition,
+  data = phy
+) 
+
+anova(fit_hr_Multiplicative, fit_hr_Additive)
+```
+
+```{r, message=F, warning=F}
+# see summary of model coefficients
+summary(fit_hr_Additive)
+
+# plot predicted effects
+plot(allEffects(fit_hr_Additive))
+```
+
+### Skin Conductance Response (SCR)
+
+#### SCR visualization - by subject
+
+```{r, message=F, warning=F}
+ggplot(phy,aes(x=Minute,y=SCR,color=Condition))+
+  geom_line(aes(x=Minute,y=SCR,group=paste0(ID,Condition)),alpha=.6,linewidth=1)+
+  theme(text=element_text(size=18))+
+  ylab("SCR (microsiemens)")
+```
+
+There are extreme outlier observations! Let's remove them:
+
+```{r, message=F, warning=F}
+phy$SCR[phy$SCR>600] = NA
+ggplot(phy,aes(x=Minute,y=SCR,color=Condition))+
+  geom_line(aes(x=Minute,y=SCR,group=paste0(ID,Condition)),alpha=.6,linewidth=1)+
+  theme(text=element_text(size=18))+
+  ylab("SCR (microsiemens)")
+```
+
+#### SCR visualization - aggregated and smoothed
+
+```{r, message=F, warning=F}
+ggplot(phy,aes(x=Minute,y=SCR,color=Condition,fill=Condition))+
+  geom_smooth(alpha=.2,linewidth=2)+
+  theme(text=element_text(size=18))+
+  ylab("SCR (microsiemens)")
+```
+
+#### Statistical models on SCR
+
+```{r, message=F, warning=F, cache=T}
+fit_scr_Multiplicative = glmmTMB(
+  SCR ~ Minute * Condition + (1|ID),
+  dispformula = ~ Condition,
+  family = gaussian(link="log"),
+  data = phy
+)
+fit_scr_Additive = glmmTMB(
+  SCR ~ Minute + Condition + (1|ID),
+  dispformula = ~ Condition,
+  family = gaussian(link="log"),
+  data = phy
+) 
+
+anova(fit_scr_Multiplicative, fit_scr_Additive)
+```
+
+```{r, message=F, warning=F}
+# see summary of model coefficients
+summary(fit_scr_Additive)
+
+# plot predicted effects
+plot(allEffects(fit_scr_Additive))
+```
+
+## Comments and Conclusions
+
+-   For **Heart Rate**, we observed highest mean values (and highest dispersion of scores) during the *Resting* state, while there were no relevant changes across the *Neutral*, *Positive*, or *Negative* video conditions, somehow unexpectedly. There was a slight tendency for HR to increase across time, independently from Condition.
+
+-   For **Skin Conductance Response**, we observed highest mean values during the *Positive* video condition, followed by *Negative* and *Neutral* conditions, with *Resting* state presenting the lowest values. Dispersion of scores also followed this patter. SCR also tended to reduce across time within each Condition, and quite independently from Condition.

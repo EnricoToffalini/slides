@@ -1,0 +1,212 @@
+---
+title: |
+        Perché un <em>Methodological Review Board</em>?
+          <br/><img src="figures/qrcode.png" style="width:150px">
+date: "27 febbraio 2025"
+include-in-header: figures/slidesheader.html
+format:
+  revealjs:
+    code-line-numbers: false
+    css: figures/custom.css
+    theme: default
+    slide-number: c/t
+    self-contained: true
+    code-fold: false
+    code-summary: "Show code"
+    code-overflow: wrap
+    title-slide-attributes:
+     data-background-image: "figures/psicostatLogo.png"
+     data-background-size: "contain"
+     data-background-opacity: "0.15"
+execute:
+  echo: true
+  output: true
+---
+##
+<div style="text-align: center;">
+<a href="https://en.wikipedia.org/wiki/Why_Most_Published_Research_Findings_Are_False" target=_blank><img src="figures/ioannidis2005.png" style="max-width:100%"/></a>
+</div>
+
+##
+- Bassa potenza statistica + bassa probabilità di baseline = difficile distinguere veri positivi da falsi positivi
+
+Combinato con (da <a href="https://en.wikipedia.org/wiki/Why_Most_Published_Research_Findings_Are_False#Causes_of_high_false_positive_rate" target=_blank>Wikipedia</a>): <em>
+
+- Solo, siloed investigator limited to small sample sizes
+- **No preregistration of hypotheses** being tested
+- **Post-hoc cherry picking of hypotheses** with best P values
+- Only requiring P < .05
+- No replication
+- **No data sharing**
+</em>
+
+##
+<div style="text-align: center;">
+<a href="https://www.youtube.com/watch?v=ZaNtz76dNSI" target=_blank><img src="figures/interviewresearcher.png"/></a>
+</div>
+
+##
+::: {fig-align="center"}
+![The distribution of more than one million z-values from <a href="https://www.nlm.nih.gov/medline/medline_overview.html" target=_blank>Medline</a> (1976–2019), adapted from van <a href="https://onlinelibrary.wiley.com/doi/full/10.1111/stan.12241" target=_blank>Zwet and Cator (2021)</a>](figures/Z_plot.png){width=80%}
+:::
+
+##
+::: {fig-align="center"}
+![from <a href="https://psicostat.github.io/4ms-winter-school/slides/Lakens-4M-18-2-2025-Preregistration.pdf" target=_blank>Daniel Lakens - The benefits of preregistration and registered reports</a>](figures/beforeafterprereg.png){width=100%}
+:::
+
+##
+::: {fig-align="center"}
+![from <a href="https://psicostat.github.io/4ms-winter-school/slides/Lakens-4M-18-2-2025-Preregistration.pdf" target=_blank>Daniel Lakens - The benefits of preregistration and registered reports</a>](figures/egodepletion.png){width=100%}
+:::
+
+## Science - OSC 2015
+
+<div style="text-align: center;">
+<a href="https://www.science.org/doi/pdf/10.1126/science.aac4716" target=_blank><img src="figures/osc2015.png" style="max-width:100%"/></a>
+</div>
+
+## Szucs and Ioannidis (2017)
+
+<div style="text-align: center;">
+<a href="https://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.2000797&type=printable" target=_blank><img src="figures/ioannidisszucs.png" style="max-width:70%"/></a>
+</div>
+
+## Policy reforms?
+
+- Ripetute indicazioni che pratiche Open Science e trasparenza dovrebbero essere valorizzate nel reclutamento, perfino su espressione della <a href="https://euraxess.ec.europa.eu/sites/default/files/policy_library/os-rewards-wgreport-final_integrated_0.pdf" target=_blank>Commissione Europea</a><sup>[<a href="https://euraxess.ec.europa.eu/sites/default/files/policy_library/os-rewards-wgreport-final_integrated_0.pdf" target=_blank>1</a>, <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6195839/" target=_blank>2</a>, <a href="https://www.nicebread.de/open-science-hiring-practices/?utm_source=chatgpt.com" target=_blank>3</a>, <a href="https://www.euroscientist.com/jean-claude-burgelman-the-new-open-science-paradigm-requires-fine-tuning/" target=_blank>4</a>]</sup>
+- Temi "Open Science" ampiamente presenti al <a href="https://www.ethics.cnr.it/27-e-28-gennaio-2025-1-congresso-nazionale-integrita-nella-ricerca/" target=_blank>1° Congresso CNR su Integrità Ricerca</a> (es. *data transparency* suggerita tra metodi necessari per valutazione di ricerca e ricercatori in un mondo accademico globalizzato e caotico; cf. E. Bucci su AI-fraud)
+- VQR in IRIS prevedeva campi "*Open Access*" (almeno AAM obbligata per ricerca finanziata da bandi pubblici) + "*Open Science* (dati FAIR<sup>[<a href="https://openscience.unimib.it/open-research-data/condividi/cosa-sono-i-dati-fair/" target=_blank>5</a>, <a href="https://sba.unibo.it/it/almadl/open-access-e-open-science/dati-della-ricerca-aperti" target=_blank>6</a>]</sup>)"
+
+##
+### *"Se non ci decidiamo a cambiare, qualcuno ci costringerà a farlo in un modo che non ci piacerà"* (semicit.)
+::: {fig-align="center"}
+![from <a href="https://psicostat.github.io/4ms-winter-school/slides/Lakens_4M_17-2-2025_research_worth_doing.pdf" target=_blank>Daniel Lakens - Which research is valuable enough to do well?</a>](figures/heritage.png){width=70%}
+:::
+
+
+## Opinions on Open Science?
+
+<div style="text-align: center;">
+<a href="https://www.nature.com/articles/s41467-023-41111-1" target=_blank><img src="figures/naturesurvey2023.png" style="max-width:80%"/></a>
+</div>
+
+<div style="font-size:24px;">
+— see also: <a href="https://www.bitss.org/projects/the-state-of-social-science-3s-survey/" target=_blank>Berkeley Initiative for Transparency in the Social Sciences</a>
+</div>
+
+## *The Times They Are A-Changin'*
+
+<a href="https://journals.sagepub.com/doi/10.1177/25152459241283477" target=_blank><img src="figures/hardwicke2024.png" style="max-width:100%"/></a>
+
+<div style="font-size:32px;"><em>
+see more <a href="https://mar-cald.github.io/MLOpenScience/" target=_blank>at this link</a>
+</em></div>
+
+## Hardwicke et al. (2024) results
+
+<div style="text-align: center;">
+<a href="https://journals.sagepub.com/doi/10.1177/25152459241283477" target=_blank><img src="figures/hardwicke2024results.png" style="max-width:80%"/></a>
+</div>
+
+## Why a Methodological Review Board?
+
+<div style="text-align: center;">
+<a href="https://www.nature.com/articles/d41586-022-04504-8" target=_blank><img src="figures/LakensMRB.png" style="max-width:80%"/></a>
+</div>
+
+## Why a Methodological Review Board?
+
+<div style="text-align: center;">
+<a href="https://psicostat.dpss.psy.unipd.it/lakens2023.html" target=_blank><img src="figures/interviewLakens.png" style="max-width:80%"/></a>
+</div>
+
+Leggi la <b><a href="https://docs.google.com/document/d/12zrtABruIhaM7fNuD93G6U87MjQvyzsh/" target=_blank>trascrizione completa</a></b> dell'intervista a <b>Psicostat</b>
+
+## Cos'è un Methodological Review Board?
+#### (GPT sintetizza l'intervista)
+
+- Un comitato interno che valuta la qualità metodologica dei progetti di ricerca **prima della raccolta dati**.
+- Funzione **simile alla peer review nei registered reports**, ma a livello dipartimentale.
+- Può essere **separato o integrato con l’Ethical Review Board (ERB)**, *ma si consiglia la separazione*.
+
+## Perché è utile?
+#### (GPT sintetizza l'intervista)
+
+- **Prevenire errori** metodologici che emergerebbero solo in fase di peer review.
+- Migliorare la qualità della ricerca e **ridurre lo spreco di risorse**.
+- **Fornire supporto ai ricercatori**, specialmente ai più **giovani**.
+- **Creare un ambiente collaborativo**, evitando che la peer review sia vista solo come una barriera.
+
+## L’esperienza di Eindhoven: come è nato l’MRB?
+#### (GPT sintetizza l'intervista)
+
+- Avviato **nel dipartimento** di Lakens, non nell’intera università (il dipartimento finanzia routinariamente ricerche).
+- È **nato da una semplice richiesta di riportare la dimensione campionaria** nei protocolli etici.
+- Progressivamente sono stati aggiunti requisiti: es. **giustificazione del campione, power analysis**
+- **Ora è obbligatorio** e integrato con il processo etico (per noi **NON** deve esserlo).
+
+## Funzionamento del MRB a Eindhoven
+#### (GPT sintetizza l'intervista)
+
+- **Proposte settimanali**: invio entro venerdì, revisione lunedì, esito martedì.
+- **4 membri nel comitato** (inizialmente 2, poi ampliato).
+- **5-10 progetti settimanali**, inclusi master thesis.
+- Possibilità di revisione e **confronto diretto** con i ricercatori.
+- Severità: proposte possono essere respinte (es. power analysis con parametri di default software), ma *non c'è mai stato un reject definitivo*.
+
+## Quali aspetti metodologici vengono valutati?
+#### (GPT sintetizza l'intervista)
+
+- **Piano statistico**: congruenza tra ipotesi e analisi.
+- **Dimensione campionaria**: giustificazione con power analysis o criteri di precisione.
+- **Gestione dei dati**: controllo per dati mancanti, multiple comparisons, ecc.
+- **Validità delle misure non sempre verificata** per mancanza di expertise, ma raccomandata.
+
+## Resistenze iniziali e strategie per l’accettazione
+#### (GPT sintetizza l'intervista)
+
+- Alcuni ricercatori si sono **opposti inizialmente** (es. *"nemmeno i revisori chiedono questo!"*).
+- Importanza di **offrire supporto diretto e consulenza** oltre alla revisione.
+- **Effetti positivi** nel lungo termine:
+    - **Aumento della qualità** delle ricerche.
+    - **Maggiore occupazione dei laboratori** (più dati raccolti!).
+    - Adozione progressiva di ***best practices*** (es. analisi sequenziale).
+
+##  Applicazione a Padova: sfide e soluzioni
+#### (GPT sintetizza l'intervista)
+
+- **Alto numero di progetti** potenzialmente "candidati" → iniziare in modo **selettivo**. Opzioni: 1) solo studi con finanziamenti sopra una certa soglia; 2) solo ricerche su popolazioni sensibili (es. pazienti); 3) solo progetti di ricercatori junior; 4) su candidature volontarie. 
+- Primariamente servizio di **assistenza a pre-registrazione & open science**, su base volontaria.
+- Usare **checklist/strumenti/piattaforme già esistenti** (es. <b><a href="https://osf.io/" target=_blank>OSF</a></b>).
+- **Pochi esperti in metodi statistici** → iniziare con requisiti minimi (es. sample size).
+
+## Conclusioni: perché un MRB è utile per Padova?
+#### (GPT sintetizza l'intervista)
+
+✅ **Migliora la qualità della ricerca e previene errori costosi**.
+
+✅ **Forma giovani ricercatori** su aspetti metodologici cruciali.
+
+✅ **Riduce il rischio di peer review negativa** grazie a protocolli più solidi.
+
+✅ Va implementato in modo **adatto al contesto**, evitando opposizioni.
+
+##
+
+<div style="font-size:68px;">
+*"**The only way you're starting is through offering a service. The main task of this new board would be to pre-register research that is coming out of the department. We should not be over ambitious**"*
+- Carlo Umiltà
+</div>
+
+## *more on this topic...*
+
+<div style="font-size:48px;">
+Giulia Calignano - <b><a href="https://www.overleaf.com/read/jqsymhnvqvjr#7123f5" target=_blank>Open Science, Multidisciplinarity, and the Culture of Error
+towards the Methodological Review Board</a></b> - Presentazione A ITRN Annual meeting, *Scienza aperta e inclusività*, Milano Bicocca, 14 febbraio 2025
+</div>
+
+<div style="text-align: center;">
+<a href="https://www.overleaf.com/read/jqsymhnvqvjr#7123f5" target=_blank><img src="figures/qrcodecalignanoitnr.png" style="max-width:200px"/></a>
+
+</div>
