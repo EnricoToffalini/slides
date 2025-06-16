@@ -1,5 +1,57 @@
 ---
-title: "Slides"
+title: "Slide repository"
+author: "Enrico Toffalini"
+format:
+  html:
+    engine: knitr
+    encoding: UTF-8
+execute:
+  echo: false
+  message: false
+  warning: false
+  output: true
 ---
 
+```{r}
+#| label: load-and-generate
+#| include: false
 
+Sys.setlocale("LC_ALL", "en_US.UTF-8")
+library(qrcode)
+library(htmltools)
+
+slides = read.csv("allSlides.csv")
+slides$Title = iconv(slides$Title, from = "", to = "UTF-8", sub = "")
+
+qr_dir = "qr"
+if (!dir.exists(qr_dir)) dir.create(qr_dir)
+
+qrfilenames = paste0(gsub("[^A-Za-z0-9]", "", slides$Title), ".png")
+slides$QR_File = file.path(qr_dir, qrfilenames)
+slides$QR_WebPath = file.path("qr", basename(slides$QR_File))
+
+for (i in seq_len(nrow(slides))) {
+  if (!file.exists(slides$QR_File[i])) {
+    png(slides$QR_File[i], width = 200, height = 200)
+    plot(qr_code(slides$Link[i], ecl = "L"))
+    dev.off()
+  }
+}
+
+slides = slides[order(slides$Year,decreasing=T),]
+```
+
+```{r}
+#| echo: false
+#| results: asis
+
+for (i in seq_len(nrow(slides))) {
+  cat(sprintf('<div style="display: flex; align-items: center; justify-content: space-between; gap: 2em; margin-bottom: 0.5em; flex-wrap: wrap;"><div style="flex: 1 1 400px; min-width: 250px;"><p style="margin: 0 0 0.3em 0;"><em>%s &ndash; %s</em></p><strong>%s</strong> &ndash; <a href="%s" target="_blank">🌍 Slides</a></div><div style="flex: 0 0 120px; text-align: center;"><img src="%s" alt="QR code" width="100"></div></div>',
+    slides$Year[i],
+    htmlEscape(slides$Congress[i]),
+    htmlEscape(slides$Title[i]),
+    slides$Link[i],
+    slides$QR_File[i]
+  ))
+}
+```
