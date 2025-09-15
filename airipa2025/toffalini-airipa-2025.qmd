@@ -1,0 +1,201 @@
+---
+title: "Limiti nell’Uso delle Discrepanze nel Profilo Cognitivo per la Diagnosi"
+author:
+  - name: "Enrico Toffalini, Cesare Cornoldi"
+    affiliations: "Dipartimento di Psicologia Generale, Università di Padova"
+format: 
+  revealjs:
+    theme: default
+    slide-number: true
+    css: styles.css
+footer: |
+  Enrico Toffalini · DPG-UNIPD<br/>enrico.toffalini@unipd.it
+---
+##
+<p style="font-size:32px">Successo precedenti articoli <span style="font-size:22px">(Cornoldi et al., <a href="https://doi.org/10.1016/j.ridd.2014.05.013" target="_blank">2014</a>; Giofrè et al., <a href="https://doi.org/10.1016/j.intell.2017.01.014" target="_blank">2017</a>; Toffalini et al., <a href="https://doi.org/10.1177/2167702616672038" target="_blank">2017</a>, <a href="https://doi.org/10.1016/j.ridd.2022.104306" target="_blank">2022</a>)</span> ha spinto a dettagliare cautele su uso profili cognitivi a supporto di diagnosi</p>
+
+:::: {.columns}
+::: {.column width="80%"}
+<img src="figures/coverPCS.png" style="max-width=100%; border: 3px solid black; border-radius: 8px;"><br>
+:::
+:::{.column width="20%"}
+<div style="font-size:32px"
+<br/><br/>
+→ <a href="https://www.rivisteweb.it/doi/10.1449/113498" target="_blank">articolo pubblicato</a><br/><br/>
+→ <a href="https://www.researchgate.net/publication/395324749_Attenzione_all'uso_delle_discrepanze_nel_profilo_di_intelligenza_per_l'identificazione_di_DSA_e_ADHD" target="_blank">testo degli autori</a> (libero accesso)
+</div>
+:::
+::::
+
+<!-- plot(qrcode::qr_code("https://enricotoffalini.github.io/slides/toffalini-airipa-2025.pdf")) -->
+
+---
+
+## in super-sintesi
+
+<div style="font-size:45px">
+L'indagine di **questo o quel deficit o profilo cognitivo** è utile a *rafforzare* la convinzione che un problema ("disturbo") sia **"radicato" nell'assetto di funzionamento mentale**, dunque stabile (dunque meritevole di diagnosi)...
+
+::: {.fragment}
+... ma **non avrà mai valore deterministico**. Perché? Perché predomina la **variabilità individuale** / i disturbi sono **multicausali, dimensionali, "transdiagnostici"**
+:::
+</div>
+
+---
+
+##
+
+<img src="figures/profilo-generale-medio.png" style="border: 3px solid black; border-radius: 8px;">
+
+---
+
+##
+
+<img src="figures/profilo-subtest.png" style="border: 3px solid black; border-radius: 8px;">
+
+---
+
+##
+
+<div style="text-align: center;">
+<img src="figures/roc-dsa-adhd.png" style="height:550px; border: 3px solid black; border-radius: 8px;">
+</div>
+
+---
+
+## dai *~~core deficit~~* → ai "correlati"
+
+- *"core deficit"* = riflettono idea categoriale di disturbi causati da una o poche cause sottostanti ben definite e distinte ;  
+- oggi focus su multicausalità, comorbilità, dimensionalità, caratteristiche transdiagnostiche, variabilità inter-individuale, GWAS;
+- "disturbi" = **parte della neurodiversità**, porzioni estreme di tratti distribuiti in tutta la popolazione
+
+<div style="font-size:30px">e.g., Astle et al. (<a href="https://journals.sagepub.com/doi/full/10.1177/0963721420925518" target="_blank">2020</a>; <a href="https://acamh.onlinelibrary.wiley.com/doi/full/10.1111/jcpp.13481" target="_blank">2022</a>); Michelini et al. (<a href="https://onlinelibrary.wiley.com/doi/full/10.1002/wps.21225" target="_blank">2024</a>); Sonuga-Barke (<a href="https://doi.org/10.1002/jcv2.12120" target="_blank">2020</a>)</div>
+
+---
+
+## dai *~~core deficit~~* → ai "correlati"
+
+- *correlati* = **costellazioni di deficit o profili cognitivi**/neuropsicologici spesso associati a condizioni del neurosviluppo: sono cause, conseguenze o covariate... comunque utili in clinica come **marcatori <i>probabilistici</i>**
+
+- Multicausalità / Dimensionalità ⇒ singoli *correlati* utili ma **mai necessari né sufficienti** per la diagnosi <span style="font-size:32px">(nessun marcatore neuropsicologico, genetico o biologico ha forte valore diagnostico per alcuna condizione del neurosviluppo, e.g., <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/wps.21037" target="_blank">Cortese et al., 2023</a></span>)
+
+---
+
+## 
+#### *teorema del limite centrale*: multicausalità → dimensione
+
+<div style="text-align: center;">
+<img src="figures/central-limit-theorem.png" style="height:500px; border: 3px solid black; border-radius: 8px;">
+</div>
+
+---
+
+## 
+#### un po' tutto è geneticamente multicausale
+
+<div style="text-align: center;">
+<img src="figures/4th-law.png" style="height:500px; border: 3px solid black; border-radius: 8px;">
+</div>
+
+---
+
+##
+### Esempio di ragionamento probabilistico
+
+<div style="font-size:48px">Poiché alcuni **"correlati"** *(cause?)* sono più rilevanti di altri, posso usare loro **misure**, o misure di **loro combinazioni**, per **rafforzare o indebolire la propensione a credere che una difficoltà osservata richieda diagnosi** (cioè che sia stabile, radicata)`*`
+<br/>
+<div style="text-align:right">vediamo come →</div>
+</div>
+
+`*`<span style="font-size:26px"> se sembra complicato, lo è</span>
+
+---
+
+##
+### Esempio di ragionamento probabilistico
+##### (IAG - QI) come indicatore diagnostico DSA <span style="font-size:32px">(Giofrè et al., 2017)</span>
+
+<div style="text-align: center;">
+<img src="figures/probability-diagnosis.png" style="height:430px; border: 3px solid black; border-radius: 8px;">
+</div>
+
+---
+
+##
+### Esempio di ragionamento probabilistico
+##### (IAG - QI) come indicatore diagnostico DSA <span style="font-size:32px">(Giofrè et al., 2017)</span>
+
+- Bambino viene inviato a centro clinico dopo screening: probabilità stimata che abbia bisogno di diagnosi ~50%
+- Calcolo IAG-QI e *nient'altro*:
+  - se è zero, la probabilità scende a ~35%
+  - se è 7 punti (mediana DSA) la probabilità sale a ~70%
+  - se è 14 punti (ancora frequente nei DSA) sale a ~90%
+
+---
+
+##
+### Esempio di ragionamento probabilistico
+
+Resta inteso che ...
+
+- Un bambino potrebbe avere DSA o altre condizioni del neurosviluppo e tuttavia ***non*** presentare alcuna discrepanza IAG-QI: non è un caso frequente, ma ***potrebbe*** succedere
+- ...viceversa, potrebbe ***non*** avere DSA né altre condizioni del neurosviluppo e comunque presentare un'elevata discrepanza IAG-QI o profilo simile: ancora... non è un caso frequente, ma ***potrebbe*** succedere
+
+
+---
+
+##
+### Ulteriori analisi su IAG-QI
+##### No cambiamenti rilevanti con l'età
+
+<div style="text-align: center;">
+<img src="figures/age-iagqit.png" style="height:430px; border: 3px solid black; border-radius: 8px;">
+</div>
+
+---
+
+##
+### Ulteriori analisi su IAG-QI
+##### Effetto genere <span style="font-size:35px">(ma cf. popolazione generale; Giofrè et al., <a href="https://doi.org/10.1007/s10648-022-09705-1" target="_blank">2022</a>)</span>
+
+<div style="text-align: center;">
+<img src="figures/genere-iagqit.png" style="height:430px; border: 3px solid black; border-radius: 8px;">
+</div>
+
+---
+
+## 
+#### Opportunità
+
+- Ausilio nel determinare diagnosi in casi incerti (es. fattori motivazionali/emotivi o contestuali; FIL);
+- Più forte negli ADHD, più forte nei maschi (ma con cautele);
+
+#### Limiti 
+
+- Ausilio solo probabilistico (qualsiasi tipo di indicatore);
+- Profilo intellettivo non discrimina DSA vs ADHD (da verificare sottoindicatori es. velocità vs correttezza), né tipi di DSA
+
+---
+
+##
+#### Sottotipi di DSA: Qualche differenza statisticamente rilevante, ma non discriminativa per i singoli casi
+
+<div style="text-align: center;">
+<img src="figures/sottotipi-dsa.png" style="height:430px; border: 3px solid black; border-radius: 8px;">
+</div>
+
+---
+
+## Conclusioni
+
+- approccio **dimensionale** → profili possibili non 2, 3, o alcuni tipi, ma infiniti, sebbene non tutti ugualmente probabili;
+- diagnosi comunica marcato e persistente stato di bisogno (e altri criteri da DSM), non una "categoria" (taxon) naturale;
+- **correlati / deficit cognitivi** → utili a rafforzare (o indebolire) convinzione che sotto una difficoltà osservata ci sia una condizione "da diagnosi"
+
+---
+
+## Rivedi le slide
+
+<div style="text-align: center;">
+<img src="figures/qrcode.png" width="45%"><br>
+</div>

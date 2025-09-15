@@ -1,0 +1,53 @@
+/* Footer: pin to bottom-right instead of full-width center */
+.reveal .footer {
+  position: absolute;
+  bottom: 2rem;
+  right: 6rem;
+  left: auto !important;
+  width: auto !important;
+  text-align: right;
+  font-size: 0.5em !important;
+  line-height: 1.2;
+  color: #999;
+}
+
+/* Reduce title size on the title slide */
+.reveal .title { font-size: 2em; }
+
+/* Logo on bottom-left of every slide (keep it behind slide content) */
+.reveal .slide-background::after {
+  content: "";
+  position: absolute;
+  bottom: 2rem;
+  left: 15rem;
+  width: 250px;
+  height: 80px;
+  background-image: url("figures/airipa-logo.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  pointer-events: none;
+}
+
+/* QR code ONLY on the title slide, bottom-right ("footer" corner) */
+.reveal .slides > section#title-slide::after {
+  content: "";
+  position: absolute;
+  right: -6rem;
+  bottom: -8rem;         
+  width: 200px;
+  height: 200px;
+  background-image: url("figures/qrcode.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.95;
+  pointer-events: none;
+  z-index: 1002;        
+}
+
+/* full-bleed block that spans the full viewport width inside a slide */
+.reveal .slides section .full-bleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw); /* extend to left edge */
+  margin-right: calc(50% - 50vw); /* extend to right edge */
+}
