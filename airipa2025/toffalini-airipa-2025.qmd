@@ -73,14 +73,6 @@ L'indagine di **questo o quel deficit o profilo cognitivo** è utile a *rafforza
 
 ---
 
-## dai *~~core deficit~~* → ai "correlati"
-
-- *correlati* = **costellazioni di deficit o profili cognitivi**/neuropsicologici spesso associati a condizioni del neurosviluppo: sono cause, conseguenze o covariate... comunque utili in clinica come **marcatori <i>probabilistici</i>**
-
-- Multicausalità / Dimensionalità ⇒ singoli *correlati* utili ma **mai necessari né sufficienti** per la diagnosi <span style="font-size:32px">(nessun marcatore neuropsicologico, genetico o biologico ha forte valore diagnostico per alcuna condizione del neurosviluppo, e.g., <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/wps.21037" target="_blank">Cortese et al., 2023</a></span>)
-
----
-
 ## 
 #### *teorema del limite centrale*: multicausalità → dimensione
 
@@ -91,11 +83,20 @@ L'indagine di **questo o quel deficit o profilo cognitivo** è utile a *rafforza
 ---
 
 ## 
-#### un po' tutto è geneticamente multicausale
+#### un po' tutto il comportamento è geneticamente multicausale
 
 <div style="text-align: center;">
 <img src="figures/4th-law.png" style="height:500px; border: 3px solid black; border-radius: 8px;">
 </div>
+
+---
+
+##
+### "correlati": *mai sufficienti, mai necessari*...
+
+- *correlati* = **costellazioni di deficit o profili cognitivi**/neuropsicologici spesso associati a condizioni del neurosviluppo: sono cause, conseguenze o covariate... comunque utili in clinica come **marcatori <i>probabilistici</i>**
+
+- Multicausalità e Dimensionalità ⇒ singoli *correlati* utili ma **mai necessari né sufficienti** per la diagnosi <span style="font-size:32px">(nessun marcatore neuropsicologico, genetico o biologico ha forte valore diagnostico per alcuna condizione del neurosviluppo, e.g., <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/wps.21037" target="_blank">Cortese et al., 2023</a></span>)
 
 ---
 
@@ -113,7 +114,7 @@ L'indagine di **questo o quel deficit o profilo cognitivo** è utile a *rafforza
 
 ##
 ### Esempio di ragionamento probabilistico
-##### (IAG - QI) come indicatore diagnostico DSA <span style="font-size:32px">(Giofrè et al., 2017)</span>
+##### (IAG - QI) come indicatore diagnostico DSA <span style="font-size:32px">(Giofrè et al., <a href="https://doi.org/10.1016/j.intell.2017.01.014" target="_blank">2017</a>)</span>
 
 <div style="text-align: center;">
 <img src="figures/probability-diagnosis.png" style="height:430px; border: 3px solid black; border-radius: 8px;">
@@ -141,11 +142,29 @@ Resta inteso che ...
 - Un bambino potrebbe avere DSA o altre condizioni del neurosviluppo e tuttavia ***non*** presentare alcuna discrepanza IAG-QI: non è un caso frequente, ma ***potrebbe*** succedere
 - ...viceversa, potrebbe ***non*** avere DSA né altre condizioni del neurosviluppo e comunque presentare un'elevata discrepanza IAG-QI o profilo simile: ancora... non è un caso frequente, ma ***potrebbe*** succedere
 
+---
+
+##
+### ADHD e funzioni esecutive
+
+- Discrepanza IAG-QI differenzia DSA (o ADHD) da popolazione tipica con effetto tutto sommato ampio: Cohen's d ≈ 1.00-1.20 (AUC ≈ 0.75-0.80)
+
+- Altri effetti spesso studiati e famosi sono molto inferiori, es. marker di deficit in funzioni esecutive in ADHD: Cohen's d ≈ 0.46-0.69 (AUC ≈ 0.63-0.70) <span style="font-size:34px">(e.g., Willcutt et al., <a href="https://doi.org/10.1016/j.biopsych.2005.02.006" target="_blank">2005</a>)</span> *→ utilità per la diagnosi estremamente modesta*
 
 ---
 
 ##
-### Ulteriori analisi su IAG-QI
+
+<div style="text-align: center;">
+<img src="figures/adhd-executive.png" style="height:430px; border: 3px solid black; border-radius: 8px;">
+</div>
+
+<em><span style="font-size:23px"><p>Inibizione della risposta (es. Stop-Signal), Vigilanza/Attenzione sostenuta (es. CPT), Flessibilità cognitiva/Set-shifting (es. Wisconsin), Pianificazione (es. Torre di Londra, Torre di Hanoi), Memoria di lavoro</p></span></em>
+
+---
+
+##
+### Ulteriori analisi su IAG-QI in DSA
 ##### No cambiamenti rilevanti con l'età
 
 <div style="text-align: center;">
@@ -155,7 +174,7 @@ Resta inteso che ...
 ---
 
 ##
-### Ulteriori analisi su IAG-QI
+### Ulteriori analisi su IAG-QI in DSA
 ##### Effetto genere <span style="font-size:35px">(ma cf. popolazione generale; Giofrè et al., <a href="https://doi.org/10.1007/s10648-022-09705-1" target="_blank">2022</a>)</span>
 
 <div style="text-align: center;">
