@@ -95,7 +95,7 @@ L'indagine di **questo o quel deficit o profilo cognitivo** è utile a *rafforza
 ##
 ### "correlati": *mai sufficienti, mai necessari*...
 
-- *correlati* = **costellazioni di deficit o profili cognitivi**/neuropsicologici spesso associati a condizioni del neurosviluppo: sono cause, conseguenze o covariate... comunque utili in clinica come **marcatori <i>probabilistici</i>**
+- *correlati* = **costellazioni di deficit o profili cognitivi** / neuropsicologici spesso associati a condizioni del neurosviluppo: sono cause (*"endofenotipi"*?), conseguenze o covariate... utili alla clinica come **marcatori <i>probabilistici</i>**
 
 - Multicausalità e Dimensionalità ⇒ singoli *correlati* utili ma **mai necessari né sufficienti** per la diagnosi <span style="font-size:32px">(nessun marcatore neuropsicologico, genetico o biologico ha forte valore diagnostico per alcuna condizione del neurosviluppo, e.g., <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/wps.21037" target="_blank">Cortese et al., 2023</a></span>)
 
