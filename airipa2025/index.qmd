@@ -63,10 +63,11 @@ L'indagine di **questo o quel deficit o profilo cognitivo** è utile a *rafforza
 
 ---
 
-## dai *~~core deficit~~* → ai "correlati"
+## dai *~~core deficit~~* → ai "correlati" 
+#### (da ~~categorie~~ → a dimensioni)
 
-- *"core deficit"* = riflettono idea categoriale di disturbi causati da una o poche cause sottostanti ben definite e distinte ;  
-- oggi focus su multicausalità, comorbilità, dimensionalità, caratteristiche transdiagnostiche, variabilità inter-individuale, GWAS;
+- *"core deficit"* = riflettevano idea categoriale di disturbi causati da una/poche cause sottostanti definite e distinte;  
+- oggi focus su multicausalità, dimensionalità, comorbilità, caratteristiche transdiagnostiche, variabilità individuale;
 - "disturbi" = **parte della neurodiversità**, porzioni estreme di tratti distribuiti in tutta la popolazione
 
 <div style="font-size:30px">e.g., Astle et al. (<a href="https://journals.sagepub.com/doi/full/10.1177/0963721420925518" target="_blank">2020</a>; <a href="https://acamh.onlinelibrary.wiley.com/doi/full/10.1111/jcpp.13481" target="_blank">2022</a>); Michelini et al. (<a href="https://onlinelibrary.wiley.com/doi/full/10.1002/wps.21225" target="_blank">2024</a>); Sonuga-Barke (<a href="https://doi.org/10.1002/jcv2.12120" target="_blank">2020</a>)</div>
@@ -139,8 +140,8 @@ L'indagine di **questo o quel deficit o profilo cognitivo** è utile a *rafforza
 
 Resta inteso che ...
 
-- Un bambino potrebbe avere DSA o altre condizioni del neurosviluppo e tuttavia ***non*** presentare alcuna discrepanza IAG-QI: non è un caso frequente, ma ***potrebbe*** succedere
-- ...viceversa, potrebbe ***non*** avere DSA né altre condizioni del neurosviluppo e comunque presentare un'elevata discrepanza IAG-QI o profilo simile: ancora... non è un caso frequente, ma ***potrebbe*** succedere
+- Un bambino potrebbe ***non*** presentare alcuna discrepanza IAG-QI, e tuttavia avere DSA o altre condizioni del neurosviluppo: non è frequente, ma ***potrebbe*** succedere
+- ...viceversa, potrebbe presentare un'elevata discrepanza IAG-QI o profilo simile, e tuttavia ***non*** avere DSA né altre condizioni del neurosviluppo: ancora... non è frequente, ma ***potrebbe*** succedere
 
 ---
 
@@ -149,7 +150,7 @@ Resta inteso che ...
 
 - Discrepanza IAG-QI differenzia DSA (o ADHD) da popolazione tipica con effetto tutto sommato ampio: Cohen's d ≈ 1.00-1.20 (AUC ≈ 0.75-0.80)
 
-- Altri effetti spesso studiati e famosi sono molto inferiori, es. marker di deficit in funzioni esecutive in ADHD: Cohen's d ≈ 0.46-0.69 (AUC ≈ 0.63-0.70) <span style="font-size:34px">(e.g., Willcutt et al., <a href="https://doi.org/10.1016/j.biopsych.2005.02.006" target="_blank">2005</a>)</span> *→ utilità per la diagnosi estremamente modesta*
+- Altri effetti spesso studiati e famosi sono molto inferiori, es. marker di deficit in funzioni esecutive in ADHD: Cohen's d ≈ 0.46-0.69 (AUC ≈ 0.63-0.70) <span style="font-size:30px">(e.g., Willcutt et al., <a href="https://doi.org/10.1016/j.biopsych.2005.02.006" target="_blank">2005</a>)</span> *→ utilità per la diagnosi estremamente modesta <span style="font-size:30px">(ma migliorerebbe combinandoli, come del resto IAG-QI è un indice combinato</span>)*
 
 ---
 
@@ -187,7 +188,7 @@ Resta inteso che ...
 #### Opportunità
 
 - Ausilio nel determinare diagnosi in casi incerti (es. fattori motivazionali/emotivi o contestuali; FIL);
-- Più forte negli ADHD, più forte nei maschi (ma con cautele);
+- Più forte nell'ADHD, più forte nei maschi (ma con cautele);
 
 #### Limiti 
 
