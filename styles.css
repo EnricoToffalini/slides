@@ -1,0 +1,8 @@
+a {
+  color: #760000 !important;
+}
+
+::selection {
+  background: #760000;
+  color: #ffffff;
+}
