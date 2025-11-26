@@ -3,6 +3,9 @@ title: "Slide repository / Deposito slide"
 author: "Enrico Toffalini"
 format:
   html:
+    include-in-header:
+       text: |
+         <link rel="shortcut icon" href="favicon.png"/>
     css: styles.css
     engine: knitr
     encoding: UTF-8
