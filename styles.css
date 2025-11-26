@@ -6,3 +6,8 @@ a {
   background: #760000;
   color: #ffffff;
 }
+
+.title{
+  background: #760000 !important;
+  color: white !important;
+}
