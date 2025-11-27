@@ -1,6 +1,6 @@
 ---
 title: "Slide repository / Deposito slide"
-author: "Enrico Toffalini"
+author: '<a href="https://enricotoffalini.github.io" target="_blank"><u>Enrico Toffalini</u></a>'
 format:
   html:
     include-in-header:
