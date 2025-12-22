@@ -1,13 +1,16 @@
 a {
-  color: #760000 !important;
+  color: #9A0000 !important;
+}
+a:hover {
+  color: #333333 !important;
 }
 
 ::selection {
-  background: #760000;
+  background: #9A0000;
   color: #ffffff;
 }
 
 .title{
-  background: #760000 !important;
+  background: #9A0000 !important;
   color: white !important;
 }
