@@ -6,6 +6,7 @@ format:
     include-in-header:
        text: |
          <link rel="shortcut icon" href="favicon.png"/>
+         <script data-goatcounter="https://enricotoffalini.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     css: styles.css
     engine: knitr
     encoding: UTF-8
