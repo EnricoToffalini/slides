@@ -26,3 +26,6 @@ editor: visual
 
 <a href="handzone/5.Diagnostics.html" target=_blank>Two words on diagnostics</a>
 
+<br/><br/>
+
+<p style="font-size:60%;"><a href="https://github.com/EnricoToffalini/slides/tree/main/linkfunc" target=_blank>🔗 This repo link</a></p>

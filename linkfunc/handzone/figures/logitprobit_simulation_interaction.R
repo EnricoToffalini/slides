@@ -35,7 +35,7 @@ for(i in 1:niter){
   group = rep(0:1,each=k*N)
   condition = rep(0:1,each=k,times=N)
   
-  yLin = b0 + b1*group + b2*condition
+  yLin = b0 + b1*group + b2*condition + rInt
   if(trueLF=="logit") yProb = plogis(yLin)
   if(trueLF=="probit") yProb = pnorm(yLin)
   y = rbinom(length(yLin),1,yProb)
