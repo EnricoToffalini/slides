@@ -17,7 +17,7 @@ execute:
   output: true
 ---
 
-This webpage mainly collects slides from conferences; for open teaching materials please visit <a href="https://enricotoffalini.github.io/Courses.html" target="_blank">enricotoffalini.github.io/Courses.html</a> / Questa pagina web raccoglie principalmente le mie slide per convegni e seminari; per materiale di insegnamento vedi <a href="https://enricotoffalini.github.io/Courses.html" target="_blank">enricotoffalini.github.io/Courses.html</a>
+This webpage mainly collects slides for conferences; for open teaching materials please visit <a href="https://enricotoffalini.github.io/Courses.html" target="_blank">enricotoffalini.github.io/Courses.html</a> / Questa pagina web raccoglie principalmente le mie slide per convegni e seminari; per materiale di insegnamento vedi <a href="https://enricotoffalini.github.io/Courses.html" target="_blank">enricotoffalini.github.io/Courses.html</a>
 
 ```{r}
 #| label: load-and-generate
