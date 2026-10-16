@@ -1,11 +1,15 @@
 ---
-title: "Slide repository / Deposito slide"
-author: '<a href="https://enricotoffalini.github.io" target="_blank"><u>Enrico Toffalini</u></a>'
+pagetitle: "Deposito slide · Enrico Toffalini"
+lang: it
 format:
   html:
+    minimal: true
     include-in-header:
        text: |
          <link rel="shortcut icon" href="favicon.png"/>
+         <link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+         <link rel="preload" href="fonts/noto-serif-latin.woff2" as="font" type="font/woff2" crossorigin>
+         <meta name="description" content="Slide di convegni e seminari di Enrico Toffalini / Conference and seminar slides by Enrico Toffalini">
          <script data-goatcounter="https://enricotoffalini.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     css: styles.css
     engine: knitr
@@ -17,48 +21,187 @@ execute:
   output: true
 ---
 
-This webpage mainly collects slides for conferences; for open teaching materials please visit <a href="https://enricotoffalini.github.io/Courses.html" target="_blank">enricotoffalini.github.io/Courses.html</a> / Questa pagina web raccoglie principalmente le mie slide per convegni e seminari; per materiale di insegnamento vedi <a href="https://enricotoffalini.github.io/Courses.html" target="_blank">enricotoffalini.github.io/Courses.html</a>
-
 ```{r}
 #| label: load-and-generate
 #| include: false
 
-Sys.setlocale("LC_ALL", "en_US.UTF-8")
+# Per aggiungere una presentazione: copia il file nella repo e aggiungi una riga
+# in allSlides.csv (vedi README.md). Link puo' essere un URL completo oppure il
+# solo percorso del file nella repo (es. "Toffalini-Troina-2026.pdf").
+
 library(qrcode)
 library(htmltools)
 
-slides = read.csv("allSlides.csv")
-slides$Title = iconv(slides$Title, from = "", to = "UTF-8", sub = "")
+base_url = "https://enricotoffalini.github.io/slides/"
+mesi = c("gen","feb","mar","apr","mag","giu","lug","ago","set","ott","nov","dic")
 
+# lettura robusta del CSV: UTF-8 (anche con BOM) oppure Windows-1252 (Excel);
+# separatore "," oppure ";" (Excel in italiano)
+raw = readBin("allSlides.csv", "raw", file.size("allSlides.csv"))
+if (length(raw) >= 3 && all(raw[1:3] == as.raw(c(0xEF, 0xBB, 0xBF)))) raw = raw[-(1:3)]
+txt = rawToChar(raw)
+if (!validUTF8(txt)) txt = iconv(txt, from = "CP1252", to = "UTF-8")
+Encoding(txt) = "UTF-8"
+header = strsplit(txt, "\r?\n")[[1]][1]
+sep = ifelse(grepl(";", header) & !grepl(",", header), ";", ",")
+slides = read.csv(text = txt, sep = sep, colClasses = "character", strip.white = TRUE, encoding = "UTF-8")
+slides = slides[!is.na(slides$Title) & slides$Title != "" & !is.na(slides$Link) & slides$Link != "", ]
+
+# link relativi -> URL completo
+isRel = !grepl("^https?://", slides$Link)
+slides$Link[isRel] = paste0(base_url, sub("^/+", "", slides$Link[isRel]))
+
+# controllo che i file locali esistano (match esatto, maiuscole comprese come su GitHub Pages)
+isLocal = startsWith(slides$Link, base_url)
+localPath = unname(sapply(sub(base_url, "", slides$Link, fixed = TRUE), URLdecode))
+notFound = isLocal & !(localPath %in% list.files(".", recursive = TRUE))
+if (any(notFound)) message("ATTENZIONE, file non trovati nella repo:\n  ", paste(localPath[notFound], collapse = "\n  "))
+slides$QR_File = file.path("qr", paste0(gsub("[^A-Za-z0-9]", "", ifelse(isLocal, localPath, slides$Link)), ".svg"))
+
+# date: "2024", "2025-02", "2026-01_15" oppure "2026-01-15"
+dparts = strsplit(gsub("_", "-", slides$Year), "-")
+slides$yy = as.integer(sapply(dparts, `[`, 1))
+slides$mm = as.integer(sapply(dparts, `[`, 2))
+slides$dd = as.integer(sapply(dparts, `[`, 3))
+badDate = is.na(slides$yy) | (!is.na(slides$mm) & !slides$mm %in% 1:12)
+if (any(badDate)) message("ATTENZIONE, date non riconosciute: ", paste(slides$Year[badDate], collapse = ", "))
+slides$mm[badDate] = NA
+slides$dateLabel = ifelse(!is.na(slides$dd), paste(slides$dd, mesi[slides$mm]),
+                   ifelse(!is.na(slides$mm), mesi[slides$mm], ""))
+sortKey = ifelse(is.na(slides$yy), 0, slides$yy) * 1e4 +
+  ifelse(is.na(slides$mm), 0, slides$mm) * 100 + ifelse(is.na(slides$dd), 0, slides$dd)
+slides = slides[order(-sortKey), ]
+
+# formato (PDF / HTML)
+ext = tolower(tools::file_ext(sub("[?#].*$", "", slides$Link)))
+slides$Format = ifelse(ext == "pdf", "PDF", ifelse(ext %in% c("html", "htm"), "HTML", "Link"))
+
+# QR code come SVG compatti in qr/, nome derivato dal link (rigenerati a ogni render,
+# quindi sempre aggiornati; i file obsoleti in qr/ vengono rimossi)
+qr_svg = function(url, file, quiet = 1) {  # qr_code() include gia' 3 moduli di margine
+  m = unclass(qr_code(url, ecl = "L"))
+  n = nrow(m)
+  d = character(0)
+  for (y in seq_len(n)) {
+    r = rle(as.logical(m[y, ]))
+    x0 = cumsum(r$lengths) - r$lengths
+    k = which(r$values)
+    d = c(d, sprintf("M%d %dh%dv1h-%dz", x0[k] + quiet, y - 1 + quiet, r$lengths[k], r$lengths[k]))
+  }
+  s = n + 2 * quiet
+  cat(sprintf('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 %d %d" shape-rendering="crispEdges"><rect width="%d" height="%d" fill="#fff"/><path fill="#1d1d1b" d="%s"/></svg>',
+              s, s, s, s, paste(d, collapse = "")), file = file)
+}
 qr_dir = "qr"
 if (!dir.exists(qr_dir)) dir.create(qr_dir)
-
-qrfilenames = paste0(gsub("[^A-Za-z0-9]", "", slides$Title), ".png")
-slides$QR_File = file.path(qr_dir, qrfilenames)
-slides$QR_WebPath = file.path("qr", basename(slides$QR_File))
-
-for (i in seq_len(nrow(slides))) {
-  if (!file.exists(slides$QR_File[i])) {
-    png(slides$QR_File[i], width = 200, height = 200)
-    plot(qr_code(slides$Link[i], ecl = "L"))
-    dev.off()
-  }
-}
-
-slides = slides[order(slides$Year,decreasing=T),]
+for (i in seq_len(nrow(slides))) qr_svg(slides$Link[i], slides$QR_File[i])
+obsolete = setdiff(list.files(qr_dir, full.names = TRUE), slides$QR_File)
+if (length(obsolete) > 0) file.remove(obsolete)
 ```
 
 ```{r}
 #| echo: false
 #| results: asis
 
-for (i in seq_len(nrow(slides))) {
-  cat(sprintf('<div style="display: flex; align-items: center; justify-content: space-between; gap: 2em; margin-bottom: 0.5em; flex-wrap: wrap;"><div style="flex: 1 1 400px; min-width: 250px;"><p style="margin: 0 0 0.3em 0;"><em>%s &ndash; %s</em></p><strong>%s</strong> &ndash; <a href="%s" target="_blank">🗐 Slides</a></div><div style="flex: 0 0 120px; text-align: center;"><img src="%s" alt="QR code" width="100"></div></div>',
-    slides$Year[i],
-    htmlEscape(slides$Congress[i]),
-    htmlEscape(slides$Title[i]),
-    slides$Link[i],
-    slides$QR_File[i]
-  ))
+esc = function(x) htmlEscape(x, attribute = TRUE)
+years = unique(slides$yy)
+yrange = range(slides$yy, na.rm = TRUE)
+
+cat('```{=html}\n')
+cat(sprintf('
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow"><a href="https://enricotoffalini.github.io" target="_blank">Enrico Toffalini</a></p>
+    <h1>Deposito slide <span lang="en">Slide repository</span></h1>
+    <p class="lead">Questa pagina raccoglie principalmente le mie slide per convegni e seminari. Per il materiale didattico vedi <a href="https://enricotoffalini.github.io/Courses.html" target="_blank">enricotoffalini.github.io/Courses.html</a>.</p>
+    <p class="lead lead-en" lang="en">This page mainly collects my slides for conferences and seminars. For open teaching materials please visit <a href="https://enricotoffalini.github.io/Courses.html" target="_blank">enricotoffalini.github.io/Courses.html</a>.</p>
+    <p class="stats"><span>%d presentazioni</span><span>%d&ndash;%d</span></p>
+  </div>
+</header>
+<div class="toolbar">
+  <div class="wrap">
+    <label class="search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input type="search" id="q" placeholder="Cerca / Search" autocomplete="off" aria-label="Cerca">
+    </label>
+    <span class="count" id="count" aria-live="polite"></span>
+  </div>
+</div>
+<main class="wrap" id="list">
+', nrow(slides), yrange[1], yrange[2]))
+
+for (y in years) {
+  s = slides[slides$yy %in% y, ]
+  cat(sprintf('<section class="year"><h2 class="year-label">%s</h2><ol class="talks">\n', ifelse(is.na(y), "&ndash;", y)))
+  for (i in seq_len(nrow(s))) {
+    cat(sprintf('<li class="talk" data-search="%s">
+  <div class="talk-body">
+    <p class="talk-meta">%s<span class="event">%s</span></p>
+    <h3 class="talk-title"><a href="%s" target="_blank">%s</a></h3>
+    <a class="btn" href="%s" target="_blank">Slide %s<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+  </div>
+  <button class="qr" type="button" data-qr="%s" data-title="%s" aria-label="Mostra QR code ingrandito"><img src="%s" alt="QR code" width="84" height="84" loading="lazy"></button>
+</li>\n',
+      esc(tolower(paste(s$Title[i], s$Congress[i], s$Year[i]))),
+      ifelse(s$dateLabel[i] == "", "", sprintf('<time>%s</time>', s$dateLabel[i])),
+      htmlEscape(s$Congress[i]),
+      esc(s$Link[i]), htmlEscape(s$Title[i]),
+      esc(s$Link[i]), s$Format[i],
+      s$QR_File[i], esc(s$Title[i]), s$QR_File[i]))
+  }
+  cat('</ol></section>\n')
 }
+
+cat(sprintf('
+<p class="empty" id="empty" hidden>Nessun risultato / No results</p>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p><a href="https://enricotoffalini.github.io" target="_blank">Enrico Toffalini</a></p>
+    <p>Aggiornato il %s</p>
+  </div>
+</footer>
+<dialog id="qr-dialog">
+  <div class="qr-box">
+    <img src="" alt="QR code">
+    <p class="qr-title"></p>
+    <button type="button" class="qr-close" aria-label="Chiudi">&times;</button>
+  </div>
+</dialog>
+', format(Sys.Date(), "%d/%m/%Y")))
+cat('\n```\n')
+```
+
+```{=html}
+<script>
+(function () {
+  var norm = function (s) { return s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase(); };
+  var q = document.getElementById("q"), count = document.getElementById("count"), empty = document.getElementById("empty");
+  var talks = Array.prototype.slice.call(document.querySelectorAll(".talk"));
+  talks.forEach(function (t) { t._s = norm(t.getAttribute("data-search")); });
+  function update() {
+    var words = norm(q.value.trim()).split(/\s+/).filter(Boolean), n = 0;
+    talks.forEach(function (t) {
+      var ok = words.every(function (w) { return t._s.indexOf(w) !== -1; });
+      t.hidden = !ok; if (ok) n++;
+    });
+    document.querySelectorAll(".year").forEach(function (y) { y.hidden = !y.querySelector(".talk:not([hidden])"); });
+    count.textContent = words.length ? n + " / " + talks.length : "";
+    empty.hidden = n > 0;
+  }
+  q.addEventListener("input", update);
+  var dlg = document.getElementById("qr-dialog");
+  if (dlg && dlg.showModal) {
+    document.querySelectorAll(".qr").forEach(function (b) {
+      b.addEventListener("click", function () {
+        dlg.querySelector("img").src = b.getAttribute("data-qr");
+        dlg.querySelector(".qr-title").textContent = b.getAttribute("data-title");
+        dlg.showModal();
+      });
+    });
+    dlg.querySelector(".qr-close").addEventListener("click", function () { dlg.close(); });
+    dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
+  }
+})();
+</script>
 ```
