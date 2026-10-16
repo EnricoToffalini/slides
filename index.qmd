@@ -58,16 +58,18 @@ notFound = isLocal & !(localPath %in% list.files(".", recursive = TRUE))
 if (any(notFound)) message("ATTENZIONE, file non trovati nella repo:\n  ", paste(localPath[notFound], collapse = "\n  "))
 slides$QR_File = file.path("qr", paste0(gsub("[^A-Za-z0-9]", "", ifelse(isLocal, localPath, slides$Link)), ".svg"))
 
-# date: "2024", "2025-02", "2026-01_15" oppure "2026-01-15"
+# date: "2024", "2025-02", "2026-01_15" oppure "2026-01-15"; range di giorni: "2025-09_18-20"
 dparts = strsplit(gsub("_", "-", slides$Year), "-")
 slides$yy = as.integer(sapply(dparts, `[`, 1))
 slides$mm = as.integer(sapply(dparts, `[`, 2))
 slides$dd = as.integer(sapply(dparts, `[`, 3))
+slides$dd2 = as.integer(sapply(dparts, `[`, 4))
 badDate = is.na(slides$yy) | (!is.na(slides$mm) & !slides$mm %in% 1:12)
 if (any(badDate)) message("ATTENZIONE, date non riconosciute: ", paste(slides$Year[badDate], collapse = ", "))
 slides$mm[badDate] = NA
-slides$dateLabel = ifelse(!is.na(slides$dd), paste(slides$dd, mesi[slides$mm]),
-                   ifelse(!is.na(slides$mm), mesi[slides$mm], ""))
+slides$dateLabel = ifelse(!is.na(slides$dd2), paste0(slides$dd, "&ndash;", slides$dd2, " ", mesi[slides$mm]),
+                   ifelse(!is.na(slides$dd), paste(slides$dd, mesi[slides$mm]),
+                   ifelse(!is.na(slides$mm), mesi[slides$mm], "")))
 sortKey = ifelse(is.na(slides$yy), 0, slides$yy) * 1e4 +
   ifelse(is.na(slides$mm), 0, slides$mm) * 100 + ifelse(is.na(slides$dd), 0, slides$dd)
 slides = slides[order(-sortKey), ]
@@ -105,17 +107,15 @@ if (length(obsolete) > 0) file.remove(obsolete)
 
 esc = function(x) htmlEscape(x, attribute = TRUE)
 years = unique(slides$yy)
-yrange = range(slides$yy, na.rm = TRUE)
 
 cat('```{=html}\n')
-cat(sprintf('
+cat('
 <header class="hero">
   <div class="wrap">
     <p class="eyebrow"><a href="https://enricotoffalini.github.io" target="_blank">Enrico Toffalini</a></p>
     <h1>Deposito slide <span lang="en">Slide repository</span></h1>
     <p class="lead">Questa pagina raccoglie principalmente le mie slide per convegni e seminari. Per il materiale didattico vedi <a href="https://enricotoffalini.github.io/Courses.html" target="_blank">enricotoffalini.github.io/Courses.html</a>.</p>
     <p class="lead lead-en" lang="en">This page mainly collects my slides for conferences and seminars. For open teaching materials please visit <a href="https://enricotoffalini.github.io/Courses.html" target="_blank">enricotoffalini.github.io/Courses.html</a>.</p>
-    <p class="stats"><span>%d presentazioni</span><span>%d&ndash;%d</span></p>
   </div>
 </header>
 <div class="toolbar">
@@ -128,7 +128,7 @@ cat(sprintf('
   </div>
 </div>
 <main class="wrap" id="list">
-', nrow(slides), yrange[1], yrange[2]))
+')
 
 for (y in years) {
   s = slides[slides$yy %in% y, ]

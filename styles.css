@@ -83,12 +83,6 @@ a:hover { color: var(--red-dark); }
 .lead { max-width: 680px; margin: 0 0 8px; font-size: 1.02rem; opacity: 0.95; }
 .lead-en { font-size: 0.92rem; opacity: 0.75; }
 .lead a { text-decoration-color: rgba(255,255,255,0.5); }
-.stats {
-  display: flex; flex-wrap: wrap; gap: 8px;
-  margin: 26px 0 0; padding: 0;
-  font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
-}
-.stats span { border: 1px solid rgba(255,255,255,0.45); padding: 4px 10px; }
 
 /* ---------- toolbar ---------- */
 .toolbar {

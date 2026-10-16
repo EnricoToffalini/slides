@@ -12,7 +12,7 @@ Sorgente di <https://enricotoffalini.github.io/slides/>. La pagina è generata d
    2026-10_16,Nome evento,Titolo della presentazione,Toffalini-Evento-2026.pdf
    ```
 
-   - **Year**: `2026`, `2026-10`, `2026-10_16` o `2026-10-16` (la pagina mostra "16 ott", raggruppato per anno; l'ordine è automatico).
+   - **Year**: `2026`, `2026-10`, `2026-10_16` o `2026-10-16` (la pagina mostra "16 ott"; per più giorni `2026-10_16-18`, raggruppato per anno; l'ordine è automatico).
    - **Link**: URL completo (`https://enricotoffalini.github.io/slides/...`) oppure solo il percorso del file nella repo (`Toffalini-Evento-2026.pdf`, `cartella/index.html`). Va bene anche un link esterno.
    - Titoli con virgole tra virgolette `"..."`. Si possono usare le lettere accentate.
    - Il CSV può essere salvato anche da Excel (UTF-8 o "CSV delimitato", con `,` o `;`).
