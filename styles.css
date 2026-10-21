@@ -1,17 +1,4 @@
-@font-face {
-  font-family: "Inter";
-  src: url("fonts/inter-latin.woff2") format("woff2");
-  font-weight: 400 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Noto Serif";
-  src: url("fonts/noto-serif-latin.woff2") format("woff2");
-  font-weight: 400 700;
-  font-style: normal;
-  font-display: swap;
-}
+/* Inter and Noto Serif are loaded from Google Fonts (see index.qmd) */
 
 :root {
   --red: #9b0014;

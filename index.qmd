@@ -7,8 +7,9 @@ format:
     include-in-header:
        text: |
          <link rel="shortcut icon" href="favicon.png"/>
-         <link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-         <link rel="preload" href="fonts/noto-serif-latin.woff2" as="font" type="font/woff2" crossorigin>
+         <link rel="preconnect" href="https://fonts.googleapis.com">
+         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&family=Noto+Serif:wght@400..700&display=swap" rel="stylesheet">
          <meta name="description" content="Slide di convegni e seminari di Enrico Toffalini / Conference and seminar slides by Enrico Toffalini">
          <!-- link previews (WhatsApp, social networks) -->
          <meta property="og:type" content="website">
