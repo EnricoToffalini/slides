@@ -21,4 +21,4 @@ Sorgente di <https://enricotoffalini.github.io/slides/>. La pagina è generata d
 
 Durante il render, nella console compare un avviso **ATTENZIONE** se un file indicato nel CSV non esiste nella repo (controllo anche di maiuscole/minuscole, che su GitHub Pages contano) o se una data non è riconosciuta.
 
-I QR code in `qr/` sono generati automaticamente a ogni render (non vanno modificati a mano). Grafica in `styles.css`, font in `fonts/`.
+I QR code in `qr/` sono generati automaticamente a ogni render (non vanno modificati a mano). Grafica in `styles.css`; i font (Inter, Noto Serif) sono caricati da Google Fonts.
